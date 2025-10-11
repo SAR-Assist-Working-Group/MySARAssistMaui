@@ -17,13 +17,13 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ScrollView Grid.Column="0" Grid.Row="0">
+        <ScrollView x:Name="svMainScrollView" Grid.Column="0" Grid.Row="0">
 
 
 
 
 
-            <VerticalStackLayout  Padding="20">
+            <VerticalStackLayout x:Name="vslMainLayout"  Padding="20">
                 <Label Style="{StaticResource FormFieldTitle}" Text="Your name / team (optional)"></Label>
                 <Entry Text="{Binding SetByName}" Keyboard="Plain" Placeholder="Jane Smith or 101"></Entry>
                 
@@ -35,21 +35,22 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
 
 
 
-                <VerticalStackLayout BindableLayout.ItemsSource="{Binding OperationalRiskQuestions}">
+                <VerticalStackLayout x:Name="vslOpRisk" BindableLayout.ItemsSource="{Binding OperationalRiskQuestions}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate x:DataType="questionModels:RADeMSQuestionViewModel">
 
-                            <Grid>
+                            <Grid x:Name="grid">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="30"></RowDefinition>
                                     <!-- title-->
-                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
                                     <!-- description-->
                                     <RowDefinition Height="*"></RowDefinition>
                                     <!-- buttons -->
                                     <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
                                     <!-- help buttons -->
 
                                 </Grid.RowDefinitions>
@@ -60,7 +61,7 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
                                 </Grid.ColumnDefinitions>
 
 
-                                <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding question.QuestionText}" Style="{StaticResource RADeMSQuestionTitle}" FontAttributes="Bold"></Label>
+                                <Label x:Name="{Binding question.ID}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding question.QuestionText}" Style="{StaticResource RADeMSQuestionTitle}" FontAttributes="Bold"></Label>
                                 <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"  Text="{Binding question.Description}" Style="{StaticResource RADeMSQuestionTitle}"></Label>
 
                                 <!-- summary display -->
@@ -77,8 +78,8 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
                                 <Label IsVisible="{Binding ShowDetails}"  Margin="5,20,5,20" Text="{Binding question.EgOption2Bullets}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"></Label>
                                 <Button IsVisible="{Binding ShowDetails}"   Text="{Binding question.Option3LabelWithNum}" Command="{Binding SetOption3}" Style="{StaticResource RademsButton}"  BackgroundColor="{Binding Option3ButtonColor}" Grid.Row="4" Grid.Column="0"></Button>
                                 <Label IsVisible="{Binding ShowDetails}" Margin="5,20,5,20" Text="{Binding question.EgOption3Bullets}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4"></Label>
-                                <Button  IsVisible="{Binding ShowDetails}"  Command="{Binding ToggleDetailsCommand}"  Text="Hide Details" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"></Button>
-
+                                <Button CommandParameter="{Binding question.ID}"  Clicked="Button_Clicked"  IsVisible="{Binding ShowDetails}"  Command="{Binding ToggleDetailsCommand}"  Text="Hide Details" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"></Button>
+                                <Label Text=" " Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3"></Label>
 
                             </Grid>
 
@@ -98,13 +99,15 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="30"></RowDefinition>
                                     <!-- title-->
-                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
                                     <!-- description-->
                                     <RowDefinition Height="*"></RowDefinition>
                                     <!-- buttons -->
                                     <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="*"></RowDefinition>
                                     <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+
                                     <!-- help buttons -->
 
                                 </Grid.RowDefinitions>
@@ -133,6 +136,7 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
                                 <Button IsVisible="{Binding ShowDetails}"   Text="{Binding question.Option3LabelWithNum}" Command="{Binding SetOption3}" Style="{StaticResource RademsButton}"  BackgroundColor="{Binding Option3ButtonColor}" Grid.Row="4" Grid.Column="0"></Button>
                                 <Label IsVisible="{Binding ShowDetails}" Margin="5,20,5,20" Text="{Binding question.EgOption3Bullets}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4"></Label>
                                 <Button  IsVisible="{Binding ShowDetails}"  Command="{Binding ToggleDetailsCommand}"  Text="Hide Details" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"></Button>
+                                <Label Text=" " Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3"></Label>
 
 
                             </Grid>

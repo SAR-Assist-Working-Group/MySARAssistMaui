@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MySARAssist.ViewModels.RADeMS
 {
@@ -18,6 +19,7 @@ namespace MySARAssist.ViewModels.RADeMS
         public RADeMSScore rademsScore { get => _rademsScore; }
 
         RADeMSEventHandler? eventHandler = null;
+
         public string SetByName { get => rademsScore.SetByName; set => rademsScore.SetByName = value; }
         public string Comment { get => rademsScore.Comment; set => rademsScore.Comment = value; }
         public RADeMSDetailsViewModel()
@@ -33,8 +35,7 @@ namespace MySARAssist.ViewModels.RADeMS
 
         }
 
-
-
+     
         public void SetRademsType(string typeIdStr)
         {
             int typeId = 0;
