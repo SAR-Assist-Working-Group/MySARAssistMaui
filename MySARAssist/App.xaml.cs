@@ -78,12 +78,13 @@ namespace MySARAssist
                 orgs = new List<Organization>();
             }
 
-
-            if (!orgs.Any() || !orgs.Any(o=>o.ParentOrganizationID == Guid.Empty))
+                List<Organization> staticOrgs = OrganizationTools.GetStaticOrganizations(Guid.Empty);
+            List<Organization> parentOrgs = OrganizationTools.GetStaticParentOrganizations();
+                
+            if (!orgs.Any() || !orgs.Any(o=>o.ParentOrganizationID == Guid.Empty) || orgs.Count < staticOrgs.Count + parentOrgs.Count)
             {
                 //get the static orgs and save them
-                List<Organization> staticOrgs = OrganizationTools.GetStaticOrganizations(Guid.Empty);
-                List<Organization> parentOrgs = OrganizationTools.GetStaticParentOrganizations();
+
                 staticOrgs.AddRange(parentOrgs);
                 Guid bcsara = new Guid("CC3A9DC9-01A3-4D39-B806-2128B51120BC");
                 int bcsaraCount = staticOrgs.Count(o => o.OrganizationID == bcsara);
