@@ -1,443 +1,408 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
-		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
-
-		<!-- Note for MacCatalyst:
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
+    <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+    <!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
+    <!-- Note for MacCatalyst:
 		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
 		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
 		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
 		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
-		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
-
-		<OutputType>Exe</OutputType>
-		<RootNamespace>MySARAssist</RootNamespace>
-		<UseMaui>true</UseMaui>
-		<SingleProject>true</SingleProject>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-
-		<!-- Display name -->
-		<ApplicationTitle>MySARAssist</ApplicationTitle>
-
-		<!-- App Identifier -->
-		<ApplicationId>com.companyname.mysarassist</ApplicationId>
-
-		<!-- Versions -->
-		<ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-		<ApplicationVersion>1</ApplicationVersion>
-
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">12.2</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-		<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
-		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-		<PackageCertificateThumbprint>5E7A46ED5048B4F99B05102F68D9C20024DFFABE</PackageCertificateThumbprint>
-		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
-		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
-		<AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
-		<GenerateTestArtifacts>True</GenerateTestArtifacts>
-		<AppInstallerUri>https://sarassist.ca</AppInstallerUri>
-		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-		<Platforms>AnyCPU;ARM64</Platforms>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>2</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|ARM64'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>2</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	  <EnableSGenConc>True</EnableSGenConc>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|ARM64'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	  <EnableSGenConc>True</EnableSGenConc>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|ARM64'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|ARM64'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>2</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-		<RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
-
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|ARM64'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>2</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	  <EnableSGenConc>True</EnableSGenConc>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|ARM64'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	  <EnableSGenConc>True</EnableSGenConc>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|ARM64'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|ARM64'">
-	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
-	  <CodesignKey>Apple Distribution: Dylan Baker (AHLVEA35GD)</CodesignKey>
-	  <CodesignProvision>My SAR Assist Distro 2024</CodesignProvision>
-	  <ProvisioningType>manual</ProvisioningType>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|AnyCPU'">
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|ARM64'">
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|ARM64'">
-	  <ApplicationVersion>31</ApplicationVersion>
-	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-	
-	<PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
-		<MtouchLink>SdkOnly</MtouchLink>
-		<UseInterpreter>true</UseInterpreter>
-		<MtouchExtraArgs>--linkskip=PackageName</MtouchExtraArgs>
-	</PropertyGroup>
-	<PropertyGroup>
-		<UseInterpreter Condition="$(TargetFramework.EndsWith('-ios'))">true</UseInterpreter>
-		<PlatformTarget>AnyCPU</PlatformTarget>
-		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-	</PropertyGroup>
-	<PropertyGroup>
-	  <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.26100.0</TargetFrameworks>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|AnyCPU'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.26100.0|AnyCPU'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|ARM64'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|ARM64'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.26100.0|ARM64'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <AndroidLinkTool>r8</AndroidLinkTool>
-	  <AndroidPackageFormat>aab</AndroidPackageFormat>
-	  <AndroidUseAapt2>True</AndroidUseAapt2>
-	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|AnyCPU'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.26100.0|AnyCPU'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|ARM64'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <AndroidLinkTool>r8</AndroidLinkTool>
-	  <AndroidPackageFormat>aab</AndroidPackageFormat>
-	  <AndroidUseAapt2>True</AndroidUseAapt2>
-	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|ARM64'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.26100.0|ARM64'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(TargetFramework)'=='net9.0-ios'">
-	  <CodesignKey>Apple Distribution: Dylan Baker (AHLVEA35GD)</CodesignKey>
-	  <CodesignProvision>My SAR Assist Distro 2024</CodesignProvision>
-	  <ProvisioningType>manual</ProvisioningType>
-	</PropertyGroup>
-			
-
-	<ItemGroup>
-		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#040404" />
-
-		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Images\sar_assist_logo_sq.png" Color="#040404" BaseSize="512, 512" />
-
-		<!-- Images -->
-		<MauiImage Include="Resources\Images\*" />
-
-		<!-- Custom Fonts -->
-		<MauiFont Include="Resources\Fonts\*" />
-
-		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="Resources\Images\calculator_icon.png" />
-	  <None Remove="Resources\Images\clock_icon.png" />
-	  <None Remove="Resources\Images\footstep_icon.png" />
-	  <None Remove="Resources\Images\glyphicons_basic_159_thumbnails_list.svg" />
-	  <None Remove="Resources\Images\glyphicons_basic_196_circle_empty_info.svg" />
-	  <None Remove="Resources\Images\glyphicons_basic_21_home.svg" />
-	  <None Remove="Resources\Images\glyphicons_basic_234_calculator.svg" />
-	  <None Remove="Resources\Images\glyphicons_basic_462_footprints.svg" />
-	  <None Remove="Resources\Images\glyphicons_basic_592_map.svg" />
-	  <None Remove="Resources\Images\glyphicons_basic_607_user_check.svg" />
-	  <None Remove="Resources\Images\glyphicons_basic_61_compass.svg" />
-	  <None Remove="Resources\Images\glyphicons_basic_69_ruler.svg" />
-	  <None Remove="Resources\Images\glyphicons_basic_98_vector_path_line.svg" />
-	  <None Remove="Resources\Images\grid_icon.png" />
-	  <None Remove="Resources\Images\house_icon.png" />
-	  <None Remove="Resources\Images\icon_about.png" />
-	  <None Remove="Resources\Images\icon_feed.png" />
-	  <None Remove="Resources\Images\info_icon.png" />
-	  <None Remove="Resources\Images\line_icon.png" />
-	  <None Remove="Resources\Images\location.png" />
-	  <None Remove="Resources\Images\map_mark_icon.png" />
-	  <None Remove="Resources\Images\radems_card.png" />
-	  <None Remove="Resources\Images\radems_grid.png" />
-	  <None Remove="Resources\Images\radems_grid_icon.png" />
-	  <None Remove="Resources\Images\range_of_detection.png" />
-	  <None Remove="Resources\Images\sar_assist_logo.png" />
-	  <None Remove="Resources\Images\sar_assist_logo_sq.png" />
-	  <None Remove="Resources\Images\sar_command_assist_logo.png" />
-	  <None Remove="Resources\Images\spacing_icon.png" />
-	  <None Remove="Resources\Splash\splash.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiImage Include="Resources\Splash\splash.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="10.0.0" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-		<PackageReference Include="CoordinateSharp" Version="3.1.1.1" />
-		<PackageReference Include="MetroLog.Maui" Version="2.1.0" />
-		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="9.0.0">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.21" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.21" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="NSwag.ApiDescription.Client" Version="14.2.0">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
-		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.10" />
-		<PackageReference Include="System.Private.Uri" Version="4.3.2" />
-		<PackageReference Include="System.ServiceModel.Duplex" Version="6.0.*" />
-		<PackageReference Include="System.ServiceModel.Federation" Version="8.1.1" />
-		<PackageReference Include="System.ServiceModel.Http" Version="8.1.1" />
-		<PackageReference Include="System.ServiceModel.NetNamedPipe" Version="8.1.1" />
-		<PackageReference Include="System.ServiceModel.NetTcp" Version="8.1.1" />
-		<PackageReference Include="System.ServiceModel.Security" Version="6.0.*" />
-		<PackageReference Include="ZXing.Net.Maui" Version="0.4.0" />
-		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\MySarAssistModels\MySarAssistModels.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="Views\CalculatorViews\PacingToDistancePage.xaml.cs">
-	    <DependentUpon>PacingToDistancePage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\CalculatorViews\SweepWidthCalculatorView.xaml.cs">
-	    <DependentUpon>SweepWidthCalculatorView.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\CalculatorViews\VisualSearchResourceEstimationView.xaml.cs">
-	    <DependentUpon>VisualSearchResourceEstimationView.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="Views\CalculatorViews\DistanceToPacingPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CalculatorViews\HowToRangeOfDetectionPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CalculatorViews\SweepWidthCalculatorView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckInOutViews\CheckInOutView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckInOutViews\EditQualificationsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\GeneralViews\AboutView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CalculatorViews\CalculatorsView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CalculatorViews\CoordinateConverterView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CalculatorViews\GridSearchView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CalculatorViews\LinearSearchView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CalculatorViews\PacingToDistancePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CalculatorViews\VisualSearchResourceEstimationView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckInOutViews\CheckInView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckInOutViews\CheckOutView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckInOutViews\PersonnelEditView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckInOutViews\PersonnelListView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\IncidentInfoViews\IncidentItemsListPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\RADeMSViews\RADeMSCardPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\RADeMSViews\RADeMSDetailsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\RADeMSViews\RADeMSView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Utilities\AltimeterPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Utilities\UtilitiesListPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Update="Views\RADeMS\RADeMSCardPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="ViewModels\Clues\" />
-	  <Folder Include="ViewModels\ClueViewModels\" />
-	  <Folder Include="Views\ClueViews\" />
-	</ItemGroup>
-
+    <!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MySARAssist</RootNamespace>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- Display name -->
+    <ApplicationTitle>MySARAssist</ApplicationTitle>
+    <!-- App Identifier -->
+    <ApplicationId>com.companyname.mysarassist</ApplicationId>
+    <!-- Versions -->
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">12.2</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+    <GenerateAppInstallerFile>True</GenerateAppInstallerFile>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <PackageCertificateThumbprint>5E7A46ED5048B4F99B05102F68D9C20024DFFABE</PackageCertificateThumbprint>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppInstallerUri>https://sarassist.ca</AppInstallerUri>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <Platforms>AnyCPU;ARM64</Platforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
+    <ApplicationVersion>2</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|ARM64'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
+    <ApplicationVersion>2</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+    <EnableSGenConc>True</EnableSGenConc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|ARM64'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+    <EnableSGenConc>True</EnableSGenConc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|ARM64'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|ARM64'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
+    <ApplicationVersion>2</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+    <RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|ARM64'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
+    <ApplicationVersion>2</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+    <EnableSGenConc>True</EnableSGenConc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|ARM64'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+    <EnableSGenConc>True</EnableSGenConc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|ARM64'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|ARM64'">
+    <ApplicationTitle>My SAR Assist</ApplicationTitle>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+    <CodesignKey>Apple Distribution: Dylan Baker (AHLVEA35GD)</CodesignKey>
+    <CodesignProvision>My SAR Assist Distro 2024</CodesignProvision>
+    <ProvisioningType>manual</ProvisioningType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|AnyCPU'">
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|ARM64'">
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|ARM64'">
+    <ApplicationVersion>31</ApplicationVersion>
+    <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
+    <MtouchLink>SdkOnly</MtouchLink>
+    <UseInterpreter>true</UseInterpreter>
+    <MtouchExtraArgs>--linkskip=PackageName</MtouchExtraArgs>
+  </PropertyGroup>
+  <PropertyGroup>
+    <UseInterpreter Condition="$(TargetFramework.EndsWith('-ios'))">true</UseInterpreter>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.26100.0</TargetFrameworks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|AnyCPU'">
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.26100.0|AnyCPU'">
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|ARM64'">
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|ARM64'">
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.26100.0|ARM64'">
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <AndroidLinkTool>r8</AndroidLinkTool>
+    <AndroidPackageFormat>aab</AndroidPackageFormat>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|AnyCPU'">
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.26100.0|AnyCPU'">
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|ARM64'">
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+    <AndroidLinkTool>r8</AndroidLinkTool>
+    <AndroidPackageFormat>aab</AndroidPackageFormat>
+    <AndroidUseAapt2>True</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|ARM64'">
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.26100.0|ARM64'">
+    <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)'=='net9.0-ios'">
+    <CodesignKey>Apple Distribution: Dylan Baker (AHLVEA35GD)</CodesignKey>
+    <CodesignProvision>My SAR Assist Distro 2024</CodesignProvision>
+    <ProvisioningType>manual</ProvisioningType>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- App Icon -->
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#040404" />
+    <!-- Splash Screen -->
+    <MauiSplashScreen Include="Resources\Images\sar_assist_logo_sq.png" Color="#040404" BaseSize="512, 512" />
+    <!-- Images -->
+    <MauiImage Include="Resources\Images\*" />
+    <!-- Custom Fonts -->
+    <MauiFont Include="Resources\Fonts\*" />
+    <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+    <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\Images\calculator_icon.png" />
+    <None Remove="Resources\Images\clock_icon.png" />
+    <None Remove="Resources\Images\footstep_icon.png" />
+    <None Remove="Resources\Images\glyphicons_basic_159_thumbnails_list.svg" />
+    <None Remove="Resources\Images\glyphicons_basic_196_circle_empty_info.svg" />
+    <None Remove="Resources\Images\glyphicons_basic_21_home.svg" />
+    <None Remove="Resources\Images\glyphicons_basic_234_calculator.svg" />
+    <None Remove="Resources\Images\glyphicons_basic_462_footprints.svg" />
+    <None Remove="Resources\Images\glyphicons_basic_592_map.svg" />
+    <None Remove="Resources\Images\glyphicons_basic_607_user_check.svg" />
+    <None Remove="Resources\Images\glyphicons_basic_61_compass.svg" />
+    <None Remove="Resources\Images\glyphicons_basic_69_ruler.svg" />
+    <None Remove="Resources\Images\glyphicons_basic_98_vector_path_line.svg" />
+    <None Remove="Resources\Images\grid_icon.png" />
+    <None Remove="Resources\Images\house_icon.png" />
+    <None Remove="Resources\Images\icon_about.png" />
+    <None Remove="Resources\Images\icon_feed.png" />
+    <None Remove="Resources\Images\info_icon.png" />
+    <None Remove="Resources\Images\line_icon.png" />
+    <None Remove="Resources\Images\location.png" />
+    <None Remove="Resources\Images\map_mark_icon.png" />
+    <None Remove="Resources\Images\radems_card.png" />
+    <None Remove="Resources\Images\radems_grid.png" />
+    <None Remove="Resources\Images\radems_grid_icon.png" />
+    <None Remove="Resources\Images\range_of_detection.png" />
+    <None Remove="Resources\Images\sar_assist_logo.png" />
+    <None Remove="Resources\Images\sar_assist_logo_sq.png" />
+    <None Remove="Resources\Images\sar_command_assist_logo.png" />
+    <None Remove="Resources\Images\spacing_icon.png" />
+    <None Remove="Resources\Splash\splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <MauiImage Include="Resources\Splash\splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Maui" Version="12.2.0" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="CoordinateSharp" Version="3.3.1.1" />
+    <PackageReference Include="MetroLog.Maui" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="9.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.110" />
+    <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.110" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="NSwag.ApiDescription.Client" Version="14.6.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Plugin.Maui.ScreenBrightness" Version="1.0.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
+    <PackageReference Include="System.Private.Uri" Version="4.3.2" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="6.0.*" />
+    <PackageReference Include="System.ServiceModel.Federation" Version="8.1.2" />
+    <PackageReference Include="System.ServiceModel.Http" Version="8.1.2" />
+    <PackageReference Include="System.ServiceModel.NetNamedPipe" Version="8.1.2" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="8.1.2" />
+    <PackageReference Include="System.ServiceModel.Security" Version="6.0.*" />
+    <PackageReference Include="ZXing.Net.Maui" Version="0.5.2" />
+    <PackageReference Include="ZXing.Net.Maui.Controls" Version="0.5.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MySarAssistModels\MySarAssistModels.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\CalculatorViews\PacingToDistancePage.xaml.cs">
+      <DependentUpon>PacingToDistancePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CalculatorViews\SweepWidthCalculatorView.xaml.cs">
+      <DependentUpon>SweepWidthCalculatorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CalculatorViews\VisualSearchResourceEstimationView.xaml.cs">
+      <DependentUpon>VisualSearchResourceEstimationView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <MauiXaml Update="Views\CalculatorViews\DistanceToPacingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\CalculatorViews\HowToRangeOfDetectionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\CalculatorViews\SweepWidthCalculatorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\CheckInOutViews\CheckInOutView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\CheckInOutViews\EditQualificationsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\GeneralViews\AboutView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\CalculatorViews\CalculatorsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\CalculatorViews\CoordinateConverterView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\CalculatorViews\GridSearchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\CalculatorViews\LinearSearchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\CalculatorViews\PacingToDistancePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\CalculatorViews\VisualSearchResourceEstimationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\CheckInOutViews\CheckInView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\CheckInOutViews\CheckOutView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\CheckInOutViews\PersonnelEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\CheckInOutViews\PersonnelListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\IncidentInfoViews\IncidentItemsListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\RADeMSViews\RADeMSCardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\RADeMSViews\RADeMSDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\RADeMSViews\RADeMSView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Utilities\AltimeterPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Utilities\UtilitiesListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Views\RADeMS\RADeMSCardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\Clues\" />
+    <Folder Include="ViewModels\ClueViewModels\" />
+    <Folder Include="Views\ClueViews\" />
+  </ItemGroup>
+  <ItemGroup>
+    <OpenApiReference Include="OpenAPIs\ICAUpdatesWebservice.asmx">
+      <SourceUri>https://sarassist.ca/ICAUpdatesWebservice.asmx</SourceUri>
+    </OpenApiReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.ServiceModel.Primitives" Version="8.*" />
+  </ItemGroup>
 </Project>

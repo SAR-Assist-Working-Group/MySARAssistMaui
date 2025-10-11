@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Logging;
 using MySARAssist.Services;
+using Plugin.Maui.ScreenBrightness;
 
 namespace MySARAssist.Views.CheckInOut;
 
@@ -13,9 +14,10 @@ public partial class CheckInView : ContentPage
         {
             this.logger = logger;
             InitializeComponent();
-            
-
-        }catch (Exception ex)
+            _lastBrightness = ScreenBrightness.Default.Brightness;
+            ScreenBrightness.Default.Brightness = 1;
+        }
+        catch (Exception ex)
         {
             logger.LogError(ex, "Error in CheckInView.xaml.cs");
         }
@@ -28,5 +30,12 @@ public partial class CheckInView : ContentPage
 
     }
 
-  
+    //cancel brightness change if user navigates away
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        ScreenBrightness.Default.Brightness = _lastBrightness;
+    }
+
+
 }
