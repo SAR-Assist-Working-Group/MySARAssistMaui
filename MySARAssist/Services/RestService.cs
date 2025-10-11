@@ -1,4 +1,4 @@
-﻿using ServiceReference1;
+﻿using sca_web_service_reference;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,25 +34,32 @@ namespace MySARAssist.Services
 
             try
             {
-                ServiceReference1.GetParentOrganizationsAsJSONRequest request = new ServiceReference1.GetParentOrganizationsAsJSONRequest();
-                CAUpdatesWebserviceSoapClient client = new CAUpdatesWebserviceSoapClient(CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
-                GetParentOrganizationsAsJSONResponse response = await client.GetParentOrganizationsAsJSONAsync(request);
-                if (response != null)
+                var results = new sca_web_service_reference.TaskOfListOfOrganization().Result;
+                foreach (Organization org in results)
                 {
-                    string str = response.GetParentOrganizationsAsJSONResult.ToString();
-                   
+                    if (org.ParentOrganizationID == Guid.Empty)
+                    {
+                        if (parentOrgs.Any(o => o.OrganizationID == org.OrganizationID))
+                        {
+                            continue;
+                        }
+                        parentOrgs.Add(org);
+                        //Items.AddRange(await GetChildOrganizationsAsync(org.OrganizationID));
+                    }
+                    else
+                    {
+                        if (childOrgs.Any(o => o.OrganizationID == org.OrganizationID))
+                        {
+                            continue;
+                        }
+                        childOrgs.Add(org);
+                    }
                 }
 
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-            }
-
-
-            foreach (Organization org in Items)
-            {
-                childOrgs.AddRange(await GetChildOrganizationsAsync(org.OrganizationID));
             }
 
             Items = new List<Organization>();
@@ -69,14 +76,28 @@ namespace MySARAssist.Services
 
             try
             {
-                ServiceReference1.GetParentOrganizationsAsyncRequest request = new ServiceReference1.GetParentOrganizationsAsyncRequest();
-                CAUpdatesWebserviceSoapClient client = new CAUpdatesWebserviceSoapClient(CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
-                GetParentOrganizationsAsyncResponse response = await client.GetParentOrganizationsAsyncAsync(request).ConfigureAwait(false);
-                if (response.GetParentOrganizationsAsyncResult != null)
+                CAUpdatesWebserviceSoapClient SCAWebServiceClient = new CAUpdatesWebserviceSoapClient(CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
+                var results = await SCAWebServiceClient.GetAllOrganizationsAsync();
+
+
+                foreach (Organization org in results.Result)
                 {
-                    foreach (Organization org in response.GetParentOrganizationsAsyncResult.Result)
+                    if (org.ParentOrganizationID == Guid.Empty)
                     {
+                        if (parentOrgs.Any(o => o.OrganizationID == org.OrganizationID))
+                        {
+                            continue;
+                        }
                         parentOrgs.Add(org);
+                        //Items.AddRange(await GetChildOrganizationsAsync(org.OrganizationID));
+                    }
+                    else
+                    {
+                        if (childOrgs.Any(o => o.OrganizationID == org.OrganizationID))
+                        {
+                            continue;
+                        }
+                        childOrgs.Add(org);
                     }
                 }
 
@@ -86,40 +107,12 @@ namespace MySARAssist.Services
                 Debug.WriteLine(ex.Message);
             }
 
-
-            foreach (Organization org in parentOrgs)
-            {
-                childOrgs.AddRange(await GetChildOrganizationsAsync(org.OrganizationID));
-            }
-
             Items = new List<Organization>();
             Items.AddRange(parentOrgs);
             Items.AddRange(childOrgs);
             return Items;
         }
 
-        private async Task<List<Organization>> GetChildOrganizationsAsync(Guid Parent)
-        {
-            Items = new List<Organization>();
-            try
-            {
-                ServiceReference1.GetChildOrganizationsAsyncRequest request = new ServiceReference1.GetChildOrganizationsAsyncRequest(Parent);
-                CAUpdatesWebserviceSoapClient client = new CAUpdatesWebserviceSoapClient(CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
-                GetChildOrganizationsAsyncResponse response = await client.GetChildOrganizationsAsyncAsync(request).ConfigureAwait(false);
-                if (response.GetChildOrganizationsAsyncResult != null)
-                {
-                    foreach (Organization org in response.GetChildOrganizationsAsyncResult.Result)
-                    {
-                        Items.Add(org);
-                    }
-                }
-            } catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-
-            }
-            return Items;
-        }
-
+     
     }
 }

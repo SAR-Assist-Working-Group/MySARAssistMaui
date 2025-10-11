@@ -108,11 +108,11 @@ namespace MySARAssist
                 // Connection to internet is available
                 RestService service = new RestService();
                 OrganizationService orgService = new OrganizationService();
-                List<ServiceReference1.Organization>? syncOrgs = await service.RefreshDataAsync();
+                List<sca_web_service_reference.Organization>? syncOrgs = await service.RefreshDataAsync();
 
                 if(syncOrgs != null)
                 {
-                    foreach(ServiceReference1.Organization org in syncOrgs)
+                    foreach(sca_web_service_reference.Organization org in syncOrgs)
                     {
                         Organization newOrg = org.OrganizationFromWebserviceOrg();
                         if (newOrg != null) { await orgService.UpsertItemAsync(newOrg); }
