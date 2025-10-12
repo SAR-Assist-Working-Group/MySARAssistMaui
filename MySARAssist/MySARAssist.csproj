@@ -224,8 +224,8 @@
     <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net9.0-ios'">
-    <CodesignKey>Apple Distribution: Dylan Baker (AHLVEA35GD)</CodesignKey>
-    <CodesignProvision>My SAR Assist Distro 2024</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>My SAR Assist Distro Oct 2025</CodesignProvision>
     <ProvisioningType>manual</ProvisioningType>
   </PropertyGroup>
   <ItemGroup>

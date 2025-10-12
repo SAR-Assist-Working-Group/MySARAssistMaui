@@ -32,11 +32,15 @@
 	<string>3.4</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>The location is only required when using the coordinate converter to retrieve your current position.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Bluetooth is required to connect to external GPS devices.</string>
 	<key>CFBundleIdentifier</key>
 	<string>ca.greathat.MySARAssist</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>2</string>
 </dict>
 </plist>
