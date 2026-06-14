@@ -31,7 +31,8 @@ public partial class EditQualificationsPage : ContentPage
             if (!string.IsNullOrEmpty(temp))
             {
                 try { _viewModel.TeamMemberID = new Guid(temp); }
-                catch (Exception ex) { _viewModel.TeamMemberID = Guid.NewGuid();
+                catch (Exception ex) { 
+                    _viewModel.TeamMemberID = Guid.NewGuid();
                     logger.LogError(ex, "Error in EditQualificationsPage.PersonnelID.set");
                 }
             }

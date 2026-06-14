@@ -14,7 +14,7 @@ namespace MySarAssistModels.People
         public Personnel()
         {
             MemberActive = true;
-            QualificationList = new bool[28];
+            QualificationList = new bool[30];
         }
 
         [Required]
@@ -93,7 +93,17 @@ namespace MySarAssistModels.People
             }
         }
         
-        [Ignore] public bool[] QualificationList { get { if (_QualificationList == null) { _QualificationList = new bool[28]; } return _QualificationList; } set => _QualificationList = value; }
+        [Ignore]
+        public bool[] QualificationList
+        {
+            get
+            {
+                if (_QualificationList == null) { _QualificationList = new bool[30]; }
+                if(_QualificationList.Length < 30) { Array.Resize(ref _QualificationList, 30); }
+                return _QualificationList;
+            }
+            set => _QualificationList = value;
+        }
 
         public string? Callsign { get => _Callsign; set => _Callsign = value; }
         public string? Phone { get => _Phone; set => _Phone = value; }
@@ -192,6 +202,8 @@ namespace MySarAssistModels.People
         public bool Qualification25 { get => _QualificationList[25]; set => _QualificationList[25] = value; }
         public bool Qualification26 { get => _QualificationList[26]; set => _QualificationList[26] = value; }
         public bool Qualification27 { get => _QualificationList[27]; set => _QualificationList[27] = value; }
+        public bool Qualification28 { get => _QualificationList[28]; set => _QualificationList[28] = value; }
+        public bool Qualification29 { get => _QualificationList[29]; set => _QualificationList[29] = value; }
 
 
 
