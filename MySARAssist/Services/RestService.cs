@@ -1,15 +1,12 @@
-﻿using sca_web_service_reference;
-using System;
-using System.Collections.Generic;
+﻿using MySARAssist.Converters;
+using MySarAssistModels.Interfaces;
+using sca_web_service_reference;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace MySARAssist.Services
 {
-    public class RestService
+    public class RestService : IRestService
     {
         HttpClient _client;
         JsonSerializerOptions _serializerOptions;
@@ -22,9 +19,18 @@ namespace MySARAssist.Services
             _serializerOptions = new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-
                 WriteIndented = true
             };
+        }
+
+        /// <inheritdoc/>
+        public async Task<List<MySarAssistModels.People.Organization>?> GetOrganizationsAsync()
+        {
+            List<Organization>? wsOrgs = await RefreshDataAsync();
+            return wsOrgs?
+                .Select(o => o.OrganizationFromWebserviceOrg())
+                .Where(o => o != null)
+                .ToList()!;
         }
 
         public async Task<List<Organization>?> TestRefreshDataAsync()
@@ -39,23 +45,15 @@ namespace MySARAssist.Services
                 {
                     if (org.ParentOrganizationID == Guid.Empty)
                     {
-                        if (parentOrgs.Any(o => o.OrganizationID == org.OrganizationID))
-                        {
-                            continue;
-                        }
+                        if (parentOrgs.Any(o => o.OrganizationID == org.OrganizationID)) continue;
                         parentOrgs.Add(org);
-                        //Items.AddRange(await GetChildOrganizationsAsync(org.OrganizationID));
                     }
                     else
                     {
-                        if (childOrgs.Any(o => o.OrganizationID == org.OrganizationID))
-                        {
-                            continue;
-                        }
+                        if (childOrgs.Any(o => o.OrganizationID == org.OrganizationID)) continue;
                         childOrgs.Add(org);
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -67,7 +65,6 @@ namespace MySARAssist.Services
             Items.AddRange(childOrgs);
             return Items;
         }
-
 
         public async Task<List<Organization>?> RefreshDataAsync()
         {
@@ -76,31 +73,23 @@ namespace MySARAssist.Services
 
             try
             {
-                CAUpdatesWebserviceSoapClient SCAWebServiceClient = new CAUpdatesWebserviceSoapClient(CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
+                CAUpdatesWebserviceSoapClient SCAWebServiceClient = new CAUpdatesWebserviceSoapClient(
+                    CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
                 var results = await SCAWebServiceClient.GetAllOrganizationsAsync();
-
 
                 foreach (Organization org in results.Result)
                 {
                     if (org.ParentOrganizationID == Guid.Empty)
                     {
-                        if (parentOrgs.Any(o => o.OrganizationID == org.OrganizationID))
-                        {
-                            continue;
-                        }
+                        if (parentOrgs.Any(o => o.OrganizationID == org.OrganizationID)) continue;
                         parentOrgs.Add(org);
-                        //Items.AddRange(await GetChildOrganizationsAsync(org.OrganizationID));
                     }
                     else
                     {
-                        if (childOrgs.Any(o => o.OrganizationID == org.OrganizationID))
-                        {
-                            continue;
-                        }
+                        if (childOrgs.Any(o => o.OrganizationID == org.OrganizationID)) continue;
                         childOrgs.Add(org);
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -112,7 +101,5 @@ namespace MySARAssist.Services
             Items.AddRange(childOrgs);
             return Items;
         }
-
-     
     }
 }

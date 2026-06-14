@@ -251,6 +251,25 @@ namespace MySarAssistModels
                 return coordinate.ToString();
             }
         }
+
+        public string DDMLatitude
+        {
+            get
+            {
+                return DegreesDecimalMinutesSep[0];
+
+            }
+        }
+        public string DDMLongitude
+        {
+            get
+            {
+                return DegreesDecimalMinutesSep[1];
+
+            }
+        }
+
+
         public string DMSLatitude
         {
             get
@@ -284,11 +303,11 @@ namespace MySarAssistModels
                 CoordinateSharp.Coordinate coordinate = new CoordinateSharp.Coordinate();
                 coordinate.Latitude = new CoordinatePart(Latitude, CoordinateType.Lat);
                 coordinate.Longitude = new CoordinatePart(Longitude, CoordinateType.Long);
-                parts[0] = coordinate.Latitude.Degrees + "°" + Math.Round(coordinate.Latitude.DecimalMinute, decimalPlaces);
+                parts[0] = coordinate.Latitude.Degrees + "° " + Math.Round(coordinate.Latitude.DecimalMinute, decimalPlaces);
                 //if(coordinate.Longitude.)
 
                 if (coordinate.Longitude.DecimalDegree < 0) { parts[1] += "-"; }
-                parts[1] += coordinate.Longitude.Degrees + "°" + Math.Round(coordinate.Longitude.DecimalMinute, decimalPlaces);
+                parts[1] += coordinate.Longitude.Degrees + "° " + Math.Round(coordinate.Longitude.DecimalMinute, decimalPlaces);
 
                 return parts;
             }

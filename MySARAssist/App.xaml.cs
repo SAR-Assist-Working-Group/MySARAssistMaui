@@ -21,6 +21,7 @@ using MySARAssist.Converters;
 using MySARAssist.Services;
 using MySarAssistModels.Interfaces;
 using MySarAssistModels.People;
+using MySarAssistModels.Services;
 
 namespace MySARAssist
 {
@@ -106,20 +107,8 @@ namespace MySARAssist
 
             if (accessType == NetworkAccess.Internet)
             {
-                // Connection to internet is available
-                RestService service = new RestService();
-                OrganizationService orgService = new OrganizationService();
-                List<sca_web_service_reference.Organization>? syncOrgs = await service.RefreshDataAsync();
-
-                if(syncOrgs != null)
-                {
-                    foreach(sca_web_service_reference.Organization org in syncOrgs)
-                    {
-                        Organization newOrg = org.OrganizationFromWebserviceOrg();
-                        if (newOrg != null) { await orgService.UpsertItemAsync(newOrg); }
-                    }
-                }
-
+                var syncService = new OrganizationSyncService(new RestService(), new OrganizationService());
+                await syncService.SyncOrganizationsAsync();
             }
         }
 

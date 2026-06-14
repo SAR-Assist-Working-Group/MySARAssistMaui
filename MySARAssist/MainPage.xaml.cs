@@ -22,8 +22,8 @@ namespace MySARAssist
 
             this._logger = logger;
 
+         
 
-            
 
         }
 
