@@ -51,6 +51,8 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
 
@@ -77,31 +79,42 @@
                         </Label.GestureRecognizers>
                     </Label>
 
+                    <Label Grid.Column="0" Grid.Row="3" Grid.RowSpan="2"  Style="{StaticResource CalculatorResultUOM}"  HorizontalTextAlignment="Start"  Text="DDM:" FontAttributes="Bold"></Label>
+                    <Label Grid.Column="1" Grid.Row="3"   Style="{StaticResource CalculatorResultValue}" HorizontalTextAlignment="Start"   Text="{Binding DDMLatitude}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CopyDDMCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Grid.Column="1" Grid.Row="4"   Style="{StaticResource CalculatorResultValue}" HorizontalTextAlignment="Start"   Text="{Binding DDMLongitude}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CopyDDMCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    
 
-
-                    <Label Grid.Column="0" Grid.Row="3" Grid.RowSpan="2"  Style="{StaticResource CalculatorResultUOM}"  HorizontalTextAlignment="Start"  Text="DMS:" FontAttributes="Bold"></Label>
-                    <Label Grid.Column="1" Grid.Row="3"   Style="{StaticResource CalculatorResultValue}" HorizontalTextAlignment="Start"   Text="{Binding DMSLatitude}">
+                    <Label Grid.Column="0" Grid.Row="5" Grid.RowSpan="2"  Style="{StaticResource CalculatorResultUOM}"  HorizontalTextAlignment="Start"  Text="DMS:" FontAttributes="Bold"></Label>
+                    <Label Grid.Column="1" Grid.Row="5"   Style="{StaticResource CalculatorResultValue}" HorizontalTextAlignment="Start"   Text="{Binding DMSLatitude}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding CopyDMSCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
-                    <Label Grid.Column="1" Grid.Row="4"   Style="{StaticResource CalculatorResultValue}" HorizontalTextAlignment="Start"   Text="{Binding DMSLongitude}">
+                    <Label Grid.Column="1" Grid.Row="6"   Style="{StaticResource CalculatorResultValue}" HorizontalTextAlignment="Start"   Text="{Binding DMSLongitude}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding CopyDMSCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
 
-                    <Label Grid.Column="0" Grid.Row="5"    Style="{StaticResource CalculatorResultUOM}"  HorizontalTextAlignment="Start"  Text="MGRS:" FontAttributes="Bold"></Label>
-                    <Label Grid.Column="1" Grid.Row="5"   Style="{StaticResource CalculatorResultValue}" HorizontalTextAlignment="Start"   Text="{Binding MGRS}">
+                    <Label Grid.Column="0" Grid.Row="7"    Style="{StaticResource CalculatorResultUOM}"  HorizontalTextAlignment="Start"  Text="MGRS:" FontAttributes="Bold"></Label>
+                    <Label Grid.Column="1" Grid.Row="7"   Style="{StaticResource CalculatorResultValue}" HorizontalTextAlignment="Start"   Text="{Binding MGRS}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding CopyMGRSCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
 
 
-                    <Label Grid.Column="0" Grid.Row="6"  Grid.ColumnSpan="2" Style="{StaticResource CalculatorResultUOM}" HorizontalTextAlignment="Center">*Tap on a coordinate to copy it</Label>
+                    <Label Grid.Column="0" Grid.Row="8"  Grid.ColumnSpan="2" Style="{StaticResource CalculatorResultUOM}" HorizontalTextAlignment="Center">*Tap on a coordinate to copy it</Label>
 
-                    <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2"  Text="Map it" Command="{Binding OpenMapCommand}" Style="{StaticResource StandardButton}"></Button>
+                    <Button Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2"  Text="Map it" Command="{Binding OpenMapCommand}" Style="{StaticResource StandardButton}"></Button>
                 </Grid>
             
             
