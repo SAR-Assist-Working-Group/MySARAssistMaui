@@ -23,10 +23,26 @@ namespace MySARAssist
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            }).UseMauiCommunityToolkit();
+            }).UseMauiCommunityToolkit()
+            .UseSentry(options =>
+            {
+                // The DSN is the only required setting.
+                options.Dsn = "https://f805be8700a9918e12b79c40ccec718d@o4511293765976064.ingest.de.sentry.io/4511560848572496";
+
+                // Use debug mode if you want to see what the SDK is doing.
+                // Debug messages are written to stdout with Console.Writeline,
+                // and are viewable in your IDE's debug console or with 'adb logcat', etc.
+                // This option is not recommended when deploying your application.
+                options.Debug = true;
+
+                // Other Sentry options can be set here.
+            });
+
+            
+    ;
             // Add this code
-            
-            
+
+
             builder.Services.AddSingleton<PersonnelService>(s => ActivatorUtilities.CreateInstance<PersonnelService>(s));
 
             builder.Logging.AddInMemoryLogger(options =>
@@ -44,6 +60,8 @@ namespace MySARAssist
                     "MetroLogs");
 
             });
+
+
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<AboutView>();
 
