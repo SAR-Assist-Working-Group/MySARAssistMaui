@@ -29,7 +29,7 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.4</string>
+	<string>3.5</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>The location is only required when using the coordinate converter to retrieve your current position.</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
@@ -41,6 +41,6 @@
 		<string>remote-notification</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>1</string>
 </dict>
 </plist>
