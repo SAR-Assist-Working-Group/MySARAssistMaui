@@ -408,4 +408,31 @@
   <ItemGroup>
     <PackageReference Include="System.ServiceModel.Primitives" Version="10.0.652802" />
   </ItemGroup>
+
+ <!-- ...existing code... -->
+
+  <!-- Strip macOS extended attributes before build to avoid codesign errors -->
+  <Target Name="StripSourceExtendedAttributes"
+          BeforeTargets="BeforeBuild;PrepareForBuild"
+          Condition="'$(OS)' != 'Windows_NT'">
+    <Message Text="==&gt; Stripping xattrs from project sources..." Importance="high" />
+    <Exec Command="xattr -cr &quot;$(MSBuildProjectDirectory)&quot; 2&gt;/dev/null; exit 0"
+          ContinueOnError="true"
+          IgnoreExitCode="true" />
+  </Target>
+
+  <!-- Strip xattrs from the output .app bundle immediately before codesign -->
+  <Target Name="StripBundleExtendedAttributes"
+          BeforeTargets="_CodesignAppBundle"
+          Condition="'$(OS)' != 'Windows_NT'">
+    <Message Text="==&gt; Stripping xattrs from .app bundle at: $(_AppBundlePath)" Importance="high" />
+    <Exec Command="xattr -cr &quot;$(_AppBundlePath)&quot; 2&gt;/dev/null; exit 0"
+          ContinueOnError="true"
+          IgnoreExitCode="true" />
+    <Exec Command="find &quot;$(_AppBundlePath)&quot; -exec xattr -c {} \; 2&gt;/dev/null; exit 0"
+          ContinueOnError="true"
+          IgnoreExitCode="true" />
+  </Target>
+
+<!-- ...existing code... -->
 </Project>
