@@ -241,6 +241,9 @@ namespace MySarAssistModels.People
             qualifications.Add(new Qualification("MARINE", "Marine / Boat Operator", 25, 0, 25, ""));
             qualifications.Add(new Qualification("CDFL", "Hoist / CDFL", 26, 0, 26, ""));
             qualifications.Add(new Qualification("K9", "K-9 Search", 27, 0, 27, ""));
+            qualifications.Add(new Qualification("UAV", "UAV/Drone Operator", 28, 0, 28, ""));
+            qualifications.Add(new Qualification("COM", "Radio Communications", 29, 0, 29, ""));
+
 
             return qualifications;
         }
