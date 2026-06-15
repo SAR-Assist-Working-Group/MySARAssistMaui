@@ -52,15 +52,22 @@ This is the recommended approach, since Android Studio already provides the Andr
 
 **1. Install the [.NET 9 SDK for Windows](https://dotnet.microsoft.com/download/dotnet/9.0)**. Reopen PowerShell and confirm with `dotnet --version`.
 
-**2. Install the MAUI Android workload** (once, in PowerShell):
+**2. Install the MAUI Android workload and iOS workload** (once, in PowerShell):
 
 ```powershell
 dotnet workload install maui-android
+dotnet workload install ios
 ```
 
-**3. Start an emulator** in Android Studio (AVD Manager → pick a device → ▶).
+**3. Pin the SDK version to .NET 9** (required if .NET 10 SDK is also installed):
 
-**4. Build and install the APK:**
+```powershell
+dotnet new globaljson --sdk-version 9.0.315 --force
+```
+
+**4. Start an emulator** in Android Studio (AVD Manager → pick a device → ▶).
+
+**5. Build and install the APK:**
 
 ```powershell
 dotnet build MySARAssist\MySARAssist.csproj -f net9.0-android

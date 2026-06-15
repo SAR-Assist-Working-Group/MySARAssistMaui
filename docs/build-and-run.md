@@ -18,9 +18,14 @@ The project conditionally includes platforms based on the host OS:
 
 - **[.NET 9 SDK for Windows](https://dotnet.microsoft.com/download/dotnet/9.0)** — download the *Windows x64 Installer* and run it. Verify with `dotnet --version`.
 - Android Studio installed, with at least one AVD (emulator) configured
-- MAUI Android workload (run once after installing the SDK):
+- MAUI Android and iOS workloads (run once after installing the SDK):
   ```powershell
   dotnet workload install maui-android
+  dotnet workload install ios
+  ```
+- Pin SDK version to .NET 9 (required if .NET 10 SDK is also installed):
+  ```powershell
+  dotnet new globaljson --sdk-version 9.0.315 --force
   ```
 
 ### Steps
