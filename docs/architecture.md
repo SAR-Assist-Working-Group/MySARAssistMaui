@@ -13,7 +13,19 @@ MySARAssistMaui/
 │   ├── Constants.cs               # DB path, API endpoint
 │   ├── Services/                  # Data access layer
 │   ├── ViewModels/                # Presentation logic (MVVM)
+│   │   ├── Calculators/           # Grid, linear, sweep width, coordinate, pacing
+│   │   ├── CheckInOut/            # Barcode check-in/out, personnel management
+│   │   ├── RADeMS/                # Risk assessment scoring and display
+│   │   ├── Urgency/               # Urgency calculator decision tree
+│   │   ├── IncidentInfoViewModels/# Incident item display (in development)
+│   │   └── General/               # About page
 │   ├── Views/                     # XAML pages and controls
+│   │   ├── CalculatorViews/       # Search planning calculators
+│   │   ├── CheckInOutViews/       # Personnel check-in/out screens
+│   │   ├── RADeMSViews/           # Risk assessment screens
+│   │   ├── UrgencyViews/          # Urgency assessment screen
+│   │   ├── IncidentInfoViews/     # Incident item screens (in development)
+│   │   └── GeneralViews/          # About page
 │   ├── Models/                    # App-level models (validation, events, handlers)
 │   ├── Converters/                # XAML value converters
 │   ├── Interfaces/                # Platform abstractions (e.g. device orientation)
@@ -33,6 +45,8 @@ MySARAssistMaui/
 │   ├── Interfaces/                # IDataStore<T>, IPersonnel
 │   ├── GISTools.cs                # Coordinate math, polygon area, sun times
 │   ├── StatisticalTools.cs        # POA/POD/POS statistics
+│   ├── StringExt.cs               # String extension utilities
+│   ├── GuidExtension.cs           # GUID helpers
 │   ├── SyncableItem.cs            # Base class for syncable entities
 │   └── IncidentResource.cs        # Base class for incident resources
 │
@@ -71,6 +85,7 @@ Configured in `MauiProgram.cs`:
 |---|---|---|
 | `PersonnelService` | Singleton | SQLite connection reused across app lifetime |
 | All Views | Transient | New instance per navigation |
+| `UrgencyCalculatorView` | Transient | Urgency assessment questionnaire |
 
 Services not registered in DI (`OrganizationService`, `ClueService`, `IncidentInfoService`) are instantiated directly with `new` in calling code. `RademsService` is a stub (not yet implemented).
 
@@ -122,3 +137,32 @@ Dual-sink logging via `MetroLog`:
 - **In-memory** ring buffer (1024 lines, Debug–Critical).
 - **Rolling file** in `FileSystem.CacheDirectory/MetroLogs`, retained for 2 days.
 - Debug sink added in `#if DEBUG` builds.
+
+## Urgency Assessment
+
+A sequential decision-tree calculator (EMCR-based) that walks through 8 risk-factor questions to determine urgency level. Unlike other features, it is **stateless** — no service or persistence layer. The entire logic lives in `UrgencyCalculatorViewModel`.
+
+```
+UrgencyCalculatorView (XAML) → UrgencyCalculatorViewModel (decision tree) → Result (in-memory only)
+```
+
+**Decision flow:**
+
+| Q | Question | "Yes" → | "No" → |
+|---|---|---|---|
+| 1 | Risk to searchers? | SAR will not respond | Continue |
+| 2 | Medical/injury/mental issues? | High Urgency | Continue |
+| 3 | High-hazard areas? | High Urgency | Continue |
+| 4 | Age a factor? | High Urgency | Continue |
+| 5 | Weather hazards? | High Urgency | Continue |
+| 6 | Diminishing daylight? | High Urgency | Continue |
+| 7 | Equipment sufficient? | Continue (→ Q8) | High Urgency |
+| 8 | Other survival factors? | Intermediate Urgency | Low Urgency |
+
+Some questions treat "Unknown" conservatively (same as "Yes"): medical issues (Q2), weather (Q5), equipment (Q7). Others treat "Unknown" as "No": hazard areas (Q3), age (Q4).
+
+Outcomes are displayed with color-coded result cards:
+- **High Urgency** — red (`#C0392B`)
+- **Intermediate Urgency** — amber (`#B07D0A`)
+- **Low Urgency** — green (`#2E6B20`)
+- **SAR will not respond** — dark grey (`#1A1A1A`)

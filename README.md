@@ -6,6 +6,7 @@ A cross-platform mobile companion app for Search and Rescue (SAR) personnel, bui
 
 - **Personnel Check In / Out** — Track SAR responders at an incident using manual entry or barcode scanning. Manage qualifications (GSAR, GSTL, First Aid, Rope Rescue, Swiftwater, etc.) and next-of-kin information.
 - **RADeMS Risk Assessment** — Rapid Assessment Decision Making System. Guides users through structured risk questions and plots the result (Operational Risk vs. Response Capacity) on a risk matrix.
+- **Urgency Assessment** — EMCR-based decision-tree calculator. Walks through 8 risk-factor questions (searcher risk, medical, hazards, age, weather, daylight, equipment, other factors) to determine urgency level: High, Intermediate, Low, or SAR will not respond.
 - **Search Calculators** — Field calculators for grid search time estimation, linear search work estimation, sweep width, visual search resource estimation, coordinate conversion (DD, DDM, DMS, UTM, MGRS), and pacing distance conversion.
 - **Incident Information** *(in development)* — Clue logging and assignment debrief tracking.
 - **Organization Directory** — SAR organizations fetched from the SCA web service and cached locally.
@@ -79,6 +80,29 @@ adb install MySARAssist\bin\Debug\net9.0-android\ca.greathat.mysarassist-Signed.
 ```
 
 See [`docs/build-and-run.md`](docs/build-and-run.md) for troubleshooting and WSL2-native build instructions.
+
+### Rebuild and Redeploy to an Android Emulator
+
+After making code changes, rebuild and redeploy with:
+
+```powershell
+# Clean previous build artifacts to force a fresh APK
+Remove-Item -Recurse -Force MySARAssist\obj, MySARAssist\bin
+
+# Build in Release mode (Debug uses Fast Deployment which can crash on some emulators)
+dotnet build MySARAssist\MySARAssist.csproj -f net9.0-android -c Release
+
+# Uninstall the old version
+adb uninstall ca.greathat.mysarassist
+
+# Install the new APK
+adb install MySARAssist\bin\Release\net9.0-android\ca.greathat.mysarassist-Signed.apk
+```
+
+> **Note:** If the .NET 10 SDK is installed alongside .NET 9, pin the SDK version with a `global.json` file to ensure the correct tooling is used:
+> ```powershell
+> dotnet new globaljson --sdk-version 9.0.315 --force
+> ```
 
 ## Documentation
 

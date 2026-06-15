@@ -12,6 +12,7 @@ Defined in `AppShell.xaml`:
 | Calculators | calculator icon | `CalculatorsView` |
 | Check In / Out | user-check icon | `CheckInOutView` |
 | RADeMS Risk Assessment | radems icon | `RADeMSView` |
+| Urgency Assessment | info icon | `UrgencyCalculatorView` |
 | About My SAR Assist | info icon | `AboutView` |
 | ~~Incident Information~~ | *(commented out)* | `IncidentItemsListPage` |
 
@@ -76,6 +77,18 @@ Supporting ViewModels:
 - `RADeMSCategoryViewModel` — Category list item.
 - `RADeMSQuestionViewModel` — Individual question with answer selection.
 - `RADeMSTypesViewModel` — Assessment type selector.
+
+---
+
+### Urgency Assessment (`Views/UrgencyViews/`)
+
+**`UrgencyCalculatorView`** — Interactive EMCR-based urgency decision tree. Walks through 8 sequential risk-factor questions, branching to an urgency level based on answers.
+
+| Screen | ViewModel | Purpose |
+|---|---|---|
+| `UrgencyCalculatorView` | `UrgencyCalculatorViewModel` | Step-by-step questionnaire with progress bar; displays color-coded urgency result (High, Intermediate, Low, SAR will not respond) |
+
+The ViewModel is self-contained — no service or persistence layer. The decision tree is defined as a static list of question/answer definitions. Each answer either maps directly to a result or advances to the next question.
 
 ---
 
