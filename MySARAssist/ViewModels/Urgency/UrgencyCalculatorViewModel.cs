@@ -46,6 +46,7 @@ namespace MySARAssist.ViewModels.Urgency
             new("Are there known medical issues, significant injuries, or mental-state issues?",
             [
                 new("Yes", UrgencyResult.High),
+                new("Deceased", UrgencyResult.Low),
                 new("No / Unknown", null)
             ]),
             new("Are there any high-hazard areas present?",
