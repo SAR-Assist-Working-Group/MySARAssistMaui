@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using MySARAssist.Services;
 using MySARAssist.Views;
 using MySARAssist.Views.CheckInOut;
+using MySARAssist.Views.UrgencyViews;
 using MySarAssistModels.People;
 
 namespace MySARAssist
@@ -57,6 +58,12 @@ namespace MySARAssist
 
 
 
+        }
+
+        private async void UrgencyButton_Clicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(UrgencyCalculatorView));
+            _logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, "Moving to the urgency assessment page");
         }
     }
 
