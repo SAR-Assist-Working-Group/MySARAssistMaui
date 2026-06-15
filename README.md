@@ -46,11 +46,11 @@ dotnet restore
 dotnet build
 ```
 
-### Run on Android (from Windows with Android Studio)
+### Run on Android (from Windows)
 
-This is the recommended approach when developing from Windows or WSL2, since Android Studio already provides the Android SDK and emulator.
+This is the recommended approach, since Android Studio already provides the Android SDK and emulator.
 
-**1. Install the [.NET 9 SDK for Windows](https://dotnet.microsoft.com/download/dotnet/9.0)** on the Windows side (the WSL2 install is separate and not visible to PowerShell). Reopen PowerShell and confirm with `dotnet --version`.
+**1. Install the [.NET 9 SDK for Windows](https://dotnet.microsoft.com/download/dotnet/9.0)**. Reopen PowerShell and confirm with `dotnet --version`.
 
 **2. Install the MAUI Android workload** (once, in PowerShell):
 
@@ -58,19 +58,9 @@ This is the recommended approach when developing from Windows or WSL2, since And
 dotnet workload install maui-android
 ```
 
-**2. Start an emulator** in Android Studio (AVD Manager → pick a device → ▶).
+**3. Start an emulator** in Android Studio (AVD Manager → pick a device → ▶).
 
-**3. Open a PowerShell prompt, navigate to the repo via the WSL2 network path, and run:**
-
-```powershell
-cd \\wsl.localhost\Ubuntu\home\<your-username>\GIT\gfnord\MySARAssistMaui
-
-dotnet run --project MySARAssist\MySARAssist.csproj -f net9.0-android
-```
-
-> Windows can read WSL2 files directly at `\\wsl.localhost\Ubuntu\...` — no need to copy the project.
-
-**Or build and install manually:**
+**4. Build and install the APK:**
 
 ```powershell
 dotnet build MySARAssist\MySARAssist.csproj -f net9.0-android
@@ -79,7 +69,7 @@ dotnet build MySARAssist\MySARAssist.csproj -f net9.0-android
 adb install MySARAssist\bin\Debug\net9.0-android\ca.greathat.mysarassist-Signed.apk
 ```
 
-See [`docs/build-and-run.md`](docs/build-and-run.md) for troubleshooting and WSL2-native build instructions.
+See [`docs/build-and-run.md`](docs/build-and-run.md) for troubleshooting.
 
 ### Rebuild and Redeploy to an Android Emulator
 
@@ -109,7 +99,7 @@ adb install MySARAssist\bin\Release\net9.0-android\ca.greathat.mysarassist-Signe
 | Document | Description |
 |----------|-------------|
 | [Architecture Overview](docs/architecture.md) | Solution structure, layers, data flow |
-| [Build and Run](docs/build-and-run.md) | Building for Android from Windows or WSL2 |
+| [Build and Run](docs/build-and-run.md) | Building for Android from Windows |
 | [Data Models](docs/data-models.md) | Domain model reference |
 | [Services](docs/services.md) | Service layer and persistence |
 | [Navigation & Views](docs/navigation-views.md) | Shell navigation and screen inventory |
