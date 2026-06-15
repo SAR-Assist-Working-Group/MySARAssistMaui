@@ -56,7 +56,6 @@ namespace MySARAssist.ViewModels.Urgency
             new("Is the subject's age a factor?",
             [
                 new("Yes", UrgencyResult.High),
-                new("Deceased", UrgencyResult.WillNotRespond),
                 new("Age is not remarkable", null)
             ]),
             new("Are there any hazards in the current or forecast weather?",
@@ -111,7 +110,7 @@ namespace MySARAssist.ViewModels.Urgency
             UrgencyResult.High => "Immediate response is required. The subject faces significant risk to their survival.",
             UrgencyResult.Intermediate => "Prompt response is warranted. Monitor for changes that may escalate urgency.",
             UrgencyResult.Low => "Response can proceed in a measured manner. The subject is unlikely to be in immediate danger.",
-            UrgencyResult.WillNotRespond => "SAR cannot safely respond under current conditions, or the subject is deceased.",
+            UrgencyResult.WillNotRespond => "SAR cannot safely respond under current conditions.",
             _ => string.Empty
         };
 
