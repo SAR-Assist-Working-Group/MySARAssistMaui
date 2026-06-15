@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MySARAssist.ViewModels.Urgency"
+             x:Class="MySARAssist.Views.UrgencyViews.UrgencyCalculatorView"
+             x:Name="PageRoot"
+             HideSoftInputOnTapped="True"
+             Title="Urgency Assessment">
+
+    <ContentPage.BindingContext>
+        <vm:UrgencyCalculatorViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+
+            <!-- Question Section -->
+            <VerticalStackLayout IsVisible="{Binding IsShowingQuestion}" Spacing="16">
+
+                <Label Text="Urgency Assessment"
+                       Style="{StaticResource Headline}"
+                       Margin="0,10,0,0" />
+
+                <!-- Progress -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="{Binding QuestionProgressText}"
+                           HorizontalTextAlignment="Center"
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" />
+                    <ProgressBar Progress="{Binding ProgressValue}"
+                                 HeightRequest="8"
+                                 ProgressColor="{StaticResource Primary}" />
+                </VerticalStackLayout>
+
+                <!-- Question card -->
+                <Frame Padding="24,20"
+                       CornerRadius="12"
+                       BorderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                       HasShadow="False">
+                    <Label Text="{Binding QuestionText}"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap" />
+                </Frame>
+
+                <!-- Answer buttons -->
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding CurrentAnswers}" Spacing="10">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="vm:UrgencyAnswerOption">
+                            <Button Text="{Binding Text}"
+                                    Command="{Binding SelectCommand}"
+                                    Style="{StaticResource StandardButton}"
+                                    LineBreakMode="WordWrap"
+                                    HorizontalOptions="Fill" />
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+            <!-- Result Section -->
+            <VerticalStackLayout IsVisible="{Binding IsShowingResult}" Spacing="20">
+
+                <Label Text="Urgency Assessment"
+                       Style="{StaticResource Headline}"
+                       Margin="0,10,0,0" />
+
+                <Frame BackgroundColor="{Binding ResultBackgroundColor}"
+                       Padding="30,36"
+                       CornerRadius="16"
+                       BorderColor="Transparent"
+                       HasShadow="False">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="{Binding ResultTitle}"
+                               TextColor="White"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center" />
+                        <BoxView Color="White" Opacity="0.4" HeightRequest="1" HorizontalOptions="Fill" />
+                        <Label Text="{Binding ResultDescription}"
+                               TextColor="White"
+                               FontSize="17"
+                               HorizontalTextAlignment="Center"
+                               LineBreakMode="WordWrap" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Button Text="Start Over"
+                        Command="{Binding ResetCommand}"
+                        Style="{StaticResource StandardButton}"
+                        HorizontalOptions="Fill" />
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

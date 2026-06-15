@@ -8,6 +8,7 @@
         xmlns:incidentViews="clr-namespace:MySARAssist.Views.IncidentInfoViews"
 
     xmlns:checkinviews="clr-namespace:MySARAssist.Views.CheckInOut"
+    xmlns:urgencyviews="clr-namespace:MySARAssist.Views.UrgencyViews"
     Shell.BackgroundColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Primary}}"
     Shell.FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}"
     Shell.FlyoutBackdrop="{StaticResource Tertiary}"
@@ -47,6 +48,10 @@
         <ShellContent ContentTemplate="{DataTemplate incidentViews:IncidentItemsListPage}" ></ShellContent>
     </FlyoutItem>
 |-->
+
+    <FlyoutItem Title="Urgency Assessment" Icon="glyphicons_basic_196_circle_empty_info.png">
+        <ShellContent ContentTemplate="{DataTemplate urgencyviews:UrgencyCalculatorView}" ></ShellContent>
+    </FlyoutItem>
 
     <FlyoutItem Title="About My SAR Assist"  Icon="glyphicons_basic_196_circle_empty_info.png">
         <ShellContent ContentTemplate="{DataTemplate views:AboutView}" ></ShellContent>

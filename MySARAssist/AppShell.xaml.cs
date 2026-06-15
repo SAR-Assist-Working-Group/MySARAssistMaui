@@ -2,6 +2,7 @@
 using MySARAssist.Views.Calculators;
 using MySARAssist.Views.CheckInOut;
 using MySARAssist.Views.RADeMS;
+using MySARAssist.Views.UrgencyViews;
 
 namespace MySARAssist
 {
@@ -30,6 +31,8 @@ namespace MySARAssist
             Routing.RegisterRoute(nameof(CheckInOutView) + "/" + nameof(PersonnelEditView), typeof(PersonnelEditView));
             Routing.RegisterRoute(nameof(CheckInOutView) + "/" + nameof(PersonnelEditView) + "/" + nameof(EditQualificationsPage), typeof(EditQualificationsPage));
             Routing.RegisterRoute(nameof(CheckInOutView) + "/" + nameof(PersonnelListView), typeof(PersonnelListView));
+
+            Routing.RegisterRoute(nameof(UrgencyCalculatorView), typeof(UrgencyCalculatorView));
 
             Routing.RegisterRoute(nameof(RADeMSView), typeof(RADeMSView));
             Routing.RegisterRoute(nameof(RADeMSView) + "/" + nameof(RADeMSDetailsPage), typeof(RADeMSDetailsPage));
