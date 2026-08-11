@@ -55,13 +55,21 @@ namespace MySARAssist
 
             LoadCurrentPerson();
             Task.Run(() => CreateInitialOrganizationsAsNeeded()).Wait();
-            try
+
+            // Sync organizations from the remote API in the background instead of
+            // blocking the UI thread — a slow/unreachable network here was holding
+            // up app startup long enough to trigger an ANR.
+            _ = Task.Run(async () =>
             {
-                Task.Run(() => UpdateOrganizationsFromAPI()).Wait();
-            } catch (AggregateException ae)
-            {
-                _logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, ae.ToString());
-            }
+                try
+                {
+                    await UpdateOrganizationsFromAPI();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, ex.ToString());
+                }
+            });
 
         }
 
