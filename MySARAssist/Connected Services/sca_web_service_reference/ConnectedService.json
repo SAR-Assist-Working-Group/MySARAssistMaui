@@ -11,8 +11,6 @@
       "*, sca_web_service_reference"
     ],
     "references": [
-      "C:\\Users\\dylan\\source\\repos\\MySARAssistMAUI\\MySARAssist\\bin\\Debug\\net9.0-windows10.0.26100.0\\win10-x64\\AppX\\Microsoft.Web.WebView2.Core.Projection.dll",
-      "C:\\Users\\dylan\\source\\repos\\MySARAssistMAUI\\MySARAssist\\bin\\Debug\\net9.0-windows10.0.26100.0\\win10-x64\\AppX\\MySarAssistModels.dll",
       "CommunityToolkit.Maui, {CommunityToolkit.Maui, 12.2.0}",
       "CommunityToolkit.Maui.Core, {CommunityToolkit.Maui.Core, 12.2.0}",
       "CommunityToolkit.Mvvm, {CommunityToolkit.Mvvm, 8.4.0}",

@@ -120,7 +120,7 @@ namespace MySARAssist.ViewModels.Calculators
         public string UTM { get { if (CoordinatesOk) { return _coordinate.UTM; } else { return string.Empty; } } }
         public string MGRS { get { if (CoordinatesOk) { return _coordinate.MGRS; } else { return string.Empty; } } }
         public string DecimalDegrees { get { if (CoordinatesOk) { return _coordinate.DecimalDegrees; } else { return string.Empty; } } }
-        public string DMS { get { if (CoordinatesOk) { return _coordinate.DegreesMinutesSeconds; } else { return "aaa"; } } }
+        public string DMS { get { if (CoordinatesOk) { return _coordinate.DegreesMinutesSeconds; } else { return string.Empty; } } }
         public string DDM { get { if (CoordinatesOk) { return _coordinate.DegreesDecimalMinutes; } else { return string.Empty; } } }
         public string DDMLatitude { get { if (CoordinatesOk) { return _coordinate.DDMLatitude; } else { return string.Empty; } } }
         public string DDMLongitude { get { if (CoordinatesOk) { return _coordinate.DDMLongitude; } else { return string.Empty; } } }

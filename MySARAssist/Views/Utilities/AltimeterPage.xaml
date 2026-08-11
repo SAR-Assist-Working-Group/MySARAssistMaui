@@ -7,10 +7,6 @@
    x:DataType="vm:AltimeterViewModel"
 HideSoftInputOnTapped="True"
              Title="Altimeters">
-    <ContentPage.BindingContext>
-        <vm:AltimeterViewModel></vm:AltimeterViewModel>
-    </ContentPage.BindingContext>
-
 
     <ScrollView>
         <VerticalStackLayout Padding="20">

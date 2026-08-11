@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Microsoft.Extensions.Logging;
 using MySarAssistModels;
 using System;
 using System.Collections.Generic;
@@ -142,8 +141,7 @@ namespace MySARAssist.ViewModels.UtilitiesViewModels
             }
         }
 
-        CancellationTokenSource cts;
-        private readonly ILogger<MainPage> logger;
+        CancellationTokenSource? cts;
 
         async Task GetCurrentLocation()
         {

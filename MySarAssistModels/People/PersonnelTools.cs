@@ -205,7 +205,7 @@ namespace MySarAssistModels.People
                 case "MARINE": return "Small Vessel Operator Proficiency [Boat]";
                 case "CDFL": return "HOTP Level 3 - CDFL (annual re-certification) [Aircraft]";
                 case "K9": return "K-9 Wilderness Certification [Dog Handler]";
- case "UAV": return "UAV/Drone Operator ";
+                case "UAV": return "UAV/Drone Operator";
                 case "COM": return "Radio Communications Operator";
 
 

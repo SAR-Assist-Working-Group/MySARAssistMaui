@@ -48,8 +48,8 @@ namespace MySARAssist
 
 
             LogController.InitializeNavigation(
-                page => Windows[0].Page!.Navigation.PushModalAsync(page),
-                () => Windows[0].Page!.Navigation.PopModalAsync());
+                page => MainPage!.Navigation.PushModalAsync(page),
+                () => MainPage!.Navigation.PopModalAsync());
 
             this._logger = logger;
 

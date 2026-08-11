@@ -1,5 +1,4 @@
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Platform;
 using MySARAssist.ViewModels.RADeMS;
 
 namespace MySARAssist.Views.RADeMS;

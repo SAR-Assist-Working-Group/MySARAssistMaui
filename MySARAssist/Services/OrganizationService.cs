@@ -94,8 +94,6 @@ namespace MySARAssist.Services
         {
             await conn.CreateTableAsync<Organization>();
 
-List<Organization> testList = await conn.Table<Organization>().ToListAsync();
-int count = testList.Count(o=>o.ParentOrganizationID == Guid.Empty);
             List<Organization> list = await conn.Table<Organization>().Where(o=>o.ParentOrganizationID == ParentID).ToListAsync();
             if (list != null && list.Any())
             {

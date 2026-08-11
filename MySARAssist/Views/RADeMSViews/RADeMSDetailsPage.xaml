@@ -61,7 +61,7 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
                                 </Grid.ColumnDefinitions>
 
 
-                                <Label x:Name="{Binding question.ID}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding question.QuestionText}" Style="{StaticResource RADeMSQuestionTitle}" FontAttributes="Bold"></Label>
+                                <Label AutomationId="{Binding question.ID}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding question.QuestionText}" Style="{StaticResource RADeMSQuestionTitle}" FontAttributes="Bold"></Label>
                                 <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"  Text="{Binding question.Description}" Style="{StaticResource RADeMSQuestionTitle}"></Label>
 
                                 <!-- summary display -->

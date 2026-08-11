@@ -9,6 +9,8 @@ using MySARAssist.Views.Calculators;
 using MySARAssist.Views;
 using MySARAssist.Views.CheckInOut;
 using MySARAssist.Views.RADeMS;
+using MySARAssist.Views.Utilities;
+using MySARAssist.ViewModels.UtilitiesViewModels;
 using Microsoft.Maui.LifecycleEvents;
 using MySARAssist.Models;
 
@@ -33,13 +35,14 @@ namespace MySARAssist
                 // Debug messages are written to stdout with Console.Writeline,
                 // and are viewable in your IDE's debug console or with 'adb logcat', etc.
                 // This option is not recommended when deploying your application.
+#if DEBUG
                 options.Debug = true;
+#endif
 
                 // Other Sentry options can be set here.
             });
 
-            
-    ;
+
             // Add this code
 
 
@@ -85,6 +88,11 @@ namespace MySARAssist
             builder.Services.AddTransient<RADeMSView>();
             builder.Services.AddTransient<RADeMSDetailsPage>();
             builder.Services.AddTransient<RADeMSCardPage>();
+
+            builder.Services.AddTransient<UtilitiesListPage>();
+            builder.Services.AddTransient<UtilitiesListViewModel>();
+            builder.Services.AddTransient<AltimeterPage>();
+            builder.Services.AddTransient<AltimeterViewModel>();
 
             EntryHandler.AddDone();
             builder.UseBarcodeReader();
