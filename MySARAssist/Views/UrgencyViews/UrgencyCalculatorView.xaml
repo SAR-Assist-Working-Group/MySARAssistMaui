@@ -77,25 +77,24 @@
                        Style="{StaticResource Headline}"
                        Margin="0,10,0,0" />
 
-                <Frame BackgroundColor="{Binding ResultBackgroundColor}"
-                       Padding="30,36"
-                       CornerRadius="16"
-                       BorderColor="Transparent"
-                       HasShadow="False">
+                <Border BackgroundColor="{Binding ResultBackgroundColor}"
+         Padding="30,36"
+         StrokeShape="RoundRectangle 16"
+         Stroke="Transparent">
                     <VerticalStackLayout Spacing="12">
                         <Label Text="{Binding ResultTitle}"
-                               TextColor="White"
-                               FontSize="28"
-                               FontAttributes="Bold"
-                               HorizontalTextAlignment="Center" />
+                TextColor="White"
+                FontSize="28"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center" />
                         <BoxView Color="White" Opacity="0.4" HeightRequest="1" HorizontalOptions="Fill" />
                         <Label Text="{Binding ResultDescription}"
-                               TextColor="White"
-                               FontSize="17"
-                               HorizontalTextAlignment="Center"
-                               LineBreakMode="WordWrap" />
+                TextColor="White"
+                FontSize="17"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="WordWrap" />
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
                 <Button Text="Start Over"
                         Command="{Binding ResetCommand}"
