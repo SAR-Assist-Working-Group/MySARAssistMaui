@@ -55,6 +55,14 @@
         <Setter Property="Margin" Value="5"></Setter>
     </Style>
 
+    <Style TargetType="Button" x:Key="BackButton">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Padding" Value="18"/>
+        <Setter Property="Margin" Value="5"></Setter>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource Secondary}}" />
+    </Style>
+
     <Style TargetType="Button" x:Key="UpDownButton" >
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="Padding" Value="3"/>
