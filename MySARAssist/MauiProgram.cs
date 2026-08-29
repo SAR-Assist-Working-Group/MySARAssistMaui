@@ -11,6 +11,7 @@ using MySARAssist.Views.CheckInOut;
 using MySARAssist.Views.RADeMS;
 using Microsoft.Maui.LifecycleEvents;
 using MySARAssist.Models;
+using MySARAssist.Views.UrgencyViews;
 
 namespace MySARAssist
 {
@@ -63,6 +64,8 @@ namespace MySARAssist
             builder.Services.AddTransient<EditQualificationsPage>();
             builder.Services.AddTransient<PersonnelEditView>();
             builder.Services.AddTransient<PersonnelListView>();
+
+            builder.Services.AddTransient<UrgencyCalculatorView>();
 
             builder.Services.AddTransient<RADeMSView>();
             builder.Services.AddTransient<RADeMSDetailsPage>();
