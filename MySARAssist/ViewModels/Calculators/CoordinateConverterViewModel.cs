@@ -132,8 +132,8 @@ namespace MySARAssist.ViewModels.Calculators
             {
                 if (CoordinatesOk)
                 {
-                    var dclination = _coordinate.GetDeclination(DateTime.Now);
-                    return $"{dclination:0.##}\u00B0";
+					var declination = _coordinate.GetDeclination(DateTime.Now);
+					return $"{declination:0.##}\u00B0";
                 }
                 else { return string.Empty; }
             }
