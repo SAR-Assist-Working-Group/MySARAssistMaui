@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net10.0-android36.0</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('osx'))">$(TargetFrameworks);net10.0-ios</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net10.0-tizen</TargetFrameworks> -->
 
 		<!-- Note for MacCatalyst:
 		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
@@ -48,21 +48,21 @@
 		<Platforms>AnyCPU;ARM64</Platforms>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
 	  <ApplicationVersion>2</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
 	  <ApplicationVersion>2</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-ios|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	  <ApplicationVersion>31</ApplicationVersion>
@@ -70,7 +70,7 @@
 	  <EnableSGenConc>True</EnableSGenConc>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-ios|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	  <ApplicationVersion>31</ApplicationVersion>
@@ -78,35 +78,35 @@
 	  <EnableSGenConc>True</EnableSGenConc>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-maccatalyst|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-maccatalyst|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-windows10.0.26100.0|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-windows10.0.26100.0|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
 	  <ApplicationVersion>2</ApplicationVersion>
@@ -115,14 +115,14 @@
 
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
 	  <ApplicationVersion>2</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-ios|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	  <ApplicationVersion>31</ApplicationVersion>
@@ -130,7 +130,7 @@
 	  <EnableSGenConc>True</EnableSGenConc>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-ios|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	  <ApplicationVersion>31</ApplicationVersion>
@@ -138,59 +138,59 @@
 	  <EnableSGenConc>True</EnableSGenConc>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-maccatalyst|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-maccatalyst|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-windows10.0.26100.0|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-windows10.0.26100.0|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+	<PropertyGroup Condition="'$(TargetFramework)'=='net10.0-ios'">
 	  <CodesignKey>Apple Distribution: Dylan Baker (AHLVEA35GD)</CodesignKey>
 	  <CodesignProvision>My SAR Assist Distro 2024</CodesignProvision>
 	  <ProvisioningType>manual</ProvisioningType>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android36.0|AnyCPU'">
 	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android36.0|ARM64'">
 	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android36.0|AnyCPU'">
 	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android36.0|ARM64'">
 	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
@@ -209,51 +209,51 @@
 	<PropertyGroup>
 	  <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.26100.0</TargetFrameworks>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android|AnyCPU'">
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-ios|AnyCPU'">
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.26100.0|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-windows10.0.26100.0|AnyCPU'">
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-android|ARM64'">
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-ios|ARM64'">
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-windows10.0.26100.0|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net10.0-windows10.0.26100.0|ARM64'">
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	  <AndroidLinkTool>r8</AndroidLinkTool>
-	  <AndroidPackageFormat>aab</AndroidPackageFormat>
-	  <AndroidUseAapt2>True</AndroidUseAapt2>
-	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|AnyCPU'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.26100.0|AnyCPU'">
-	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|AnyCPU'">
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	  <AndroidLinkTool>r8</AndroidLinkTool>
 	  <AndroidPackageFormat>aab</AndroidPackageFormat>
 	  <AndroidUseAapt2>True</AndroidUseAapt2>
 	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-ios|AnyCPU'">
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-windows10.0.26100.0|ARM64'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-windows10.0.26100.0|AnyCPU'">
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(TargetFramework)'=='net9.0-ios'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-android|ARM64'">
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <AndroidLinkTool>r8</AndroidLinkTool>
+	  <AndroidPackageFormat>aab</AndroidPackageFormat>
+	  <AndroidUseAapt2>True</AndroidUseAapt2>
+	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-ios|ARM64'">
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net10.0-windows10.0.26100.0|ARM64'">
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='net10.0-ios'">
 	  <CodesignKey>Apple Distribution: Dylan Baker (AHLVEA35GD)</CodesignKey>
 	  <CodesignProvision>My SAR Assist Distro 2024</CodesignProvision>
 	  <ProvisioningType>manual</ProvisioningType>
