@@ -53,6 +53,8 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
 
@@ -111,23 +113,23 @@
                         </Label.GestureRecognizers>
                     </Label>
 
-                    <Label Grid.Column="0" Grid.Row="6"    Style="{StaticResource CalculatorResultUOM}"  HorizontalTextAlignment="Start"  Text="Declination:" FontAttributes="Bold"></Label>
-                    <Label Grid.Column="1" Grid.Row="6"   Style="{StaticResource CalculatorResultValue}" HorizontalTextAlignment="Start"   Text="{Binding Declination}">
+                    <Label Grid.Column="0" Grid.Row="8"    Style="{StaticResource CalculatorResultUOM}"  HorizontalTextAlignment="Start"  Text="Declination:" FontAttributes="Bold"></Label>
+                    <Label Grid.Column="1" Grid.Row="8"   Style="{StaticResource CalculatorResultValue}" HorizontalTextAlignment="Start"   Text="{Binding Declination}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding CopyDeclinationCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
 
-                    <Label Grid.Column="0" Grid.Row="7"    Style="{StaticResource CalculatorResultUOM}"  HorizontalTextAlignment="Start"  Text="Daylight:" FontAttributes="Bold"></Label>
-                    <Label Grid.Column="1" Grid.Row="7"   Style="{StaticResource CalculatorResultValue}" HorizontalTextAlignment="Start"   Text="{Binding SunriseSunset}">
+                    <Label Grid.Column="0" Grid.Row="9"    Style="{StaticResource CalculatorResultUOM}"  HorizontalTextAlignment="Start"  Text="Daylight:" FontAttributes="Bold"></Label>
+                    <Label Grid.Column="1" Grid.Row="9"   Style="{StaticResource CalculatorResultValue}" HorizontalTextAlignment="Start"   Text="{Binding SunriseSunset}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding CopySunriseSetCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
                     
-                    <Label Grid.Column="0" Grid.Row="8"  Grid.ColumnSpan="2" Style="{StaticResource CalculatorResultUOM}" HorizontalTextAlignment="Center">*Tap on a coordinate to copy it</Label>
+                    <Label Grid.Column="0" Grid.Row="10"  Grid.ColumnSpan="2" Style="{StaticResource CalculatorResultUOM}" HorizontalTextAlignment="Center">*Tap on a coordinate to copy it</Label>
 
-                    <Button Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2"  Text="Map it" Command="{Binding OpenMapCommand}" Style="{StaticResource StandardButton}"></Button>
+                    <Button Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2"  Text="Map it" Command="{Binding OpenMapCommand}" Style="{StaticResource StandardButton}"></Button>
                 </Grid>
             
             

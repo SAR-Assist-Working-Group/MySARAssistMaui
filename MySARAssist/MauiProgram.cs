@@ -14,7 +14,8 @@ using MySARAssist.ViewModels.UtilitiesViewModels;
 using Microsoft.Maui.LifecycleEvents;
 using MySARAssist.Models;
 using MySARAssist.Views.UrgencyViews;
-
+using Sentry;
+using Sentry.Maui;
 namespace MySARAssist
 {
     public static class MauiProgram

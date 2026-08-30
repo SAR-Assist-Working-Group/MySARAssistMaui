@@ -39,9 +39,6 @@ namespace MySARAssist
             Routing.RegisterRoute(nameof(RADeMSView) + "/" + nameof(RADeMSDetailsPage), typeof(RADeMSDetailsPage));
             Routing.RegisterRoute(nameof(RADeMSView) + "/" + nameof(RADeMSDetailsPage) + "/" + nameof(RADeMSCardPage), typeof(RADeMSCardPage));
 
-            //utilities
-            Routing.RegisterRoute(nameof(UtilitiesListPage), typeof(UtilitiesListPage));
-            Routing.RegisterRoute(nameof(UtilitiesListPage) + "/" + nameof(AltimeterPage), typeof(AltimeterPage));
         }
     }
 }
