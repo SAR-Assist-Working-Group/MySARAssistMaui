@@ -29,10 +29,14 @@ namespace MySARAssist.ViewModels.Urgency
         private UrgencyResult _result = UrgencyResult.NotDetermined;
         private bool _isShowingResult;
 
+        public ICommand UndoCommand { get; }
+        public bool ShowBackButton => _currentIndex > 0 && !_isShowingResult;
+
         public UrgencyCalculatorViewModel()
         {
             _questions = BuildQuestions();
             ResetCommand = new Command(Reset);
+            UndoCommand = new Command(UndoAnswer);
             LoadCurrentQuestion();
         }
 
@@ -43,7 +47,7 @@ namespace MySARAssist.ViewModels.Urgency
                 new("Yes", UrgencyResult.WillNotRespond),
                 new("No", null)
             ]),
-            new("Are there known medical issues, significant injuries, or mental-state issues?",
+            new("Are there urgent medical issues, serious injuries, or mental-state issues?",
             [
                 new("Yes", UrgencyResult.High),
                 new("Deceased", UrgencyResult.Low),
@@ -76,8 +80,8 @@ namespace MySARAssist.ViewModels.Urgency
             ]),
             new("Are there other factors significantly impacting survival probability?",
             [
-                new("Yes", UrgencyResult.Intermediate),
-                new("No", UrgencyResult.Low)
+                new("Yes", UrgencyResult.High),
+                new("No", UrgencyResult.Intermediate)
             ])
         ];
 
@@ -136,6 +140,7 @@ namespace MySARAssist.ViewModels.Urgency
             OnPropertyChanged(nameof(QuestionText));
             OnPropertyChanged(nameof(QuestionProgressText));
             OnPropertyChanged(nameof(ProgressValue));
+            OnPropertyChanged(nameof(ShowBackButton));
         }
 
         private void ProcessAnswer(AnswerDef answer)
@@ -147,6 +152,15 @@ namespace MySARAssist.ViewModels.Urgency
             else
             {
                 _currentIndex++;
+                LoadCurrentQuestion();
+            }
+        }
+
+        private void UndoAnswer()
+        {
+            if (_currentIndex > 0)
+            {
+                _currentIndex--;
                 LoadCurrentQuestion();
             }
         }

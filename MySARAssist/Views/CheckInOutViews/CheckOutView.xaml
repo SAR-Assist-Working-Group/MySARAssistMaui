@@ -32,8 +32,8 @@ xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Contr
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource SubHeadline}" Text="{Binding CurrentMemberName}"></Label>
 
         <!-- time out-->
-        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="End"  Margin="0,0,10,0" Text="Sign In Time"></Label>
-        <TimePicker Grid.Column="2" Grid.Row="1" x:Name="tpSignInTime"  Time="{Binding SignOutTime, Mode=TwoWay}"></TimePicker>
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="End"  Margin="0,0,10,0" Text="Check out time"></Label>
+        <TimePicker Grid.Column="2" Grid.Row="1" x:Name="tpSignOutTime"  Time="{Binding SignOutTime, Mode=TwoWay}"></TimePicker>
 
         <!-- KMs -->
         <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Style="{DynamicResource labelStyle}" HorizontalTextAlignment="End" Margin="0,0,10,0"  VerticalOptions="Center" Text="KMs"></Label>

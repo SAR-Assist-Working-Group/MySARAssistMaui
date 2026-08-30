@@ -1,8 +1,9 @@
 ﻿using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
-using MySarAssistModels;
+
 using MySARAssist.Models;
+using MySarAssistModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,8 @@ namespace MySARAssist.ViewModels.Calculators
         public Command CopyDMSCommand { get; }
         public Command CopyMGRSCommand { get; }
         public Command OpenMapCommand { get; }
-
+        public Command CopyDeclinationCommand { get; }
+        public Command CopySunriseSetCommand { get; }
         public CoordinateConverterViewModel()
         {
             GetLocationCommand = new Command(OnGetLocationCommand);
@@ -33,6 +35,8 @@ namespace MySARAssist.ViewModels.Calculators
             CopyDMSCommand = new Command(async () => await OnCopyDMSCommandAsync());
             CopyMGRSCommand = new Command(async () => await OnCopyMGRSCommandAsync());
             OpenMapCommand = new Command(async () => await OnOpenMapCommandAsync());
+            CopyDeclinationCommand = new Command(async () => await OnCopyDeclinationCommandAsync());
+            CopySunriseSetCommand = new Command(async () => await OnCopySunriseSunsetCommandAsync());
         }
 
 
@@ -51,11 +55,12 @@ namespace MySARAssist.ViewModels.Calculators
 
             await toast.Show(cancellationTokenSource.Token);
         }
-        private async Task OnCopyUTMCommandAsync() { await Clipboard.SetTextAsync(UTM);  ShowToastAsync("Copied!"); }
+        private async Task OnCopyUTMCommandAsync() { await Clipboard.SetTextAsync(UTM); ShowToastAsync("Copied!"); }
         private async Task OnCopyShortUTMCommandAsync() { await Clipboard.SetTextAsync(ShortUTM); ShowToastAsync("Copied!"); }
         private async Task OnCopyDDCommandAsync() { await Clipboard.SetTextAsync(DecimalDegrees); ShowToastAsync("Copied!"); }
         private async Task OnCopyDMSCommandAsync() { await Clipboard.SetTextAsync(DMS); ShowToastAsync("Copied!"); }
         private async Task OnCopyMGRSCommandAsync() { await Clipboard.SetTextAsync(MGRS); ShowToastAsync("Copied!"); }
+        private async Task OnCopyDeclinationCommandAsync() { await Clipboard.SetTextAsync(Declination); ShowToastAsync("Copied!"); }
         private async Task OnOpenMapCommandAsync()
         {
             if (!string.IsNullOrEmpty(DecimalDegrees))
@@ -78,7 +83,7 @@ namespace MySARAssist.ViewModels.Calculators
                 }
             }
         }
-
+        private async Task OnCopySunriseSunsetCommandAsync() { await Clipboard.SetTextAsync(SunriseSunset); ShowToastAsync("Copied!"); }
         private void TrySettingCoordinate()
         {
             if (string.IsNullOrEmpty(CoordinateInputText)) { CoordinatesOk = false; _coordinate = new Coordinate(); }
@@ -121,7 +126,31 @@ namespace MySARAssist.ViewModels.Calculators
         public string DMSLatitude { get { if (CoordinatesOk) { return _coordinate.DMSLatitude; } else { return string.Empty; } } }
         public string DMSLongitude { get { if (CoordinatesOk) { return _coordinate.DMSLongitude; } else { return string.Empty; } } }
         public string ShortUTM { get { if (CoordinatesOk) { return _coordinate.ShortUTM; } else { return string.Empty; } } }
-
+        public string Declination
+        {
+            get
+            {
+                if (CoordinatesOk)
+                {
+					var declination = _coordinate.GetDeclination(DateTime.Now);
+					return $"{declination:0.##}\u00B0";
+                }
+                else { return string.Empty; }
+            }
+        }
+        public string SunriseSunset
+        {
+            get
+            {
+                if (CoordinatesOk)
+                {
+                    var sunrise = _coordinate.GetSunrise(DateTime.Now);
+                    var sunset = _coordinate.GetSunset(DateTime.Now);
+                    return $"Rise {sunrise:HH:mm} Set {sunset:HH:mm}";
+                }
+                else { return string.Empty; }
+            }
+        }
         private void RefreshCoordinates()
         {
             OnPropertyChanged(nameof(UTM));
@@ -131,6 +160,8 @@ namespace MySARAssist.ViewModels.Calculators
             OnPropertyChanged(nameof(ShortUTM));
             OnPropertyChanged(nameof(DMSLatitude));
             OnPropertyChanged(nameof(DMSLongitude));
+            OnPropertyChanged(nameof(Declination));
+            OnPropertyChanged(nameof(SunriseSunset));
         }
     }
 }
