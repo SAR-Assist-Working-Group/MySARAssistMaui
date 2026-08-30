@@ -80,8 +80,8 @@ namespace MySARAssist.ViewModels.Urgency
             ]),
             new("Are there other factors significantly impacting survival probability?",
             [
-                new("Yes", UrgencyResult.Intermediate),
-                new("No", UrgencyResult.Low)
+                new("Yes", UrgencyResult.High),
+                new("No", UrgencyResult.Intermediate)
             ])
         ];
 
