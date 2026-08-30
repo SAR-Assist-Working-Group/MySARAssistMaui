@@ -38,7 +38,7 @@
                 HorizontalOptions="Fill" />
 
             <Button
-                Text="Urgency Assessment" ImageSource="glyphicons_basic_510_light_beacon_white.png" Style="{StaticResource StandardButton}"
+                Text="Urgency Assessment" ImageSource="glyphicons_basic_510_light_beacon_white.svg" Style="{StaticResource StandardButton}"
                 x:Name="UrgencyButton" Clicked="UrgencyButton_Clicked"
                 HorizontalOptions="Fill" />
 
