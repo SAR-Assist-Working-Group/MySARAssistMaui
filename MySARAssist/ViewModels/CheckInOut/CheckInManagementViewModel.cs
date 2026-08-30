@@ -13,6 +13,7 @@ namespace MySARAssist.ViewModels.CheckInOut
     public class CheckInManagementViewModel : ObservableObject
     {
         private readonly PersonnelService _personnelService;
+        private bool _isNavigating = false;
 
         public CheckInManagementViewModel()
         {
@@ -89,35 +90,88 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         private async void OnSignInCommand()
         {
-            await Shell.Current.GoToAsync(nameof(Views.CheckInOut.CheckInView));
+            if (_isNavigating) { return; }
+            try
+            {
+                _isNavigating = true;
+                await Shell.Current.GoToAsync(nameof(Views.CheckInOut.CheckInView));
+            }
+            finally
+            {
+                _isNavigating = false;
+            }
         }
 
         private async void OnSignOutCommand()
         {
-            await Shell.Current.GoToAsync(nameof(Views.CheckInOut.CheckOutView));
+            if (_isNavigating) { return; }
+            try
+            {
+                _isNavigating = true;
+                await Shell.Current.GoToAsync(nameof(Views.CheckInOut.CheckOutView));
+            }
+            finally
+            {
+                _isNavigating = false;
+            }
         }
 
         private async void OnEditTeamMembersCommand()
         {
-            if (App.CurrentPerson != null) { await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}?PersonnelID={App.CurrentPerson.ID}"); }
-            else { await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}"); }
+            if (_isNavigating) { return; }
+            try
+            {
+                _isNavigating = true;
+                if (App.CurrentPerson != null) { await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}?PersonnelID={App.CurrentPerson.ID}"); }
+                else { await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}"); }
+            }
+            finally
+            {
+                _isNavigating = false;
+            }
         }
 
         private async void OnChangeSelectedMemberCommand()
         {
-            await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelListView)}");
+            if (_isNavigating) { return; }
+            try
+            {
+                _isNavigating = true;
+                await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelListView)}");
+            }
+            finally
+            {
+                _isNavigating = false;
+            }
         }
 
         public async void OnAddMember()
         {
-            await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.PersonnelEditView)}");
+            if (_isNavigating) { return; }
+            try
+            {
+                _isNavigating = true;
+                await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.PersonnelEditView)}");
+            }
+            finally
+            {
+                _isNavigating = false;
+            }
         }
 
         public async void OnEditMember()
         {
-            if (App.CurrentPerson != null) { await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}?PersonnelID={App.CurrentPerson.ID}"); }
-            else { await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}"); }
-
+            if (_isNavigating) { return; }
+            try
+            {
+                _isNavigating = true;
+                if (App.CurrentPerson != null) { await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}?PersonnelID={App.CurrentPerson.ID}"); }
+                else { await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}"); }
+            }
+            finally
+            {
+                _isNavigating = false;
+            }
         }
     }
 }

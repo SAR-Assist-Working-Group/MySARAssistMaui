@@ -37,12 +37,12 @@
                 x:Name="RADeMSButton" Clicked="RADeMSButton_Clicked"
                 HorizontalOptions="Fill" />
 
-            <!--
+
             <Button
-      Text="Utilities"  ImageSource="glyphicons_basic_234_calculator.png"  Style="{StaticResource StandardButton}"
-      x:Name="UtilitiesButton"  Clicked="UtilitiesButton_Clicked"
-      HorizontalOptions="Fill" />
--->
+                Text="Urgency Assessment" ImageSource="glyphicons_basic_510_light_beacon_white.png" Style="{StaticResource StandardButton}"
+                x:Name="UrgencyButton" Clicked="UrgencyButton_Clicked"
+                HorizontalOptions="Fill" />
+
         </VerticalStackLayout>
     </ScrollView>
 

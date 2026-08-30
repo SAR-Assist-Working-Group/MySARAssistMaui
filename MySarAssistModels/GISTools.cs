@@ -1,4 +1,5 @@
 ﻿using CoordinateSharp;
+using CoordinateSharp.Magnetic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,21 @@ namespace MySarAssistModels
         const double RADIO = 6371;
         const double EarthRadius = 6378137;
 
+        public static double GetDeclination(this Coordinate c, DateTime OpDate)
+        {
+            CoordinateSharp.Coordinate coordinate = new CoordinateSharp.Coordinate(c.Latitude, c.Longitude, OpDate);
+            //Height is 0km MSL unless specified in overload constructor.
+            Magnetic m = new Magnetic(coordinate);
 
-        public static DateTime GetSunrise(Coordinate c, DateTime OpDate)
+            return m.MagneticFieldElements.Declination;
+        }
+
+        public static DateTime GetSunrise(this Coordinate c, DateTime OpDate)
         {
             Celestial cel = Celestial.CalculateCelestialTimes(c.Latitude, c.Longitude, OpDate);
             return cel.SunRise.Value.ToLocalTime();
         }
-        public static DateTime GetSunset(Coordinate c, DateTime OpDate)
+        public static DateTime GetSunset(this Coordinate c, DateTime OpDate)
         {
             Celestial cel = Celestial.CalculateCelestialTimes(c.Latitude, c.Longitude, OpDate);
             return cel.SunSet.Value.ToLocalTime();

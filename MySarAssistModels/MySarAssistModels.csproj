@@ -7,9 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CoordinateSharp" Version="3.4.1.1" />
+    <PackageReference Include="CoordinateSharp" Version="3.5.1.1" />
+    <PackageReference Include="CoordinateSharp.Magnetic" Version="3.5.1.1" />
     <PackageReference Include="MetroLog.Maui" Version="2.1.0" />
-    <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.11.285" />
   </ItemGroup>
 
 </Project>
