@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MySARAssist.Views.Utilities.UtilitiesListPage"
+                xmlns:vm="clr-namespace:MySARAssist.ViewModels.UtilitiesViewModels"
+                x:DataType="vm:UtilitiesListViewModel"
+             HideSoftInputOnTapped="True"
+             Title="Utilities">
+    <ContentPage.BindingContext>
+        <vm:UtilitiesListViewModel></vm:UtilitiesListViewModel>
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <Label 
+      Text="Utilities"
+      VerticalOptions="Center" HorizontalTextAlignment="Center"
+      HorizontalOptions="Center" Margin="0, 0, 0, 20" />
+
+            <VerticalStackLayout>
+
+                <Button Command="{Binding NavigateToAltitudeCommand}"  Style="{StaticResource StandardButton}"  Text="Altitude"></Button>
+
+            </VerticalStackLayout>
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

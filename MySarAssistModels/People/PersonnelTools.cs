@@ -75,7 +75,9 @@ namespace MySarAssistModels.People
             List<Qualification> qualifications = GetQualifications();
             foreach (Qualification q in qualifications)
             {
-                q.PersonHas = person.QualificationList[q.QualificationListIndex];
+                if (person.QualificationList.Length > q.QualificationListIndex)
+                    q.PersonHas = person.QualificationList[q.QualificationListIndex];
+                    
             }
 
             return qualifications;
@@ -203,6 +205,8 @@ namespace MySarAssistModels.People
                 case "MARINE": return "Small Vessel Operator Proficiency [Boat]";
                 case "CDFL": return "HOTP Level 3 - CDFL (annual re-certification) [Aircraft]";
                 case "K9": return "K-9 Wilderness Certification [Dog Handler]";
+                case "UAV": return "UAV/Drone Operator";
+                case "COM": return "Radio Communications Operator";
 
 
 
@@ -241,6 +245,9 @@ namespace MySarAssistModels.People
             qualifications.Add(new Qualification("MARINE", "Marine / Boat Operator", 25, 0, 25, ""));
             qualifications.Add(new Qualification("CDFL", "Hoist / CDFL", 26, 0, 26, ""));
             qualifications.Add(new Qualification("K9", "K-9 Search", 27, 0, 27, ""));
+            qualifications.Add(new Qualification("UAV", "UAV/Drone Operator", 28, 0, 28, ""));
+            qualifications.Add(new Qualification("COM", "Radio Communications", 29, 0, 29, ""));
+
 
             return qualifications;
         }

@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MySARAssist"
     xmlns:views="clr-namespace:MySARAssist.Views"
+    xmlns:utilityViews="clr-namespace:MySARAssist.Views.Utilities"
         xmlns:incidentViews="clr-namespace:MySARAssist.Views.IncidentInfoViews"
 
     xmlns:checkinviews="clr-namespace:MySARAssist.Views.CheckInOut"
@@ -43,7 +44,13 @@
     <FlyoutItem Title="RADeMS Risk Assessment" Icon="radems_grid_icon.png">
         <ShellContent ContentTemplate="{DataTemplate views:RADeMSView}" ></ShellContent>
     </FlyoutItem>
-<!--—
+
+    <!--
+    <FlyoutItem Title="Utilities" Icon="glyphicons_basic_607_user_check.png" >
+        <ShellContent ContentTemplate="{DataTemplate utilityViews:UtilitiesListPage}" ></ShellContent>
+    </FlyoutItem>
+    -->
+    <!--—
     <FlyoutItem Title="Incident Information" Icon="radems_grid_icon.png">
         <ShellContent ContentTemplate="{DataTemplate incidentViews:IncidentItemsListPage}" ></ShellContent>
     </FlyoutItem>

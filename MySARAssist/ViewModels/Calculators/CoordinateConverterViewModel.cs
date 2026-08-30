@@ -21,6 +21,7 @@ namespace MySARAssist.ViewModels.Calculators
         public Command CopyUTMCommand { get; }
         public Command CopyShortUTMCommand { get; }
         public Command CopyDDCommand { get; }
+        public Command CopyDDMCommand { get; }
         public Command CopyDMSCommand { get; }
         public Command CopyMGRSCommand { get; }
         public Command OpenMapCommand { get; }
@@ -32,6 +33,7 @@ namespace MySARAssist.ViewModels.Calculators
             CopyUTMCommand = new Command(async () => await OnCopyUTMCommandAsync());
             CopyShortUTMCommand = new Command(async () => await OnCopyShortUTMCommandAsync());
             CopyDDCommand = new Command(async () => await OnCopyDDCommandAsync());
+            CopyDDMCommand = new Command(async () => await OnCopyDDMSCommandAsync());
             CopyDMSCommand = new Command(async () => await OnCopyDMSCommandAsync());
             CopyMGRSCommand = new Command(async () => await OnCopyMGRSCommandAsync());
             OpenMapCommand = new Command(async () => await OnOpenMapCommandAsync());
@@ -59,6 +61,7 @@ namespace MySARAssist.ViewModels.Calculators
         private async Task OnCopyShortUTMCommandAsync() { await Clipboard.SetTextAsync(ShortUTM); ShowToastAsync("Copied!"); }
         private async Task OnCopyDDCommandAsync() { await Clipboard.SetTextAsync(DecimalDegrees); ShowToastAsync("Copied!"); }
         private async Task OnCopyDMSCommandAsync() { await Clipboard.SetTextAsync(DMS); ShowToastAsync("Copied!"); }
+        private async Task OnCopyDDMSCommandAsync() { await Clipboard.SetTextAsync(DDM); ShowToastAsync("Copied!"); }
         private async Task OnCopyMGRSCommandAsync() { await Clipboard.SetTextAsync(MGRS); ShowToastAsync("Copied!"); }
         private async Task OnCopyDeclinationCommandAsync() { await Clipboard.SetTextAsync(Declination); ShowToastAsync("Copied!"); }
         private async Task OnOpenMapCommandAsync()
@@ -123,6 +126,10 @@ namespace MySARAssist.ViewModels.Calculators
         public string MGRS { get { if (CoordinatesOk) { return _coordinate.MGRS; } else { return string.Empty; } } }
         public string DecimalDegrees { get { if (CoordinatesOk) { return _coordinate.DecimalDegrees; } else { return string.Empty; } } }
         public string DMS { get { if (CoordinatesOk) { return _coordinate.DegreesMinutesSeconds; } else { return string.Empty; } } }
+        public string DDM { get { if (CoordinatesOk) { return _coordinate.DegreesDecimalMinutes; } else { return string.Empty; } } }
+        public string DDMLatitude { get { if (CoordinatesOk) { return _coordinate.DDMLatitude; } else { return string.Empty; } } }
+        public string DDMLongitude { get { if (CoordinatesOk) { return _coordinate.DDMLongitude; } else { return string.Empty; } } }
+
         public string DMSLatitude { get { if (CoordinatesOk) { return _coordinate.DMSLatitude; } else { return string.Empty; } } }
         public string DMSLongitude { get { if (CoordinatesOk) { return _coordinate.DMSLongitude; } else { return string.Empty; } } }
         public string ShortUTM { get { if (CoordinatesOk) { return _coordinate.ShortUTM; } else { return string.Empty; } } }
@@ -157,6 +164,9 @@ namespace MySARAssist.ViewModels.Calculators
             OnPropertyChanged(nameof(MGRS));
             OnPropertyChanged(nameof(DecimalDegrees));
             OnPropertyChanged(nameof(DMS));
+            OnPropertyChanged(nameof(DDM));
+            OnPropertyChanged(nameof(DDMLatitude));
+            OnPropertyChanged(nameof(DDMLongitude));
             OnPropertyChanged(nameof(ShortUTM));
             OnPropertyChanged(nameof(DMSLatitude));
             OnPropertyChanged(nameof(DMSLongitude));

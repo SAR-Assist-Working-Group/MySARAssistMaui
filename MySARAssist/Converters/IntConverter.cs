@@ -15,15 +15,15 @@ namespace MySARAssist.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string strValue = value as string;
+            string strValue = value as string ?? string.Empty;
+
             if (string.IsNullOrEmpty(strValue))
-                strValue = "0";
-            int resultdecimal;
-            if (int.TryParse(strValue, out resultdecimal))
-            {
-                return resultdecimal;
-            }
-            return 0;
+                return Binding.DoNothing; // Don't update source while field is being cleared
+
+            if (int.TryParse(strValue, out int result))
+                return result;
+
+            return Binding.DoNothing;
         }
 
     }

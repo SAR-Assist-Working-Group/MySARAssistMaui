@@ -21,6 +21,7 @@ using MySARAssist.Converters;
 using MySARAssist.Services;
 using MySarAssistModels.Interfaces;
 using MySarAssistModels.People;
+using MySarAssistModels.Services;
 
 namespace MySARAssist
 {
@@ -37,7 +38,7 @@ namespace MySARAssist
             InitializeComponent();
             this._personnelService = new PersonnelService();
 
-            MainPage = new AppShell();
+             MainPage = new AppShell();
 
 
             // Set optional agent configuration
@@ -54,13 +55,21 @@ namespace MySARAssist
 
             LoadCurrentPerson();
             Task.Run(() => CreateInitialOrganizationsAsNeeded()).Wait();
-            try
+
+            // Sync organizations from the remote API in the background instead of
+            // blocking the UI thread — a slow/unreachable network here was holding
+            // up app startup long enough to trigger an ANR.
+            _ = Task.Run(async () =>
             {
-                Task.Run(() => UpdateOrganizationsFromAPI()).Wait();
-            } catch (AggregateException ae)
-            {
-                _logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, ae.ToString());
-            }
+                try
+                {
+                    await UpdateOrganizationsFromAPI();
+                }
+                catch (Exception ex)
+                {
+                    _logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, ex.ToString());
+                }
+            });
 
         }
 
@@ -77,10 +86,17 @@ namespace MySARAssist
             {
                 orgs = new List<Organization>();
             }
-            if (!orgs.Any())
+
+                List<Organization> staticOrgs = OrganizationTools.GetStaticOrganizations(Guid.Empty);
+            List<Organization> parentOrgs = OrganizationTools.GetStaticParentOrganizations();
+                
+            if (!orgs.Any() || !orgs.Any(o=>o.ParentOrganizationID == Guid.Empty) || orgs.Count < staticOrgs.Count + parentOrgs.Count)
             {
                 //get the static orgs and save them
-                List<Organization> staticOrgs = OrganizationTools.GetStaticOrganizations(Guid.Empty);
+
+                staticOrgs.AddRange(parentOrgs);
+                Guid bcsara = new Guid("CC3A9DC9-01A3-4D39-B806-2128B51120BC");
+                int bcsaraCount = staticOrgs.Count(o => o.OrganizationID == bcsara);
                 foreach(Organization org in staticOrgs)
                 {
                     await service.UpsertItemAsync(org);
@@ -99,20 +115,8 @@ namespace MySARAssist
 
             if (accessType == NetworkAccess.Internet)
             {
-                // Connection to internet is available
-                RestService service = new RestService();
-                OrganizationService orgService = new OrganizationService();
-                List<ServiceReference1.Organization>? syncOrgs = await service.RefreshDataAsync();
-
-                if(syncOrgs != null)
-                {
-                    foreach(ServiceReference1.Organization org in syncOrgs)
-                    {
-                        Organization newOrg = org.OrganizationFromWebserviceOrg();
-                        if (newOrg != null) { await orgService.UpsertItemAsync(newOrg); }
-                    }
-                }
-
+                var syncService = new OrganizationSyncService(new RestService(), new OrganizationService());
+                await syncService.SyncOrganizationsAsync();
             }
         }
 

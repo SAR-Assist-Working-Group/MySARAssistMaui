@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.CheckInOut.EditQualificationsPage"
-                           xmlns:vm="clr-namespace:MySARAssist.ViewModels.CheckInOut"
+                          
 
-                           x:DataType="vm:EditQualificationsViewModel" HideSoftInputOnTapped="True"
+                           HideSoftInputOnTapped="True"
                xmlns:local="clr-namespace:MySARAssist.Models.ValidationTools"
              xmlns:models="clr-namespace:MySarAssistModels.People;assembly=MySarAssistModels"
              Title="Edit Qualifications">

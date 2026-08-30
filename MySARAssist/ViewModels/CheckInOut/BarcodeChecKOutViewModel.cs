@@ -43,9 +43,10 @@ namespace MySARAssist.ViewModels.CheckInOut
             get => _KMs;
             set
             {
-                _KMs = value;
-                OnPropertyChanged(nameof(KMs));
-                OnPropertyChanged(nameof(FullQRString));
+                if (SetProperty(ref _KMs, value))
+                {
+                    OnPropertyChanged(nameof(FullQRString));
+                }
             }
         }
 

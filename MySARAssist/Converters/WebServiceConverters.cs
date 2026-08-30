@@ -10,7 +10,7 @@ namespace MySARAssist.Converters
 {
     public static class WebServiceConverters
     {
-        public static Organization OrganizationFromWebserviceOrg(this ServiceReference1.Organization webOrg)
+        public static Organization OrganizationFromWebserviceOrg(this sca_web_service_reference.Organization webOrg)
         {
             Organization organization = new Organization();
 

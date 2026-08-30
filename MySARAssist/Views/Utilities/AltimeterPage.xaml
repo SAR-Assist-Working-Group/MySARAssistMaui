@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MySARAssist.Views.Utilities.AltimeterPage"
+             
+   xmlns:vm="clr-namespace:MySARAssist.ViewModels.UtilitiesViewModels"
+   x:DataType="vm:AltimeterViewModel"
+HideSoftInputOnTapped="True"
+             Title="Altimeters">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20">
+            <Label 
+  Text="Utilities"
+  VerticalOptions="Center" HorizontalTextAlignment="Center"
+  HorizontalOptions="Center" Margin="0, 0, 0, 20" />
+
+            <VerticalStackLayout>
+
+                <Label>Altitude by Location (from GPS)</Label>
+                <Label Text="{Binding CurrentLocationText}"></Label>
+
+                <HorizontalStackLayout>
+                    <Label Text="Accurate to "></Label>
+                    <Label Text="{Binding GPSAccuracy}"></Label>
+                    <Label Text="m"></Label>
+
+                </HorizontalStackLayout>
+                <Label Text="{Binding CurrentAltitudeByGPSText}"></Label>
+                <Button Command="{Binding GetLocationCommand}" Text="Get Current" Style="{StaticResource StandardButton}"></Button>
+
+            </VerticalStackLayout>
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

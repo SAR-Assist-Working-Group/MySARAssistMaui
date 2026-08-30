@@ -15,7 +15,8 @@
         <VerticalStackLayout Padding="20" >
             <Grid IsVisible="{Binding AllowSignInAndOut}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="40"></RowDefinition>
@@ -30,13 +31,13 @@
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" Style="{StaticResource FormFieldTitle}" HorizontalOptions="Fill" Text="Currently Selected Member"></Label>
                 <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="lblCurrentMember" Text="{Binding CurrentMemberName}" Style="{StaticResource SubHeadline}"  HorizontalTextAlignment="Center" HorizontalOptions="Fill"></Label>
 
-                <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditMember" Text="Edit" Command="{Binding EditMemberCommand}" Style="{StaticResource StandardButton}" HorizontalOptions="Fill"></Button>
-                <Button  Grid.Row="2" Grid.Column="1" Text="Swap" x:Name="btnChangeSelectedMember" Command="{Binding ChangeSelectedMemberCommand}"   Style="{StaticResource StandardButton}" HorizontalOptions="Fill"></Button>
+                <Button Grid.Row="3" Grid.Column="0" x:Name="btnEditMember" Text="Edit" Command="{Binding EditMemberCommand}" Style="{StaticResource StandardButton}" HorizontalOptions="Fill"></Button>
+                <Button  Grid.Row="3" Grid.Column="1" Text="Swap" x:Name="btnChangeSelectedMember" Command="{Binding ChangeSelectedMemberCommand}"   Style="{StaticResource StandardButton}" HorizontalOptions="Fill"></Button>
 
-                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource SubHeadline}" Text="Check in by QR Code"></Label>
+                <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource SubHeadline}" Text="Check in by QR Code"></Label>
 
-                <Button  Grid.Row="5" Grid.Column="0" Command="{Binding SignInCommand}"  Text="Check In" IsEnabled="{Binding AllowSignInAndOut}" Style="{StaticResource StandardButton}" ></Button>
-                <Button Grid.Row="5" Grid.Column="1" Command="{Binding SignOutCommand}"  Text="Check Out"  IsEnabled="{Binding AllowSignInAndOut}"  Style="{StaticResource StandardButton}" ></Button>
+                <Button  Grid.Row="6" Grid.Column="0" Command="{Binding SignInCommand}"  Text="Check In" IsEnabled="{Binding AllowSignInAndOut}" Style="{StaticResource StandardButton}" ></Button>
+                <Button Grid.Row="6" Grid.Column="1" Command="{Binding SignOutCommand}"  Text="Check Out"  IsEnabled="{Binding AllowSignInAndOut}"  Style="{StaticResource StandardButton}" ></Button>
 
             </Grid>
             

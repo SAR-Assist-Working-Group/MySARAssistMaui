@@ -7,118 +7,113 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ServiceReference1
+namespace sca_web_service_reference
 {
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="https://www.sarassist.ca", ConfigurationName="ServiceReference1.ICAUpdatesWebserviceSoap")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="https://www.sarassist.ca", ConfigurationName="sca_web_service_reference.ICAUpdatesWebserviceSoap")]
     public interface ICAUpdatesWebserviceSoap
     {
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetAllOrganizations", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetAllOrganizationsResponse> GetAllOrganizationsAsync(ServiceReference1.GetAllOrganizationsRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetParentOrganizationsAsync", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetParentOrganizationsAsyncResponse> GetParentOrganizationsAsyncAsync(ServiceReference1.GetParentOrganizationsAsyncRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetChildOrganizationsAsync", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetChildOrganizationsAsyncResponse> GetChildOrganizationsAsyncAsync(ServiceReference1.GetChildOrganizationsAsyncRequest request);
+        System.Threading.Tasks.Task<sca_web_service_reference.TaskOfListOfOrganization> GetAllOrganizationsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetAllNewsItems", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetAllNewsItemsResponse> GetAllNewsItemsAsync(ServiceReference1.GetAllNewsItemsRequest request);
+        System.Threading.Tasks.Task<sca_web_service_reference.NewsItem[]> GetAllNewsItemsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetAllPresetCommsPlanItems", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetAllPresetCommsPlanItemsResponse> GetAllPresetCommsPlanItemsAsync(ServiceReference1.GetAllPresetCommsPlanItemsRequest request);
+        System.Threading.Tasks.Task<sca_web_service_reference.CommsPlanItem[]> GetAllPresetCommsPlanItemsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetAllPresetIncidentObjectives", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetAllPresetIncidentObjectivesResponse> GetAllPresetIncidentObjectivesAsync(ServiceReference1.GetAllPresetIncidentObjectivesRequest request);
+        System.Threading.Tasks.Task<sca_web_service_reference.IncidentObjective[]> GetAllPresetIncidentObjectivesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetAllPresetTeamAssignments", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetAllPresetTeamAssignmentsResponse> GetAllPresetTeamAssignmentsAsync(ServiceReference1.GetAllPresetTeamAssignmentsRequest request);
+        System.Threading.Tasks.Task<sca_web_service_reference.PresetTeamAssignment[]> GetAllPresetTeamAssignmentsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetAllPresetSafetyPlans", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetAllPresetSafetyPlansResponse> GetAllPresetSafetyPlansAsync(ServiceReference1.GetAllPresetSafetyPlansRequest request);
+        System.Threading.Tasks.Task<sca_web_service_reference.PresetSafetyPlan[]> GetAllPresetSafetyPlansAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetAllDesktopUpdates", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetAllDesktopUpdatesResponse> GetAllDesktopUpdatesAsync(ServiceReference1.GetAllDesktopUpdatesRequest request);
+        System.Threading.Tasks.Task<sca_web_service_reference.Update[]> GetAllDesktopUpdatesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/SaveDownloadRecord", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.SaveDownloadRecordResponse> SaveDownloadRecordAsync(ServiceReference1.SaveDownloadRecordRequest request);
+        System.Threading.Tasks.Task<bool> SaveDownloadRecordAsync(sca_web_service_reference.DownloadRecord record);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetAllCannedComments", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetAllCannedCommentsResponse> GetAllCannedCommentsAsync(ServiceReference1.GetAllCannedCommentsRequest request);
+        System.Threading.Tasks.Task<sca_web_service_reference.CannedCommsLogEntry[]> GetAllCannedCommentsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/RemoveTaskUpdateList", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.RemoveTaskUpdateListResponse> RemoveTaskUpdateListAsync(ServiceReference1.RemoveTaskUpdateListRequest request);
+        System.Threading.Tasks.Task RemoveTaskUpdateListAsync(System.Guid[] TaskUpdateIDs);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/RemoveTaskUpdate", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.RemoveTaskUpdateResponse> RemoveTaskUpdateAsync(ServiceReference1.RemoveTaskUpdateRequest request);
+        System.Threading.Tasks.Task RemoveTaskUpdateAsync(System.Guid TaskUpdateID);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/SubmitTaskUpdate", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.SubmitTaskUpdateResponse> SubmitTaskUpdateAsync(ServiceReference1.SubmitTaskUpdateRequest request);
+        System.Threading.Tasks.Task<bool> SubmitTaskUpdateAsync(sca_web_service_reference.TaskUpdate update);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/SubmitTaskUpdateAsync", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
+        System.Threading.Tasks.Task<sca_web_service_reference.TaskOfBoolean> SubmitTaskUpdateAsyncAsync(sca_web_service_reference.TaskUpdate update);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetTaskUpdateList", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateListResponse> GetTaskUpdateListAsync(ServiceReference1.GetTaskUpdateListRequest request);
+        System.Threading.Tasks.Task<sca_web_service_reference.TaskUpdate[]> GetTaskUpdateListAsync(System.Guid TaskID);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetTaskUpdateListFull", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateListFullResponse> GetTaskUpdateListFullAsync(ServiceReference1.GetTaskUpdateListFullRequest request);
+        System.Threading.Tasks.Task<sca_web_service_reference.TaskUpdate[]> GetTaskUpdateListFullAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetTaskUpdateDetails", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateDetailsResponse> GetTaskUpdateDetailsAsync(ServiceReference1.GetTaskUpdateDetailsRequest request);
+        System.Threading.Tasks.Task<sca_web_service_reference.TaskUpdate[]> GetTaskUpdateDetailsAsync(System.Guid TaskID, System.Guid machineID, System.DateTime CutoffDate);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetTaskUpdateDetailsLastByItemIDAsync", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateDetailsLastByItemIDAsyncResponse> GetTaskUpdateDetailsLastByItemIDAsyncAsync(ServiceReference1.GetTaskUpdateDetailsLastByItemIDAsyncRequest request);
+        System.Threading.Tasks.Task<sca_web_service_reference.TaskOfListOfTaskUpdate> GetTaskUpdateDetailsLastByItemIDAsyncAsync(System.Guid TaskID, System.Guid machineID, System.DateTime CutoffDate);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetTaskUpdateDetailByCommand", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateDetailByCommandResponse> GetTaskUpdateDetailByCommandAsync(ServiceReference1.GetTaskUpdateDetailByCommandRequest request);
+        System.Threading.Tasks.Task<sca_web_service_reference.TaskUpdate[]> GetTaskUpdateDetailByCommandAsync(System.Guid TaskID, string CommandName);
         
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetAllTaskUpdateDetails", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
-        System.Threading.Tasks.Task<ServiceReference1.GetAllTaskUpdateDetailsResponse> GetAllTaskUpdateDetailsAsync(ServiceReference1.GetAllTaskUpdateDetailsRequest request);
+        System.Threading.Tasks.Task<sca_web_service_reference.TaskUpdate[]> GetAllTaskUpdateDetailsAsync(System.DateTime CutoffDate);
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public partial class TaskOfListOfOrganization : Task
@@ -142,7 +137,7 @@ namespace ServiceReference1
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public partial class Organization
@@ -262,7 +257,7 @@ namespace ServiceReference1
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public partial class CannedCommsLogEntry
@@ -366,7 +361,7 @@ namespace ServiceReference1
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public partial class DownloadRecord
@@ -486,7 +481,7 @@ namespace ServiceReference1
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public partial class Update
@@ -670,7 +665,7 @@ namespace ServiceReference1
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public partial class PresetTeamAssignment
@@ -1078,7 +1073,7 @@ namespace ServiceReference1
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public partial class NewsItem
@@ -1217,7 +1212,7 @@ namespace ServiceReference1
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(PresetSafetyPlan))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IncidentObjective))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(CommsPlanItem))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public abstract partial class SyncableItem
@@ -1230,6 +1225,8 @@ namespace ServiceReference1
         private int opPeriodField;
         
         private System.DateTime lastUpdatedUTCField;
+        
+        private System.Guid caltopoUUIDField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
@@ -1286,10 +1283,24 @@ namespace ServiceReference1
                 this.lastUpdatedUTCField = value;
             }
         }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public System.Guid CaltopoUUID
+        {
+            get
+            {
+                return this.caltopoUUIDField;
+            }
+            set
+            {
+                this.caltopoUUIDField = value;
+            }
+        }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public partial class PresetSafetyPlan : SyncableItem
@@ -1441,7 +1452,7 @@ namespace ServiceReference1
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public partial class IncidentObjective : SyncableItem
@@ -1657,7 +1668,7 @@ namespace ServiceReference1
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public partial class CommsPlanItem : SyncableItem
@@ -1969,7 +1980,7 @@ namespace ServiceReference1
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public partial class TaskUpdate
@@ -2250,8 +2261,9 @@ namespace ServiceReference1
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TaskOfListOfTaskUpdate))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TaskOfBoolean))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TaskOfListOfOrganization))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public partial class Task
@@ -2259,7 +2271,7 @@ namespace ServiceReference1
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public partial class TaskOfListOfTaskUpdate : Task
@@ -2282,698 +2294,22 @@ namespace ServiceReference1
         }
     }
     
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllOrganizations", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllOrganizationsRequest
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
+    public partial class TaskOfBoolean : Task
     {
-        
-        public GetAllOrganizationsRequest()
-        {
-        }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllOrganizationsResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllOrganizationsResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.TaskOfListOfOrganization GetAllOrganizationsResult;
-        
-        public GetAllOrganizationsResponse()
-        {
-        }
-        
-        public GetAllOrganizationsResponse(ServiceReference1.TaskOfListOfOrganization GetAllOrganizationsResult)
-        {
-            this.GetAllOrganizationsResult = GetAllOrganizationsResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetParentOrganizationsAsync", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetParentOrganizationsAsyncRequest
-    {
-        
-        public GetParentOrganizationsAsyncRequest()
-        {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetParentOrganizationsAsyncResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetParentOrganizationsAsyncResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.TaskOfListOfOrganization GetParentOrganizationsAsyncResult;
-        
-        public GetParentOrganizationsAsyncResponse()
-        {
-        }
-        
-        public GetParentOrganizationsAsyncResponse(ServiceReference1.TaskOfListOfOrganization GetParentOrganizationsAsyncResult)
-        {
-            this.GetParentOrganizationsAsyncResult = GetParentOrganizationsAsyncResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetChildOrganizationsAsync", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetChildOrganizationsAsyncRequest
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public System.Guid ParentID;
-        
-        public GetChildOrganizationsAsyncRequest()
-        {
-        }
-        
-        public GetChildOrganizationsAsyncRequest(System.Guid ParentID)
-        {
-            this.ParentID = ParentID;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetChildOrganizationsAsyncResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetChildOrganizationsAsyncResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.TaskOfListOfOrganization GetChildOrganizationsAsyncResult;
-        
-        public GetChildOrganizationsAsyncResponse()
-        {
-        }
-        
-        public GetChildOrganizationsAsyncResponse(ServiceReference1.TaskOfListOfOrganization GetChildOrganizationsAsyncResult)
-        {
-            this.GetChildOrganizationsAsyncResult = GetChildOrganizationsAsyncResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllNewsItems", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllNewsItemsRequest
-    {
-        
-        public GetAllNewsItemsRequest()
-        {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllNewsItemsResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllNewsItemsResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.NewsItem[] GetAllNewsItemsResult;
-        
-        public GetAllNewsItemsResponse()
-        {
-        }
-        
-        public GetAllNewsItemsResponse(ServiceReference1.NewsItem[] GetAllNewsItemsResult)
-        {
-            this.GetAllNewsItemsResult = GetAllNewsItemsResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllPresetCommsPlanItems", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllPresetCommsPlanItemsRequest
-    {
-        
-        public GetAllPresetCommsPlanItemsRequest()
-        {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllPresetCommsPlanItemsResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllPresetCommsPlanItemsResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.CommsPlanItem[] GetAllPresetCommsPlanItemsResult;
-        
-        public GetAllPresetCommsPlanItemsResponse()
-        {
-        }
-        
-        public GetAllPresetCommsPlanItemsResponse(ServiceReference1.CommsPlanItem[] GetAllPresetCommsPlanItemsResult)
-        {
-            this.GetAllPresetCommsPlanItemsResult = GetAllPresetCommsPlanItemsResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllPresetIncidentObjectives", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllPresetIncidentObjectivesRequest
-    {
-        
-        public GetAllPresetIncidentObjectivesRequest()
-        {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllPresetIncidentObjectivesResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllPresetIncidentObjectivesResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.IncidentObjective[] GetAllPresetIncidentObjectivesResult;
-        
-        public GetAllPresetIncidentObjectivesResponse()
-        {
-        }
-        
-        public GetAllPresetIncidentObjectivesResponse(ServiceReference1.IncidentObjective[] GetAllPresetIncidentObjectivesResult)
-        {
-            this.GetAllPresetIncidentObjectivesResult = GetAllPresetIncidentObjectivesResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllPresetTeamAssignments", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllPresetTeamAssignmentsRequest
-    {
-        
-        public GetAllPresetTeamAssignmentsRequest()
-        {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllPresetTeamAssignmentsResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllPresetTeamAssignmentsResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.PresetTeamAssignment[] GetAllPresetTeamAssignmentsResult;
-        
-        public GetAllPresetTeamAssignmentsResponse()
-        {
-        }
-        
-        public GetAllPresetTeamAssignmentsResponse(ServiceReference1.PresetTeamAssignment[] GetAllPresetTeamAssignmentsResult)
-        {
-            this.GetAllPresetTeamAssignmentsResult = GetAllPresetTeamAssignmentsResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllPresetSafetyPlans", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllPresetSafetyPlansRequest
-    {
-        
-        public GetAllPresetSafetyPlansRequest()
-        {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllPresetSafetyPlansResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllPresetSafetyPlansResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.PresetSafetyPlan[] GetAllPresetSafetyPlansResult;
-        
-        public GetAllPresetSafetyPlansResponse()
-        {
-        }
-        
-        public GetAllPresetSafetyPlansResponse(ServiceReference1.PresetSafetyPlan[] GetAllPresetSafetyPlansResult)
-        {
-            this.GetAllPresetSafetyPlansResult = GetAllPresetSafetyPlansResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllDesktopUpdates", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllDesktopUpdatesRequest
-    {
-        
-        public GetAllDesktopUpdatesRequest()
-        {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllDesktopUpdatesResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllDesktopUpdatesResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.Update[] GetAllDesktopUpdatesResult;
-        
-        public GetAllDesktopUpdatesResponse()
-        {
-        }
-        
-        public GetAllDesktopUpdatesResponse(ServiceReference1.Update[] GetAllDesktopUpdatesResult)
-        {
-            this.GetAllDesktopUpdatesResult = GetAllDesktopUpdatesResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="SaveDownloadRecord", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class SaveDownloadRecordRequest
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.DownloadRecord record;
-        
-        public SaveDownloadRecordRequest()
-        {
-        }
-        
-        public SaveDownloadRecordRequest(ServiceReference1.DownloadRecord record)
-        {
-            this.record = record;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="SaveDownloadRecordResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class SaveDownloadRecordResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public bool SaveDownloadRecordResult;
-        
-        public SaveDownloadRecordResponse()
-        {
-        }
-        
-        public SaveDownloadRecordResponse(bool SaveDownloadRecordResult)
-        {
-            this.SaveDownloadRecordResult = SaveDownloadRecordResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllCannedComments", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllCannedCommentsRequest
-    {
-        
-        public GetAllCannedCommentsRequest()
-        {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllCannedCommentsResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllCannedCommentsResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.CannedCommsLogEntry[] GetAllCannedCommentsResult;
-        
-        public GetAllCannedCommentsResponse()
-        {
-        }
-        
-        public GetAllCannedCommentsResponse(ServiceReference1.CannedCommsLogEntry[] GetAllCannedCommentsResult)
-        {
-            this.GetAllCannedCommentsResult = GetAllCannedCommentsResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="RemoveTaskUpdateList", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class RemoveTaskUpdateListRequest
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public System.Guid[] TaskUpdateIDs;
-        
-        public RemoveTaskUpdateListRequest()
-        {
-        }
-        
-        public RemoveTaskUpdateListRequest(System.Guid[] TaskUpdateIDs)
-        {
-            this.TaskUpdateIDs = TaskUpdateIDs;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="RemoveTaskUpdateListResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class RemoveTaskUpdateListResponse
-    {
-        
-        public RemoveTaskUpdateListResponse()
-        {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="RemoveTaskUpdate", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class RemoveTaskUpdateRequest
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public System.Guid TaskUpdateID;
-        
-        public RemoveTaskUpdateRequest()
-        {
-        }
-        
-        public RemoveTaskUpdateRequest(System.Guid TaskUpdateID)
-        {
-            this.TaskUpdateID = TaskUpdateID;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="RemoveTaskUpdateResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class RemoveTaskUpdateResponse
-    {
-        
-        public RemoveTaskUpdateResponse()
-        {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="SubmitTaskUpdate", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class SubmitTaskUpdateRequest
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.TaskUpdate update;
-        
-        public SubmitTaskUpdateRequest()
-        {
-        }
-        
-        public SubmitTaskUpdateRequest(ServiceReference1.TaskUpdate update)
-        {
-            this.update = update;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="SubmitTaskUpdateResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class SubmitTaskUpdateResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public bool SubmitTaskUpdateResult;
-        
-        public SubmitTaskUpdateResponse()
-        {
-        }
-        
-        public SubmitTaskUpdateResponse(bool SubmitTaskUpdateResult)
-        {
-            this.SubmitTaskUpdateResult = SubmitTaskUpdateResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTaskUpdateList", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetTaskUpdateListRequest
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public System.Guid TaskID;
-        
-        public GetTaskUpdateListRequest()
-        {
-        }
-        
-        public GetTaskUpdateListRequest(System.Guid TaskID)
-        {
-            this.TaskID = TaskID;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTaskUpdateListResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetTaskUpdateListResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.TaskUpdate[] GetTaskUpdateListResult;
-        
-        public GetTaskUpdateListResponse()
-        {
-        }
-        
-        public GetTaskUpdateListResponse(ServiceReference1.TaskUpdate[] GetTaskUpdateListResult)
-        {
-            this.GetTaskUpdateListResult = GetTaskUpdateListResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTaskUpdateListFull", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetTaskUpdateListFullRequest
-    {
-        
-        public GetTaskUpdateListFullRequest()
-        {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTaskUpdateListFullResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetTaskUpdateListFullResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.TaskUpdate[] GetTaskUpdateListFullResult;
-        
-        public GetTaskUpdateListFullResponse()
-        {
-        }
-        
-        public GetTaskUpdateListFullResponse(ServiceReference1.TaskUpdate[] GetTaskUpdateListFullResult)
-        {
-            this.GetTaskUpdateListFullResult = GetTaskUpdateListFullResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTaskUpdateDetails", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetTaskUpdateDetailsRequest
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public System.Guid TaskID;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=1)]
-        public System.Guid machineID;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=2)]
-        public System.DateTime CutoffDate;
-        
-        public GetTaskUpdateDetailsRequest()
-        {
-        }
-        
-        public GetTaskUpdateDetailsRequest(System.Guid TaskID, System.Guid machineID, System.DateTime CutoffDate)
-        {
-            this.TaskID = TaskID;
-            this.machineID = machineID;
-            this.CutoffDate = CutoffDate;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTaskUpdateDetailsResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetTaskUpdateDetailsResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.TaskUpdate[] GetTaskUpdateDetailsResult;
-        
-        public GetTaskUpdateDetailsResponse()
-        {
-        }
-        
-        public GetTaskUpdateDetailsResponse(ServiceReference1.TaskUpdate[] GetTaskUpdateDetailsResult)
-        {
-            this.GetTaskUpdateDetailsResult = GetTaskUpdateDetailsResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTaskUpdateDetailsLastByItemIDAsync", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetTaskUpdateDetailsLastByItemIDAsyncRequest
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public System.Guid TaskID;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=1)]
-        public System.Guid machineID;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=2)]
-        public System.DateTime CutoffDate;
-        
-        public GetTaskUpdateDetailsLastByItemIDAsyncRequest()
-        {
-        }
-        
-        public GetTaskUpdateDetailsLastByItemIDAsyncRequest(System.Guid TaskID, System.Guid machineID, System.DateTime CutoffDate)
-        {
-            this.TaskID = TaskID;
-            this.machineID = machineID;
-            this.CutoffDate = CutoffDate;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTaskUpdateDetailsLastByItemIDAsyncResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetTaskUpdateDetailsLastByItemIDAsyncResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.TaskOfListOfTaskUpdate GetTaskUpdateDetailsLastByItemIDAsyncResult;
-        
-        public GetTaskUpdateDetailsLastByItemIDAsyncResponse()
-        {
-        }
-        
-        public GetTaskUpdateDetailsLastByItemIDAsyncResponse(ServiceReference1.TaskOfListOfTaskUpdate GetTaskUpdateDetailsLastByItemIDAsyncResult)
-        {
-            this.GetTaskUpdateDetailsLastByItemIDAsyncResult = GetTaskUpdateDetailsLastByItemIDAsyncResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTaskUpdateDetailByCommand", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetTaskUpdateDetailByCommandRequest
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public System.Guid TaskID;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=1)]
-        public string CommandName;
-        
-        public GetTaskUpdateDetailByCommandRequest()
-        {
-        }
-        
-        public GetTaskUpdateDetailByCommandRequest(System.Guid TaskID, string CommandName)
-        {
-            this.TaskID = TaskID;
-            this.CommandName = CommandName;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTaskUpdateDetailByCommandResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetTaskUpdateDetailByCommandResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.TaskUpdate[] GetTaskUpdateDetailByCommandResult;
-        
-        public GetTaskUpdateDetailByCommandResponse()
-        {
-        }
-        
-        public GetTaskUpdateDetailByCommandResponse(ServiceReference1.TaskUpdate[] GetTaskUpdateDetailByCommandResult)
-        {
-            this.GetTaskUpdateDetailByCommandResult = GetTaskUpdateDetailByCommandResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllTaskUpdateDetails", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllTaskUpdateDetailsRequest
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public System.DateTime CutoffDate;
-        
-        public GetAllTaskUpdateDetailsRequest()
-        {
-        }
-        
-        public GetAllTaskUpdateDetailsRequest(System.DateTime CutoffDate)
-        {
-            this.CutoffDate = CutoffDate;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllTaskUpdateDetailsResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
-    public partial class GetAllTaskUpdateDetailsResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
-        public ServiceReference1.TaskUpdate[] GetAllTaskUpdateDetailsResult;
-        
-        public GetAllTaskUpdateDetailsResponse()
-        {
-        }
-        
-        public GetAllTaskUpdateDetailsResponse(ServiceReference1.TaskUpdate[] GetAllTaskUpdateDetailsResult)
-        {
-            this.GetAllTaskUpdateDetailsResult = GetAllTaskUpdateDetailsResult;
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    public interface ICAUpdatesWebserviceSoapChannel : ServiceReference1.ICAUpdatesWebserviceSoap, System.ServiceModel.IClientChannel
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
+    public interface ICAUpdatesWebserviceSoapChannel : sca_web_service_reference.ICAUpdatesWebserviceSoap, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    public partial class CAUpdatesWebserviceSoapClient : System.ServiceModel.ClientBase<ServiceReference1.ICAUpdatesWebserviceSoap>, ServiceReference1.ICAUpdatesWebserviceSoap
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "8.0.0")]
+    public partial class CAUpdatesWebserviceSoapClient : System.ServiceModel.ClientBase<sca_web_service_reference.ICAUpdatesWebserviceSoap>, sca_web_service_reference.ICAUpdatesWebserviceSoap
     {
         
         /// <summary>
@@ -3009,110 +2345,112 @@ namespace ServiceReference1
         {
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetAllOrganizationsResponse> GetAllOrganizationsAsync(ServiceReference1.GetAllOrganizationsRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.TaskOfListOfOrganization> GetAllOrganizationsAsync()
         {
-            return base.Channel.GetAllOrganizationsAsync(request);
+            return base.Channel.GetAllOrganizationsAsync();
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetParentOrganizationsAsyncResponse> GetParentOrganizationsAsyncAsync(ServiceReference1.GetParentOrganizationsAsyncRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.NewsItem[]> GetAllNewsItemsAsync()
         {
-            return base.Channel.GetParentOrganizationsAsyncAsync(request);
+            return base.Channel.GetAllNewsItemsAsync();
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetChildOrganizationsAsyncResponse> GetChildOrganizationsAsyncAsync(ServiceReference1.GetChildOrganizationsAsyncRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.CommsPlanItem[]> GetAllPresetCommsPlanItemsAsync()
         {
-            return base.Channel.GetChildOrganizationsAsyncAsync(request);
+            return base.Channel.GetAllPresetCommsPlanItemsAsync();
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetAllNewsItemsResponse> GetAllNewsItemsAsync(ServiceReference1.GetAllNewsItemsRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.IncidentObjective[]> GetAllPresetIncidentObjectivesAsync()
         {
-            return base.Channel.GetAllNewsItemsAsync(request);
+            return base.Channel.GetAllPresetIncidentObjectivesAsync();
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetAllPresetCommsPlanItemsResponse> GetAllPresetCommsPlanItemsAsync(ServiceReference1.GetAllPresetCommsPlanItemsRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.PresetTeamAssignment[]> GetAllPresetTeamAssignmentsAsync()
         {
-            return base.Channel.GetAllPresetCommsPlanItemsAsync(request);
+            return base.Channel.GetAllPresetTeamAssignmentsAsync();
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetAllPresetIncidentObjectivesResponse> GetAllPresetIncidentObjectivesAsync(ServiceReference1.GetAllPresetIncidentObjectivesRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.PresetSafetyPlan[]> GetAllPresetSafetyPlansAsync()
         {
-            return base.Channel.GetAllPresetIncidentObjectivesAsync(request);
+            return base.Channel.GetAllPresetSafetyPlansAsync();
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetAllPresetTeamAssignmentsResponse> GetAllPresetTeamAssignmentsAsync(ServiceReference1.GetAllPresetTeamAssignmentsRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.Update[]> GetAllDesktopUpdatesAsync()
         {
-            return base.Channel.GetAllPresetTeamAssignmentsAsync(request);
+            return base.Channel.GetAllDesktopUpdatesAsync();
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetAllPresetSafetyPlansResponse> GetAllPresetSafetyPlansAsync(ServiceReference1.GetAllPresetSafetyPlansRequest request)
+        public System.Threading.Tasks.Task<bool> SaveDownloadRecordAsync(sca_web_service_reference.DownloadRecord record)
         {
-            return base.Channel.GetAllPresetSafetyPlansAsync(request);
+            return base.Channel.SaveDownloadRecordAsync(record);
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetAllDesktopUpdatesResponse> GetAllDesktopUpdatesAsync(ServiceReference1.GetAllDesktopUpdatesRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.CannedCommsLogEntry[]> GetAllCannedCommentsAsync()
         {
-            return base.Channel.GetAllDesktopUpdatesAsync(request);
+            return base.Channel.GetAllCannedCommentsAsync();
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.SaveDownloadRecordResponse> SaveDownloadRecordAsync(ServiceReference1.SaveDownloadRecordRequest request)
+        public System.Threading.Tasks.Task RemoveTaskUpdateListAsync(System.Guid[] TaskUpdateIDs)
         {
-            return base.Channel.SaveDownloadRecordAsync(request);
+            return base.Channel.RemoveTaskUpdateListAsync(TaskUpdateIDs);
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetAllCannedCommentsResponse> GetAllCannedCommentsAsync(ServiceReference1.GetAllCannedCommentsRequest request)
+        public System.Threading.Tasks.Task RemoveTaskUpdateAsync(System.Guid TaskUpdateID)
         {
-            return base.Channel.GetAllCannedCommentsAsync(request);
+            return base.Channel.RemoveTaskUpdateAsync(TaskUpdateID);
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.RemoveTaskUpdateListResponse> RemoveTaskUpdateListAsync(ServiceReference1.RemoveTaskUpdateListRequest request)
+        public System.Threading.Tasks.Task<bool> SubmitTaskUpdateAsync(sca_web_service_reference.TaskUpdate update)
         {
-            return base.Channel.RemoveTaskUpdateListAsync(request);
+            return base.Channel.SubmitTaskUpdateAsync(update);
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.RemoveTaskUpdateResponse> RemoveTaskUpdateAsync(ServiceReference1.RemoveTaskUpdateRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.TaskOfBoolean> SubmitTaskUpdateAsyncAsync(sca_web_service_reference.TaskUpdate update)
         {
-            return base.Channel.RemoveTaskUpdateAsync(request);
+            return base.Channel.SubmitTaskUpdateAsyncAsync(update);
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.SubmitTaskUpdateResponse> SubmitTaskUpdateAsync(ServiceReference1.SubmitTaskUpdateRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.TaskUpdate[]> GetTaskUpdateListAsync(System.Guid TaskID)
         {
-            return base.Channel.SubmitTaskUpdateAsync(request);
+            return base.Channel.GetTaskUpdateListAsync(TaskID);
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateListResponse> GetTaskUpdateListAsync(ServiceReference1.GetTaskUpdateListRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.TaskUpdate[]> GetTaskUpdateListFullAsync()
         {
-            return base.Channel.GetTaskUpdateListAsync(request);
+            return base.Channel.GetTaskUpdateListFullAsync();
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateListFullResponse> GetTaskUpdateListFullAsync(ServiceReference1.GetTaskUpdateListFullRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.TaskUpdate[]> GetTaskUpdateDetailsAsync(System.Guid TaskID, System.Guid machineID, System.DateTime CutoffDate)
         {
-            return base.Channel.GetTaskUpdateListFullAsync(request);
+            return base.Channel.GetTaskUpdateDetailsAsync(TaskID, machineID, CutoffDate);
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateDetailsResponse> GetTaskUpdateDetailsAsync(ServiceReference1.GetTaskUpdateDetailsRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.TaskOfListOfTaskUpdate> GetTaskUpdateDetailsLastByItemIDAsyncAsync(System.Guid TaskID, System.Guid machineID, System.DateTime CutoffDate)
         {
-            return base.Channel.GetTaskUpdateDetailsAsync(request);
+            return base.Channel.GetTaskUpdateDetailsLastByItemIDAsyncAsync(TaskID, machineID, CutoffDate);
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateDetailsLastByItemIDAsyncResponse> GetTaskUpdateDetailsLastByItemIDAsyncAsync(ServiceReference1.GetTaskUpdateDetailsLastByItemIDAsyncRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.TaskUpdate[]> GetTaskUpdateDetailByCommandAsync(System.Guid TaskID, string CommandName)
         {
-            return base.Channel.GetTaskUpdateDetailsLastByItemIDAsyncAsync(request);
+            return base.Channel.GetTaskUpdateDetailByCommandAsync(TaskID, CommandName);
         }
         
-        public System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateDetailByCommandResponse> GetTaskUpdateDetailByCommandAsync(ServiceReference1.GetTaskUpdateDetailByCommandRequest request)
+        public System.Threading.Tasks.Task<sca_web_service_reference.TaskUpdate[]> GetAllTaskUpdateDetailsAsync(System.DateTime CutoffDate)
         {
-            return base.Channel.GetTaskUpdateDetailByCommandAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<ServiceReference1.GetAllTaskUpdateDetailsResponse> GetAllTaskUpdateDetailsAsync(ServiceReference1.GetAllTaskUpdateDetailsRequest request)
-        {
-            return base.Channel.GetAllTaskUpdateDetailsAsync(request);
+            return base.Channel.GetAllTaskUpdateDetailsAsync(CutoffDate);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
         }
+        
+        #if !NET6_0_OR_GREATER
+        public virtual System.Threading.Tasks.Task CloseAsync()
+        {
+            return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginClose(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndClose));
+        }
+        #endif
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
         {

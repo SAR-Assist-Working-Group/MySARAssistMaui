@@ -50,4 +50,32 @@ public partial class RADeMSDetailsPage : ContentPage
         }
     }
 
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+        Label? scrollTo = null;
+        Button thisButton = (Button)sender;
+        RADeMSQuestionViewModel rADeMSQuestionViewModel = (RADeMSQuestionViewModel)thisButton.BindingContext;
+        foreach (var child in vslOpRisk.Children)
+        {
+            if(child is Grid)
+            {
+                foreach(var gridChild in (child as Grid).Children)
+                {
+                    if(gridChild is Label)
+                    {
+                        Label gc = (Label)gridChild;
+                        if(gc.Text.Equals(rADeMSQuestionViewModel.question.QuestionText))
+                        {
+                            scrollTo = gc;
+                            
+                        }
+                    }
+                }
+            }
+        }
+        if (scrollTo != null)
+        {
+            await svMainScrollView.ScrollToAsync(scrollTo, ScrollToPosition.Start, true);
+        }
+    }
 }
