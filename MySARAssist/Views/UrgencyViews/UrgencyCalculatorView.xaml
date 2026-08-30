@@ -65,7 +65,7 @@
                         IsVisible="{Binding ShowBackButton}"
                         Command="{Binding UndoCommand}"
                         Style="{StaticResource BackButton}"
-                        ImageSource="glyphicons_basic_223_chevron_left.png"
+                        ImageSource="glyphicons_basic_223_chevron_left_outline.png"
                         WidthRequest="250"
                          />
             </VerticalStackLayout>
