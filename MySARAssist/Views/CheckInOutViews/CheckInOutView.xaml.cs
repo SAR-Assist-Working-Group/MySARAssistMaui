@@ -43,16 +43,6 @@ public partial class CheckInOutView : ContentPage
 		}
 	}
 
-	private async void btnSignOut_Clicked(object sender, EventArgs e)
-	{
-
-	}
-
-	private async void btnSignIn_Clicked(object sender, EventArgs e)
-	{
-
-	}
-
 	private async  void btnChangeSelectedMember_Clicked(object sender, EventArgs e)
 	{
 		if (_isNavigating) { return; }
