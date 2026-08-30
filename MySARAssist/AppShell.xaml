@@ -49,7 +49,7 @@
     </FlyoutItem>
 |-->
 
-    <FlyoutItem Title="Urgency Assessment" Icon="glyphicons_basic_510_light_beacon_white.svg">
+    <FlyoutItem Title="Urgency Assessment" Icon="glyphicons_basic_510_light_beacon_white.png">
         <ShellContent ContentTemplate="{DataTemplate urgencyviews:UrgencyCalculatorView}" ></ShellContent>
     </FlyoutItem>
 
