@@ -13,6 +13,9 @@ x:DataType="vm:VisualSearchResourceEstimationViewModel"
     <ContentPage.Resources>
         <local:DoubleConverter x:Key="doubleConverter" />
         <local:IntConverter x:Key="intConverter" />
+        <local:SpeedConverter x:Key="speedConverter" BlankWhenZero="False" />
+        <local:AreaConverter x:Key="areaConverter" BlankWhenZero="False" />
+        <local:ShortDistanceConverter x:Key="shortDistanceConverter" BlankWhenZero="False" />
     </ContentPage.Resources>
     <Grid>
 
@@ -61,22 +64,22 @@ x:DataType="vm:VisualSearchResourceEstimationViewModel"
 
 
                 <!--Speed -->
-                <Label  Text="Searcher Speed (KM/h)" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" ></Label>
-                <Entry Keyboard="Numeric" Grid.Row="1" Grid.Column="0"  Text="{Binding Speed, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="km/h" ></Entry>
+                <Label  Text="{Binding SpeedCaption}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" ></Label>
+                <Entry Keyboard="Numeric" Grid.Row="1" Grid.Column="0"  Text="{Binding Speed, Mode=TwoWay, Converter={StaticResource speedConverter}}" Placeholder="{Binding SpeedUnit}" ></Entry>
 
                 <Button Grid.Row="1" Grid.Column="1" Text="+" Style="{StaticResource UpDownButton}" Command="{Binding SpeedUpCommand}" ></Button>
                 <Button Grid.Row="1" Grid.Column="2"   Text="-"  Style="{StaticResource UpDownButton}" Command="{Binding SpeedDownCommand}" ></Button>
 
 
                 <!-- Area -->
-                <Label  Text="Search Area Size (KM2)"   Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" ></Label>
-                <Entry Keyboard="Numeric" Grid.Row="4" Grid.Column="0" Text="{Binding Area, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="km2" ></Entry>
+                <Label  Text="{Binding AreaCaption}"   Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" ></Label>
+                <Entry Keyboard="Numeric" Grid.Row="4" Grid.Column="0" Text="{Binding Area, Mode=TwoWay, Converter={StaticResource areaConverter}}" Placeholder="{Binding AreaUnit}" ></Entry>
                 <Button  Grid.Row="4" Grid.Column="1"  Text="+" Style="{StaticResource UpDownButton}"  Command="{Binding AreaUpCommand}" ></Button>
                 <Button  Grid.Row="4" Grid.Column="2"  Text="-" Style="{StaticResource UpDownButton}" Command="{Binding AreaDownCommand}"></Button>
 
                 <!-- Spacing-->
-                <Label  Text="Spacing Between Members (meters)"  Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" ></Label>
-                <Entry Keyboard="Numeric" Grid.Row="7" Grid.Column="0" Text="{Binding Spacing, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="m" ></Entry>
+                <Label  Text="{Binding SpacingCaption}"  Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" ></Label>
+                <Entry Keyboard="Numeric" Grid.Row="7" Grid.Column="0" Text="{Binding Spacing, Mode=TwoWay, Converter={StaticResource shortDistanceConverter}}" Placeholder="{Binding SpacingUnit}" ></Entry>
                 <Button Grid.Row="7" Grid.Column="1"   Text="+" Style="{StaticResource UpDownButton}" Command="{Binding SpacingUpCommand}" ></Button>
                 <Button  Grid.Row="7" Grid.Column="2"  Text="-" Style="{StaticResource UpDownButton}" Command="{Binding SpacingDownCommand}" ></Button>
 

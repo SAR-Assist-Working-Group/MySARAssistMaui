@@ -14,6 +14,12 @@ public partial class DistanceToPacingPage : ContentPage
         this.logger = logger;
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        (BindingContext as ViewModels.Calculators.PacingCalculatorViewModel)?.RefreshUnits();
+    }
+
     protected override void OnSizeAllocated(double width, double height)
     {
         base.OnSizeAllocated(width, height);

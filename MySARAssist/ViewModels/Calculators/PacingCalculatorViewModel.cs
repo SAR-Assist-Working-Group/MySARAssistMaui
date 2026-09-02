@@ -1,5 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using MySARAssist.Services;
+using MySarAssistModels.Units;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,8 +41,8 @@ namespace MySARAssist.ViewModels.Calculators
                 }
                 else
                 {
-                    DistanceToTravel++;
-                    OnPropertyChanged(nameof(DistanceToTravelText));
+                    DistanceToTravel += DistanceStep;
+                    OnPropertyChanged(nameof(DistanceToTravel));
 
                 }
                 updatePacing();
@@ -51,11 +52,13 @@ namespace MySARAssist.ViewModels.Calculators
             {
                 if ((currentMode ?? string.Empty).Equals("Distance"))
                 {
-                    PacesTaken++;
+                    PacesTaken = Math.Max(0, PacesTaken - 1);
+                    OnPropertyChanged(nameof(PacesTakenText));
                 }
                 else
                 {
-                    DistanceToTravel++;
+                    DistanceToTravel = Math.Max(0, DistanceToTravel - DistanceStep);
+                    OnPropertyChanged(nameof(DistanceToTravel));
                 }
                 updatePacing();
 
@@ -110,6 +113,11 @@ namespace MySARAssist.ViewModels.Calculators
         }
 
 
+        /// <summary>
+        /// Distance to travel in metres. The view converts to and from the user's units, so the
+        /// pace maths stays metric. The setter deliberately does not raise its own change
+        /// notification, which would rewrite the entry while it is being typed in.
+        /// </summary>
         double _DistanceToTravel = 0;
         private readonly PersonnelService _personnelService;
 
@@ -121,14 +129,9 @@ namespace MySARAssist.ViewModels.Calculators
                 _DistanceToTravel = value;
                 currentMode = "Paces";
                 setResults();
-                OnPropertyChanged(nameof(DistanceToTravel)); OnPropertyChanged(nameof(PacesFromDistance));
+                OnPropertyChanged(nameof(PacesFromDistance));
 
             }
-        }
-        public string DistanceToTravelText
-        {
-            get { if (DistanceToTravel > 0) { return DistanceToTravel.ToString(); } else { return ""; } }
-            set { if (!string.IsNullOrEmpty(value)) { double.TryParse(value, out double temp); DistanceToTravel = temp; } else { DistanceToTravel = 0; } }
         }
 
         private void setResults()
@@ -146,8 +149,8 @@ namespace MySARAssist.ViewModels.Calculators
 
                         break;
                     case "Distance":
-                        CalculationResult = DistanceFromPaces.ToString();
-                        CalculationUnits = "m";
+                        CalculationResult = Units.Format(DistanceFromPaces, UnitMeasure.ShortDistance);
+                        CalculationUnits = Units.ShortDistanceUnit;
                         CalculationTitle = "DISTANCE";
                         break;
                     default:
@@ -183,6 +186,7 @@ namespace MySARAssist.ViewModels.Calculators
             }
         }
 
+        /// <summary>Distance walked, in metres.</summary>
         public double DistanceFromPaces
         {
             get
@@ -202,7 +206,21 @@ namespace MySARAssist.ViewModels.Calculators
         public Command DistanceUpCommand { get; }
         public Command DistanceDownCommand { get; }
 
+        private static UnitSettings Units => UnitSettings.Current;
 
+        private double DistanceStep => Units.Step(1, 5, UnitMeasure.ShortDistance);
+
+        public string DistanceCaption => $"Distance in {Units.ShortDistanceName}";
+        public string DistanceUnit => Units.ShortDistanceUnit;
+
+        /// <summary>Re-renders every unit-bearing binding, for when the setting changed while this page was off screen.</summary>
+        public void RefreshUnits()
+        {
+            OnPropertyChanged(nameof(DistanceCaption));
+            OnPropertyChanged(nameof(DistanceUnit));
+            OnPropertyChanged(nameof(DistanceToTravel));
+            setResults();
+        }
     }
 
 

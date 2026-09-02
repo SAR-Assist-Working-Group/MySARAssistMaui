@@ -1,5 +1,6 @@
 using MetroLog.Maui;
 using Microsoft.Extensions.Logging;
+using MySARAssist.Services;
 
 namespace MySARAssist.Views.Calculators;
 
@@ -12,5 +13,6 @@ public partial class HowToRangeOfDetectionPage : ContentPage
 		InitializeComponent();
         LogController.SuspendShake();
         this.logger = logger;
+        lblConvertPaces.Text = $"7. Convert the paces to {UnitSettings.Current.ShortDistanceName}, take an average distance and report it to command.";
     }
 }

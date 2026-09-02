@@ -68,6 +68,7 @@ namespace MySARAssist
 
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<AboutView>();
+            builder.Services.AddTransient<SettingsView>();
 
             builder.Services.AddTransient<CalculatorsView>();
             builder.Services.AddTransient<CoordinateConverterView>();

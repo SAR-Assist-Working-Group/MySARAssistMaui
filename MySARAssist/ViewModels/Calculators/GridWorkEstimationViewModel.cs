@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using MySARAssist.Services;
+using MySarAssistModels.Units;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,17 +25,18 @@ namespace MySARAssist.ViewModels.Calculators
                 TeamMembers = "2";
                 Spacing = 0;
                 EstimatedDuration = "0";
+                NotifyInputs();
             });
 
             SpeedUpCommand = new Command(() =>
             {
-                SearcherSpeed += 0.1;
+                SearcherSpeed += SpeedStep;
 
                 OnPropertyChanged(nameof(SearcherSpeed));
             });
             SpeedDownCommand = new Command(() =>
             {
-                if (SearcherSpeed > 0.0) { SearcherSpeed -= 0.1; }
+                SearcherSpeed = Math.Max(0, SearcherSpeed - SpeedStep);
 
                 OnPropertyChanged(nameof(SearcherSpeed));
             });
@@ -53,26 +56,24 @@ namespace MySARAssist.ViewModels.Calculators
 
             AreaUpCommand = new Command(() =>
             {
-                Area += 0.01;
-                OnPropertyChanged(nameof(AreaStr));
+                Area += AreaStep;
                 OnPropertyChanged(nameof(Area));
             });
             AreaDownCommand = new Command(() =>
             {
-                if (Area > 0) { Area -= 0.01; }
-                OnPropertyChanged(nameof(AreaStr));
+                Area = Math.Max(0, Area - AreaStep);
                 OnPropertyChanged(nameof(Area));
             });
 
             SpacingUpCommand = new Command(() =>
             {
-                Spacing += 1;
+                Spacing += SpacingStep;
 
                 OnPropertyChanged(nameof(Spacing));
             });
             SpacingDownCommand = new Command(() =>
             {
-                if (Spacing > 0) { Spacing -= 1; }
+                Spacing = Math.Max(0, Spacing - SpacingStep);
 
                 OnPropertyChanged(nameof(Spacing));
             });
@@ -121,13 +122,14 @@ namespace MySARAssist.ViewModels.Calculators
             }
         }
 
+        /// <summary>
+        /// Speed in km/h. Entries convert to and from the user's units in the view, so the
+        /// value stored here and fed to the estimate is always metric. The setter deliberately
+        /// does not raise its own change notification: doing so rewrites the entry while it is
+        /// being typed in.
+        /// </summary>
         double _searcherSpeed = 1.6;
-        public double SearcherSpeed { get => _searcherSpeed; set { _searcherSpeed = Math.Round(value,2); CalculateTimeEstimate(); OnPropertyChanged(nameof(SearcherSpeedStr)); } }
-        public string SearcherSpeedStr
-        {
-            get { if (_searcherSpeed > 0) { return _searcherSpeed.ToString(); } return null; }
-            set { double.TryParse(value, out _searcherSpeed); CalculateTimeEstimate(); OnPropertyChanged(nameof(SearcherSpeedStr)); }
-        }
+        public double SearcherSpeed { get => _searcherSpeed; set { _searcherSpeed = value; CalculateTimeEstimate(); } }
 
         int teamMembers = 2;
         public string TeamMembers
@@ -136,20 +138,44 @@ namespace MySARAssist.ViewModels.Calculators
             set { int.TryParse(value, out teamMembers); CalculateTimeEstimate(); OnPropertyChanged(nameof(TeamMembers)); }
         }
 
+        /// <summary>Area in square kilometres.</summary>
         double _area = 0.01;
-        public double Area { get => _area; set { _area = Math.Round( value,2); CalculateTimeEstimate(); OnPropertyChanged(nameof(Area)); } }
-        public string AreaStr
+        public double Area { get => _area; set { _area = value; CalculateTimeEstimate(); } }
+
+        /// <summary>Spacing between searchers in metres.</summary>
+        double _spacing = 1;
+        public double Spacing { get => _spacing; set { _spacing = value; CalculateTimeEstimate(); } }
+
+        private static UnitSettings Units => UnitSettings.Current;
+
+        private double SpeedStep => Units.Step(0.1, 0.1, UnitMeasure.Speed);
+        private double AreaStep => Units.Step(0.01, 2, UnitMeasure.Area);
+        private double SpacingStep => Units.Step(1, 5, UnitMeasure.ShortDistance);
+
+        public string SpeedCaption => $"Searcher Speed (in {Units.SpeedUnit})";
+        public string SpeedUnit => Units.SpeedUnit;
+        public string AreaCaption => $"Area Size (in {Units.AreaUnit})";
+        public string AreaUnit => Units.AreaUnit;
+        public string SpacingCaption => $"Spacing Between Members (in {Units.ShortDistanceUnit})";
+        public string SpacingUnit => Units.ShortDistanceUnit;
+
+        /// <summary>Re-renders every unit-bearing binding, for when the setting changed while this page was off screen.</summary>
+        public void RefreshUnits()
         {
-            get { if (Area > 0) { return Area.ToString(); } return null; }
-            set { if (!string.IsNullOrEmpty(value)) { double.TryParse(value, out double temp); Area = temp; } else { Area = 0; } }
+            OnPropertyChanged(nameof(SpeedCaption));
+            OnPropertyChanged(nameof(SpeedUnit));
+            OnPropertyChanged(nameof(AreaCaption));
+            OnPropertyChanged(nameof(AreaUnit));
+            OnPropertyChanged(nameof(SpacingCaption));
+            OnPropertyChanged(nameof(SpacingUnit));
+            NotifyInputs();
         }
 
-        double _spacing = 1;
-        public double Spacing { get => _spacing; set { _spacing = Math.Round(value,2); CalculateTimeEstimate(); OnPropertyChanged(nameof(SpacingStr)); } }
-        public string SpacingStr
+        private void NotifyInputs()
         {
-            get { if (_spacing > 0) { return _spacing.ToString(); } return null; }
-            set { double.TryParse(value, out _spacing); CalculateTimeEstimate(); OnPropertyChanged(nameof(SpacingStr)); }
+            OnPropertyChanged(nameof(SearcherSpeed));
+            OnPropertyChanged(nameof(Area));
+            OnPropertyChanged(nameof(Spacing));
         }
     }
 }

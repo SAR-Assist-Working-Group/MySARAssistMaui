@@ -14,7 +14,7 @@
                 <Label  Text="4. Walk past that point, turn around, and walk back."></Label>
                 <Label  Text="5. Count paces from when you see the item to when you reach it."></Label>
                 <Label  Text="6. Repeat for NE, NW, SE, SW for a total of 8 data points."></Label>
-                <Label  Text="7. Convert the paces to meters, take an average distance and report it to command."></Label>
+                <Label x:Name="lblConvertPaces"  Text="7. Convert the paces to meters, take an average distance and report it to command."></Label>
 
                 <Image Source="range_of_detection.png" HorizontalOptions="FillAndExpand" Aspect="AspectFit" VerticalOptions="FillAndExpand"></Image>
             </VerticalStackLayout>

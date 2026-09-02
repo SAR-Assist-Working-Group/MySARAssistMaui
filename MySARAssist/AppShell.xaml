@@ -60,6 +60,10 @@
         <ShellContent ContentTemplate="{DataTemplate urgencyviews:UrgencyCalculatorView}" ></ShellContent>
     </FlyoutItem>
 
+    <FlyoutItem Title="Settings" Icon="glyphicons_basic_69_ruler.png">
+        <ShellContent ContentTemplate="{DataTemplate views:SettingsView}" ></ShellContent>
+    </FlyoutItem>
+
     <FlyoutItem Title="About My SAR Assist"  Icon="glyphicons_basic_196_circle_empty_info.png">
         <ShellContent ContentTemplate="{DataTemplate views:AboutView}" ></ShellContent>
     </FlyoutItem>
