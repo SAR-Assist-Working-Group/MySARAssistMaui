@@ -22,4 +22,10 @@ public partial class VisualSearchResourceEstimationView : ContentPage
         }
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        (BindingContext as ViewModels.Calculators.VisualSearchResourceEstimationViewModel)?.RefreshUnits();
+    }
+
 }

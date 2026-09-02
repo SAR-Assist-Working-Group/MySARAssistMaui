@@ -1,6 +1,8 @@
 using MetroLog.Maui;
 using Microsoft.Extensions.Logging;
+using MySARAssist.Services;
 using MySARAssist.Views.Calculators;
+using System.Globalization;
 
 namespace MySARAssist.Views;
 
@@ -20,6 +22,9 @@ public partial class CalculatorsView : ContentPage
         base.OnAppearing();
         LogController.ResumeShakeIfNeeded();
 
+        string distanceName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(UnitSettings.Current.ShortDistanceName);
+        Pacing_Button.Text = $"Paces to {distanceName}";
+        DistToPacing_Button.Text = $"{distanceName} to Paces";
     }
 
     protected override void OnSizeAllocated(double width, double height)

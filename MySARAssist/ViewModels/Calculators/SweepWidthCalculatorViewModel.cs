@@ -1,11 +1,13 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using MySARAssist.Models;
+using MySARAssist.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySarAssistModels;
+using MySarAssistModels.Units;
 
 namespace MySARAssist.ViewModels.Calculators
 {
@@ -22,20 +24,23 @@ namespace MySARAssist.ViewModels.Calculators
             EraseCommand = new Command(() =>
             {
                 SelectedVisibilityIndex = 0;
-                RangeOfDetection = "1";
+                RangeOfDetection = 1;
                 TargetPOD = "0.63";
                 POD = "0";
-                TeamSpacing = "0";
+                TeamSpacing = 0;
+                OnPropertyChanged(nameof(RangeOfDetection));
             });
 
             RDUpCommand = new Command(() =>
             {
-                setRangeOfDetection(rangeOfDetection + 1);
+                setRangeOfDetection(rangeOfDetection + RangeOfDetectionStep);
+                OnPropertyChanged(nameof(RangeOfDetection));
 
             });
             RDDownCommand = new Command(() =>
             {
-                setRangeOfDetection(rangeOfDetection - 1);
+                setRangeOfDetection(rangeOfDetection - RangeOfDetectionStep);
+                OnPropertyChanged(nameof(RangeOfDetection));
 
             });
 
@@ -72,7 +77,6 @@ namespace MySARAssist.ViewModels.Calculators
             if (newRD > minRD) { rangeOfDetection = newRD; }
             else { rangeOfDetection = minRD; }
             CalculateSpacing();
-            OnPropertyChanged(nameof(RangeOfDetection));
         }
 
         private void CalculateSpacing()
@@ -104,26 +108,16 @@ namespace MySARAssist.ViewModels.Calculators
         public Command TargetPODTo83 { get; }
 
 
+        /// <summary>
+        /// Range of detection in metres. The view converts to and from the user's units, so the
+        /// sweep width maths stays metric. The setter does not raise its own change notification,
+        /// which would rewrite the entry while it is being typed in.
+        /// </summary>
         double rangeOfDetection;
-        public string RangeOfDetection
+        public double RangeOfDetection
         {
-            get
-            {
-                if (rangeOfDetection > 0) { return string.Format("{0:#,##0}", rangeOfDetection); }
-                else { return null; }
-            }
-            set
-            {
-                double temp;
-                double.TryParse(value, out temp);
-                setRangeOfDetection(temp);
-                /*
-                double.TryParse(value, out rangeOfDetection);
-                CalculateSpacing();
-                OnPropertyChanged(nameof(RangeOfDetection));
-                */
-            }
-
+            get => rangeOfDetection;
+            set => setRangeOfDetection(value);
         }
 
 
@@ -243,14 +237,15 @@ namespace MySARAssist.ViewModels.Calculators
         }
 
 
+        /// <summary>Resulting spacing between searchers, in metres.</summary>
         double teamSpacing = 0;
         double pod = 0;
-        public string TeamSpacing
+        public double TeamSpacing
         {
-            get => teamSpacing.ToString();
+            get => teamSpacing;
             set
             {
-                double.TryParse(value, out teamSpacing);
+                teamSpacing = value;
                 OnPropertyChanged(nameof(TeamSpacing));
 
             }
@@ -267,8 +262,20 @@ namespace MySARAssist.ViewModels.Calculators
             }
         }
 
+        private static UnitSettings Units => UnitSettings.Current;
 
+        private double RangeOfDetectionStep => Units.Step(1, 5, UnitMeasure.ShortDistance);
 
+        public string RangeOfDetectionCaption => $"Range of Detection ({Units.ShortDistanceName})";
+        public string TeamSpacingCaption => $"{Units.ShortDistanceName} between searchers";
 
+        /// <summary>Re-renders every unit-bearing binding, for when the setting changed while this page was off screen.</summary>
+        public void RefreshUnits()
+        {
+            OnPropertyChanged(nameof(RangeOfDetectionCaption));
+            OnPropertyChanged(nameof(TeamSpacingCaption));
+            OnPropertyChanged(nameof(RangeOfDetection));
+            OnPropertyChanged(nameof(TeamSpacing));
+        }
     }
 }
