@@ -78,6 +78,9 @@ Key fields:
 | `EstimatedSpeed` | `double` | km/h |
 | `POA / POD / POS` | `double` | Probability of Area/Detection/Success |
 
+These measurements are always stored in metric, whatever units the user has chosen to see;
+conversion happens only in the view layer (see *Display Units* in `architecture.md`).
+
 Assignment types (IRT, Tracking, Sound Sweep, Dog, Type 2/3 Grid, Rope Rescue, Swiftwater, etc.) are encoded as a bitstring in `AssignmentTypeCheckboxes`.
 
 ### `AssignmentDebrief`

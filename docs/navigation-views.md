@@ -13,6 +13,7 @@ Defined in `AppShell.xaml`:
 | Check In / Out | user-check icon | `CheckInOutView` |
 | RADeMS Risk Assessment | radems icon | `RADeMSView` |
 | Urgency Assessment | info icon | `UrgencyCalculatorView` |
+| Settings | ruler icon | `SettingsView` |
 | About My SAR Assist | info icon | `AboutView` |
 | ~~Incident Information~~ | *(commented out)* | `IncidentItemsListPage` |
 
@@ -100,6 +101,14 @@ The ViewModel is self-contained — no service or persistence layer. The decisio
 
 ---
 
+### Settings
+
+**`SettingsView`** / `SettingsViewModel` — Chooses the display unit system (metric or imperial).
+The choice is held by the `UnitSettings` singleton, persisted with `Preferences`, and read by
+the unit converters below; stored data stays metric.
+
+---
+
 ### About
 
 **`AboutView`** / `AboutViewModel` — App information and links.
@@ -116,6 +125,10 @@ All ViewModels extend `ObservableObject` from `CommunityToolkit.Mvvm`, which pro
 | `DoubleConverter` | String ↔ double for entry fields |
 | `IntConverter` | String ↔ int for entry fields |
 | `WebServiceConverters` | Converters for transforming web service response data for display |
+| `SpeedConverter` | Metric km/h ↔ the user's speed units (km/h or mph) |
+| `ShortDistanceConverter` | Metric metres ↔ metres or feet (spacing, elevation, detection range) |
+| `LongDistanceConverter` | Metric kilometres ↔ kilometres or statute miles (route length) |
+| `AreaConverter` | Metric km² ↔ km² or acres (search area size) |
 
 ## Validation Behaviors (`Models/ValidationTools/`)
 
