@@ -331,7 +331,7 @@
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
 		<PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="3.53.3" />
 		<PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.android" Version="2.1.13" />
-		<PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.11" />
+		<PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.13" />
 		<PackageReference Include="System.ServiceModel.Duplex" Version="6.0.*" />
 		<PackageReference Include="System.ServiceModel.Federation" Version="10.0.652802" />
 		<PackageReference Include="System.ServiceModel.Http" Version="10.0.652802" />
