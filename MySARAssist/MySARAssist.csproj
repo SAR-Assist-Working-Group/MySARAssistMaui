@@ -338,6 +338,8 @@
 		<PackageReference Include="System.ServiceModel.NetNamedPipe" Version="10.0.652802" />
 		<PackageReference Include="System.ServiceModel.NetTcp" Version="10.0.652802" />
 		<PackageReference Include="System.ServiceModel.Security" Version="6.0.*" />
+		<PackageReference Include="Plugin.Maui.ScreenBrightness" Version="1.0.0" />
+		<PackageReference Include="Sentry.Maui" Version="6.9.0" />
 		<PackageReference Include="ZXing.Net.Maui" Version="0.10.4" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.10.4" />
 	</ItemGroup>
