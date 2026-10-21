@@ -4,11 +4,16 @@
              x:Class="MySARAssist.Views.Calculators.DistanceToPacingPage"
              
  xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
+ xmlns:converters="clr-namespace:MySARAssist.Converters"
              Title="Distance To Paces">
 
     <ContentPage.BindingContext>
         <vm:PacingCalculatorViewModel></vm:PacingCalculatorViewModel>
     </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <converters:ShortDistanceConverter x:Key="shortDistanceConverter" />
+    </ContentPage.Resources>
 
     <Grid>
 
@@ -50,8 +55,8 @@
 
 
                 <!-- Distance -->
-                <Label Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="2"  Style="{StaticResource FormFieldTitle}">Distance in Meters</Label>
-                <Entry Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Keyboard="Numeric" Placeholder="0" Text="{Binding DistanceToTravelText, Mode=TwoWay}"></Entry>
+                <Label Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="2"  Style="{StaticResource FormFieldTitle}" Text="{Binding DistanceCaption}"></Label>
+                <Entry Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Keyboard="Numeric" Placeholder="0" Text="{Binding DistanceToTravel, Mode=TwoWay, Converter={StaticResource shortDistanceConverter}}"></Entry>
                 <Button Grid.Row="3" Grid.Column="2"  Grid.ColumnSpan="1" Text="+"  Style="{StaticResource UpDownButton}"  Command="{Binding DistanceUpCommand}" ></Button>
                 <Button Grid.Row="3" Grid.Column="3"  Grid.ColumnSpan="1" Text="-" Style="{StaticResource UpDownButton}"  Command="{Binding DistanceDownCommand}" ></Button>
             </Grid>

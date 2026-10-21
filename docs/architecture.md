@@ -138,6 +138,26 @@ Dual-sink logging via `MetroLog`:
 - **Rolling file** in `FileSystem.CacheDirectory/MetroLogs`, retained for 2 days.
 - Debug sink added in `#if DEBUG` builds.
 
+## Display Units
+
+Every stored record, sync payload and calculator formula is **metric**. The unit system is
+purely a display concern, chosen on the Settings page and applied at the XAML boundary.
+
+```
+UnitConversion (MySarAssistModels/Units) — pure metric <-> imperial maths, unit labels, steps
+UnitSettings   (MySARAssist/Services)    — the user's choice, persisted via Preferences
+Unit converters (MySARAssist/Converters) — render metric bindings, parse edits back to metric
+```
+
+- `UnitMeasure` fixes both the stored metric unit and its imperial counterpart:
+  speed km/h ↔ mph, short distance m ↔ ft, long distance km ↔ mi, area km² ↔ acres.
+- View models hold metric values only. `SpeedConverter`, `ShortDistanceConverter`,
+  `LongDistanceConverter` and `AreaConverter` convert on the way to an `Entry` and back again.
+- `UnitSettings.Step(metricStep, imperialStep, measure)` returns a metric increment so the
+  +/- buttons move in round numbers of whatever the user is reading.
+- Pages call `RefreshUnits()` on their view model in `OnAppearing` so a unit change made while
+  the page was off screen is picked up.
+
 ## Urgency Assessment
 
 A sequential decision-tree calculator (EMCR-based) that walks through 8 risk-factor questions to determine urgency level. Unlike other features, it is **stateless** — no service or persistence layer. The entire logic lives in `UrgencyCalculatorViewModel`.

@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using MySARAssist.Services;
+using MySarAssistModels.Units;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,40 +24,41 @@ namespace MySARAssist.ViewModels.Calculators
                 Length = 0;
                 SearcherSpeed = 1.6;
                 estimatedDuration = 0;
+                NotifyInputs();
             });
 
             SpeedUpCommand = new Command(() =>
             {
-                SearcherSpeed += 0.1;
+                SearcherSpeed += SpeedStep;
                 OnPropertyChanged(nameof(SearcherSpeed));
 
             });
             SpeedDownCommand = new Command(() =>
             {
-                SearcherSpeed -= 0.1;
+                SearcherSpeed = Math.Max(0, SearcherSpeed - SpeedStep);
                 OnPropertyChanged(nameof(SearcherSpeed));
             });
 
 
             LengthUpCommand = new Command(() =>
             {
-                Length += 0.1;
+                Length += LengthStep;
                 OnPropertyChanged(nameof(Length));
             });
             LengthDownCommand = new Command(() =>
             {
-                Length -= 0.1;
+                Length = Math.Max(0, Length - LengthStep);
                 OnPropertyChanged(nameof(Length));
             });
 
             ElevationUpCommand = new Command(() =>
             {
-                Elevation += 100;
+                Elevation += ElevationStep;
                 OnPropertyChanged(nameof(Elevation));
             });
             ElevationDownCommand = new Command(() =>
             {
-                Elevation -= 100;
+                Elevation = Math.Max(0, Elevation - ElevationStep);
                 OnPropertyChanged(nameof(Elevation));
             });
 
@@ -97,27 +100,52 @@ namespace MySARAssist.ViewModels.Calculators
         }
 
 
+        /// <summary>
+        /// Speed in km/h. The view converts to and from the user's units, so every value the
+        /// estimate sees is metric. The setter does not raise its own change notification,
+        /// which would rewrite the entry while it is being typed in.
+        /// </summary>
         double _searcherSpeed = 1.6;
-        public double SearcherSpeed { get => _searcherSpeed; set { _searcherSpeed = value; CalculateEstimate(); OnPropertyChanged(nameof(SearcherSpeed)); OnPropertyChanged(nameof(SearcherSpeedStr)); } }
-        public string? SearcherSpeedStr
-        {
-            get { if (SearcherSpeed > 0) { return Math.Round( SearcherSpeed,2).ToString(); } else { return null; } }
-            set { if (!string.IsNullOrEmpty(value)) { double temp; double.TryParse(value, out temp); SearcherSpeed = temp; } }
-        }
+        public double SearcherSpeed { get => _searcherSpeed; set { _searcherSpeed = value; CalculateEstimate(); } }
+
+        /// <summary>Route length in kilometres.</summary>
         double _length = 0;
-        public double Length { get => _length; set { _length = value; CalculateEstimate(); OnPropertyChanged(nameof(Length)); OnPropertyChanged(nameof(LengthStr)); } }
-        public string? LengthStr
+        public double Length { get => _length; set { _length = value; CalculateEstimate(); } }
+
+        /// <summary>Elevation gain in metres.</summary>
+        double _elevation = 0;
+        public double Elevation { get => _elevation; set { _elevation = value; CalculateEstimate(); } }
+
+        private static UnitSettings Units => UnitSettings.Current;
+
+        private double SpeedStep => Units.Step(0.1, 0.1, UnitMeasure.Speed);
+        private double LengthStep => Units.Step(0.1, 0.1, UnitMeasure.LongDistance);
+        private double ElevationStep => Units.Step(100, 250, UnitMeasure.ShortDistance);
+
+        public string SpeedCaption => $"Searcher Speed (in {Units.SpeedUnit})";
+        public string SpeedUnit => Units.SpeedUnit;
+        public string LengthCaption => $"Length (in {Units.LongDistanceUnit})";
+        public string LengthUnit => Units.LongDistanceUnit;
+        public string ElevationCaption => $"Elevation Gain (in {Units.ShortDistanceName})";
+        public string ElevationUnit => Units.ShortDistanceUnit;
+
+        /// <summary>Re-renders every unit-bearing binding, for when the setting changed while this page was off screen.</summary>
+        public void RefreshUnits()
         {
-            get { if (Length > 0) { return Math.Round( Length,1).ToString(); } else { return null; } }
-            set { if (!string.IsNullOrEmpty(value)) { double temp; double.TryParse(value, out temp); Length = temp; } }
+            OnPropertyChanged(nameof(SpeedCaption));
+            OnPropertyChanged(nameof(SpeedUnit));
+            OnPropertyChanged(nameof(LengthCaption));
+            OnPropertyChanged(nameof(LengthUnit));
+            OnPropertyChanged(nameof(ElevationCaption));
+            OnPropertyChanged(nameof(ElevationUnit));
+            NotifyInputs();
         }
 
-        double _elevation = 0;
-        public double Elevation { get => _elevation; set { _elevation = value; CalculateEstimate(); OnPropertyChanged(nameof(Elevation)); OnPropertyChanged(nameof(ElevationStr)); } }
-        public string? ElevationStr
+        private void NotifyInputs()
         {
-            get { if (Elevation > 0) { return Math.Round(Elevation, 1).ToString(); } else { return null; } }
-            set { if (!string.IsNullOrEmpty(value)) { double temp; double.TryParse(value, out temp); Elevation = temp; } }
+            OnPropertyChanged(nameof(SearcherSpeed));
+            OnPropertyChanged(nameof(Length));
+            OnPropertyChanged(nameof(Elevation));
         }
     }
 }

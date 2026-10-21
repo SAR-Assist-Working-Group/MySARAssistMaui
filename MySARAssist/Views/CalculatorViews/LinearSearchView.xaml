@@ -3,12 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.Calculators.LinearSearchView"
               xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
+              xmlns:converters="clr-namespace:MySARAssist.Converters"
              HideSoftInputOnTapped="True"
  x:DataType="vm:LinearWorkEstimationViewModel"
              Title="Linear Search Time Estimate">
     <ContentPage.BindingContext>
         <vm:LinearWorkEstimationViewModel></vm:LinearWorkEstimationViewModel>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <converters:SpeedConverter x:Key="speedConverter" />
+        <converters:LongDistanceConverter x:Key="longDistanceConverter" />
+        <converters:ShortDistanceConverter x:Key="shortDistanceConverter" />
+    </ContentPage.Resources>
     <Grid >
 
 
@@ -44,18 +50,18 @@
 
 
 
-                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" VerticalOptions="Center" Text="Searcher Speed (in KM/h)" ></Label>
-                    <Entry Grid.Row="1" Grid.Column="0" Keyboard="Numeric" Text="{Binding SearcherSpeedStr, Mode=TwoWay}" Placeholder="KM/h"   ></Entry>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" VerticalOptions="Center" Text="{Binding SpeedCaption}" ></Label>
+                    <Entry Grid.Row="1" Grid.Column="0" Keyboard="Numeric" Text="{Binding SearcherSpeed, Mode=TwoWay, Converter={StaticResource speedConverter}}" Placeholder="{Binding SpeedUnit}"   ></Entry>
                 <Button  Grid.Row="1" Grid.Column="1" Text="+" Style="{StaticResource UpDownButton}" Command="{Binding SpeedUpCommand}" ></Button>
                 <Button  Grid.Row="1" Grid.Column="2" Text="-" Style="{StaticResource UpDownButton}" Command="{Binding SpeedDownCommand}" ></Button>
 
-                    <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}"  VerticalOptions="Center" Text="Length (in KM)" ></Label>
-                    <Entry Grid.Row="4" Grid.Column="0"  Keyboard="Numeric" Text="{Binding LengthStr, Mode=TwoWay}" Placeholder="KM"  ></Entry>
+                    <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}"  VerticalOptions="Center" Text="{Binding LengthCaption}" ></Label>
+                    <Entry Grid.Row="4" Grid.Column="0"  Keyboard="Numeric" Text="{Binding Length, Mode=TwoWay, Converter={StaticResource longDistanceConverter}}" Placeholder="{Binding LengthUnit}"  ></Entry>
                 <Button  Grid.Row="4" Grid.Column="1" Text="+" Style="{StaticResource UpDownButton}" Command="{Binding LengthUpCommand}" ></Button>
                 <Button  Grid.Row="4" Grid.Column="2" Text="-" Style="{StaticResource UpDownButton}" Command="{Binding LengthDownCommand}" ></Button>
 
-                <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}"  VerticalOptions="Center" Text="Elevation Gain (in Meters)" ></Label>
-                <Entry Grid.Row="7" Grid.Column="0"  Keyboard="Numeric" Text="{Binding ElevationStr, Mode=TwoWay}" Placeholder="m"  ></Entry>
+                <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}"  VerticalOptions="Center" Text="{Binding ElevationCaption}" ></Label>
+                <Entry Grid.Row="7" Grid.Column="0"  Keyboard="Numeric" Text="{Binding Elevation, Mode=TwoWay, Converter={StaticResource shortDistanceConverter}}" Placeholder="{Binding ElevationUnit}"  ></Entry>
                 <Button  Grid.Row="7" Grid.Column="1" Text="+" Style="{StaticResource UpDownButton}" Command="{Binding ElevationUpCommand}" ></Button>
                 <Button  Grid.Row="7" Grid.Column="2" Text="-" Style="{StaticResource UpDownButton}" Command="{Binding ElevationDownCommand}" ></Button>
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MySARAssist.Views.SettingsView"
+             xmlns:vm="clr-namespace:MySARAssist.ViewModels.General"
+             x:DataType="vm:SettingsViewModel" HideSoftInputOnTapped="True"
+             Title="Settings">
+    <ContentPage.BindingContext>
+        <vm:SettingsViewModel></vm:SettingsViewModel>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+
+            <Label Text="Units" FontSize="Title"></Label>
+            <Label Text="Choose the units the calculators use for distances, areas and speeds." FontSize="16"></Label>
+
+            <VerticalStackLayout Spacing="5">
+                <RadioButton GroupName="UnitSystem" Content="Metric - km, m, km2, km/h" IsChecked="{Binding Units.IsMetric, Mode=TwoWay}"></RadioButton>
+                <RadioButton GroupName="UnitSystem" Content="Imperial - mi, ft, acres, mph" IsChecked="{Binding Units.IsImperial, Mode=TwoWay}"></RadioButton>
+            </VerticalStackLayout>
+
+            <Label Text="Currently showing" Style="{StaticResource FormFieldTitle}" Margin="0,10,0,0"></Label>
+            <Grid ColumnSpacing="10" RowSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Text="Searcher speed"></Label>
+                <Label Grid.Row="0" Grid.Column="1" FontAttributes="Bold" Text="{Binding Units.SpeedUnit}"></Label>
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Spacing, elevation, detection range"></Label>
+                <Label Grid.Row="1" Grid.Column="1" FontAttributes="Bold" Text="{Binding Units.ShortDistanceUnit}"></Label>
+
+                <Label Grid.Row="2" Grid.Column="0" Text="Route length"></Label>
+                <Label Grid.Row="2" Grid.Column="1" FontAttributes="Bold" Text="{Binding Units.LongDistanceUnit}"></Label>
+
+                <Label Grid.Row="3" Grid.Column="0" Text="Search area size"></Label>
+                <Label Grid.Row="3" Grid.Column="1" FontAttributes="Bold" Text="{Binding Units.AreaUnit}"></Label>
+            </Grid>
+
+            <Label Text="Assignments, risk assessments and everything synced to your team are always stored in metric. Switching units changes only what you see and type."
+                   FontSize="14" FontAttributes="Italic" Margin="0,10,0,0"></Label>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

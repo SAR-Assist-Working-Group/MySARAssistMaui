@@ -2,6 +2,8 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using MySarAssistModels;
+using MySARAssist.Services;
+using MySarAssistModels.Units;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,13 +33,36 @@ namespace MySARAssist.ViewModels.UtilitiesViewModels
             {
                 if (CurrentCoordinate.Altitude != null)
                 {
-                    return $"Altitude: {CurrentCoordinate.Altitude}m";
+                    return $"Altitude: {Units.Format(CurrentCoordinate.Altitude.Value, UnitMeasure.ShortDistance)}{Units.ShortDistanceUnit}";
                 }
                 else
                 {
                     return "Altitude: N/A";
                 }
             }
+        }
+
+        /// <summary>GPS accuracy, reported in metres by the platform and shown in the user's units.</summary>
+        public string GPSAccuracyText
+        {
+            get
+            {
+                if (CurrentCoordinate.Accuracy != null)
+                {
+                    return $"{Units.Format(CurrentCoordinate.Accuracy.Value, UnitMeasure.ShortDistance)}{Units.ShortDistanceUnit}";
+                }
+
+                return "N/A";
+            }
+        }
+
+        private static UnitSettings Units => UnitSettings.Current;
+
+        /// <summary>Re-renders the unit-bearing labels, for when the setting changed while this page was off screen.</summary>
+        public void RefreshUnits()
+        {
+            OnPropertyChanged(nameof(CurrentAltitudeByGPSText));
+            OnPropertyChanged(nameof(GPSAccuracyText));
         }
 
         public AltimeterViewModel()
@@ -167,6 +192,7 @@ namespace MySARAssist.ViewModels.UtilitiesViewModels
                     OnPropertyChanged(nameof(CurrentLocationText));
                     OnPropertyChanged(nameof(CurrentAltitudeByGPSText));
                     OnPropertyChanged(nameof(GPSAccuracy));
+                    OnPropertyChanged(nameof(GPSAccuracyText));
                     //DisplayQuestion();
                     //ShowToastAsync("Accuracy: " + location.Accuracy + "m");
 

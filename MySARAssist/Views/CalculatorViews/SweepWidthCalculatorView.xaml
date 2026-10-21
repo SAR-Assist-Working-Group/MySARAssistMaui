@@ -3,10 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.Calculators.SweepWidthCalculatorView"
                xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"  HideSoftInputOnTapped="True"
+               xmlns:converters="clr-namespace:MySARAssist.Converters"
              Title="Sweep Width Calculator">
     <ContentPage.BindingContext>
         <vm:SweepWidthCalculatorViewModel></vm:SweepWidthCalculatorViewModel>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <converters:ShortDistanceConverter x:Key="shortDistanceConverter" />
+        <converters:ShortDistanceConverter x:Key="resultDistanceConverter" BlankWhenZero="False" />
+    </ContentPage.Resources>
 
     <Grid>
 
@@ -47,12 +52,12 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"  Style="{StaticResource FormFieldTitle}"  Text="Range of Detection (meters)"  ></Label>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"  Style="{StaticResource FormFieldTitle}"  Text="{Binding RangeOfDetectionCaption}"  ></Label>
 
                 <ImageButton Grid.Row="0" Grid.Column="3" IsVisible="False" x:Name="HowToRDImageButton" Clicked="HowToRDImageButton_Clicked"  Aspect="AspectFit"  Source="info_icon.png"></ImageButton>
 
 
-                <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Keyboard="Numeric" Text="{Binding RangeOfDetection}"  Placeholder="Range of Detection / AMDR"  ></Entry>
+                <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Keyboard="Numeric" Text="{Binding RangeOfDetection, Mode=TwoWay, Converter={StaticResource shortDistanceConverter}}"  Placeholder="Range of Detection / AMDR"  ></Entry>
                 <Button Grid.Row="1" Grid.Column="2"  Grid.ColumnSpan="1" Text="+"  Style="{StaticResource UpDownButton}"  Command="{Binding RDUpCommand}" ></Button>
                 <Button Grid.Row="1" Grid.Column="3"  Grid.ColumnSpan="1" Text="-" Style="{StaticResource UpDownButton}"  Command="{Binding RDDownCommand}" ></Button>
 
@@ -81,8 +86,8 @@
         <VerticalStackLayout Grid.Column="0" Grid.Row="1"   Style="{StaticResource CalculatorResult}" >
             <Label x:Name="lblResultTypeTitle"  Style="{StaticResource CalculatorResultTitle}"  Text="Sweep Width"></Label>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Label x:Name="lblResultsValue"  Style="{StaticResource CalculatorResultValue}"  Text="{Binding TeamSpacing}"></Label>
-                <Label x:Name="lblUnitOfMeasure"  Style="{StaticResource CalculatorResultUOM}"  Text="meters between searchers"></Label>
+                <Label x:Name="lblResultsValue"  Style="{StaticResource CalculatorResultValue}"  Text="{Binding TeamSpacing, Converter={StaticResource resultDistanceConverter}}"></Label>
+                <Label x:Name="lblUnitOfMeasure"  Style="{StaticResource CalculatorResultUOM}"  Text="{Binding TeamSpacingCaption}"></Label>
             </StackLayout>
 
         </VerticalStackLayout>

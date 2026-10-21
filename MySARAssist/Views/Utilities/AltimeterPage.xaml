@@ -22,8 +22,7 @@ HideSoftInputOnTapped="True"
 
                 <HorizontalStackLayout>
                     <Label Text="Accurate to "></Label>
-                    <Label Text="{Binding GPSAccuracy}"></Label>
-                    <Label Text="m"></Label>
+                    <Label Text="{Binding GPSAccuracyText}"></Label>
 
                 </HorizontalStackLayout>
                 <Label Text="{Binding CurrentAltitudeByGPSText}"></Label>

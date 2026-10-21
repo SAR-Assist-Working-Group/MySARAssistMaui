@@ -13,4 +13,10 @@ public partial class LinearSearchView : ContentPage
         LogController.SuspendShake();
         this.logger = logger;
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        (BindingContext as ViewModels.Calculators.LinearWorkEstimationViewModel)?.RefreshUnits();
+    }
 }

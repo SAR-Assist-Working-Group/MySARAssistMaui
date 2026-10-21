@@ -21,4 +21,10 @@ public partial class AltimeterPage : ContentPage
         viewModel = new AltimeterViewModel();
         this.BindingContext = viewModel;
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        viewModel?.RefreshUnits();
+    }
 }

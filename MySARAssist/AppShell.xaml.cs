@@ -35,6 +35,8 @@ namespace MySARAssist
 
             Routing.RegisterRoute(nameof(UrgencyCalculatorView), typeof(UrgencyCalculatorView));
 
+            Routing.RegisterRoute(nameof(SettingsView), typeof(SettingsView));
+
             Routing.RegisterRoute(nameof(RADeMSView), typeof(RADeMSView));
             Routing.RegisterRoute(nameof(RADeMSView) + "/" + nameof(RADeMSDetailsPage), typeof(RADeMSDetailsPage));
             Routing.RegisterRoute(nameof(RADeMSView) + "/" + nameof(RADeMSDetailsPage) + "/" + nameof(RADeMSCardPage), typeof(RADeMSCardPage));
