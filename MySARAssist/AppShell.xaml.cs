@@ -1,9 +1,9 @@
-﻿using MySARAssist.Views;
+using MySARAssist.Views;
 using MySARAssist.Views.Calculators;
 using MySARAssist.Views.CheckInOut;
 using MySARAssist.Views.RADeMS;
 using MySARAssist.Views.Utilities;
-
+using MySARAssist.Views.DebriefViews;
 using MySARAssist.Views.UrgencyViews;
 
 namespace MySARAssist
@@ -24,25 +24,27 @@ namespace MySARAssist
             Routing.RegisterRoute(nameof(CalculatorsView) + "/" + nameof(SweepWidthCalculatorView) + "/" + nameof(HowToRangeOfDetectionPage), typeof(HowToRangeOfDetectionPage));
             Routing.RegisterRoute(nameof(CalculatorsView) + "/" + nameof(VisualSearchResourceEstimationView), typeof(VisualSearchResourceEstimationView));
 
-
             Routing.RegisterRoute(nameof(CheckInOutView), typeof(CheckInOutView));
             Routing.RegisterRoute(nameof(CheckInOutView) + "/" + nameof(CheckInView), typeof(CheckInView));
             Routing.RegisterRoute(nameof(CheckInOutView) + "/" + nameof(CheckOutView), typeof(CheckOutView));
-
 
             Routing.RegisterRoute(nameof(CheckInOutView) + "/" + nameof(PersonnelEditView), typeof(PersonnelEditView));
             Routing.RegisterRoute(nameof(CheckInOutView) + "/" + nameof(PersonnelEditView) + "/" + nameof(EditQualificationsPage), typeof(EditQualificationsPage));
             Routing.RegisterRoute(nameof(CheckInOutView) + "/" + nameof(PersonnelListView), typeof(PersonnelListView));
 
             Routing.RegisterRoute(nameof(UrgencyCalculatorView), typeof(UrgencyCalculatorView));
-
             Routing.RegisterRoute(nameof(SettingsView), typeof(SettingsView));
 
             Routing.RegisterRoute(nameof(RADeMSView), typeof(RADeMSView));
             Routing.RegisterRoute(nameof(RADeMSView) + "/" + nameof(RADeMSDetailsPage), typeof(RADeMSDetailsPage));
             Routing.RegisterRoute(nameof(RADeMSView) + "/" + nameof(RADeMSDetailsPage) + "/" + nameof(RADeMSCardPage), typeof(RADeMSCardPage));
 
-            //utilities
+            // Debrief
+            Routing.RegisterRoute(nameof(TeamDebriefPage), typeof(TeamDebriefPage));
+            Routing.RegisterRoute(nameof(DebriefHistoryPage), typeof(DebriefHistoryPage));
+            Routing.RegisterRoute(nameof(ScanAssignmentSheetPage), typeof(ScanAssignmentSheetPage));
+
+            // Utilities
             Routing.RegisterRoute(nameof(UtilitiesListPage), typeof(UtilitiesListPage));
             Routing.RegisterRoute(nameof(UtilitiesListPage) + "/" + nameof(AltimeterPage), typeof(AltimeterPage));
         }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
@@ -21,10 +21,14 @@
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
 
-            
             <Button
                 Text="Check In or Out" ImageSource="glyphicons_basic_607_user_check.png" 
                 x:Name="CheckInOutButton" Clicked="CheckInOutButton_Clicked" Style="{StaticResource StandardButton}"
+                HorizontalOptions="Fill" />
+
+            <Button
+                Text="Team Debrief" ImageSource="glyphicons_basic_159_thumbnails_list.png"  Style="{StaticResource StandardButton}"
+                x:Name="TeamDebriefButton" Clicked="TeamDebriefButton_Clicked"
                 HorizontalOptions="Fill" />
 
             <Button
@@ -36,7 +40,6 @@
                 Text="RADeMS Risk Assessment"  ImageSource="radems_grid_icon.png"  Style="{StaticResource StandardButton}"
                 x:Name="RADeMSButton" Clicked="RADeMSButton_Clicked"
                 HorizontalOptions="Fill" />
-
 
             <Button
                 Text="Urgency Assessment" ImageSource="glyphicons_basic_510_light_beacon_white.png" Style="{StaticResource StandardButton}"

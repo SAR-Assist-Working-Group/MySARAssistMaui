@@ -10,6 +10,7 @@
 
     xmlns:checkinviews="clr-namespace:MySARAssist.Views.CheckInOut"
     xmlns:urgencyviews="clr-namespace:MySARAssist.Views.UrgencyViews"
+    xmlns:debriefviews="clr-namespace:MySARAssist.Views.DebriefViews"
     Shell.BackgroundColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Primary}}"
     Shell.FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}"
     Shell.FlyoutBackdrop="{StaticResource Tertiary}"
@@ -34,11 +35,14 @@
 
     <FlyoutItem Title="Calculators" Icon="glyphicons_basic_234_calculator.png">
         <ShellContent ContentTemplate="{DataTemplate views:CalculatorsView}" ></ShellContent>
-        
     </FlyoutItem>
 
     <FlyoutItem Title="Check In / Out" Icon="glyphicons_basic_607_user_check.png">
         <ShellContent ContentTemplate="{DataTemplate checkinviews:CheckInOutView}" ></ShellContent>
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Team Debrief" Icon="glyphicons_basic_159_thumbnails_list.png">
+        <ShellContent ContentTemplate="{DataTemplate debriefviews:TeamDebriefPage}" />
     </FlyoutItem>
 
     <FlyoutItem Title="RADeMS Risk Assessment" Icon="radems_grid_icon.png">

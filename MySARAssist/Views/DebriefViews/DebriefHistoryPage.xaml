@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MySARAssist.ViewModels.DebriefViewModels"
+             x:Class="MySARAssist.Views.DebriefViews.DebriefHistoryPage"
+             x:DataType="vm:DebriefHistoryViewModel"
+             Title="Debrief History">
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Top Action Bar -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Padding="16,12" BackgroundColor="{AppThemeBinding Light={StaticResource OffWhite}, Dark={StaticResource Primary}}">
+            <Label 
+                Text="All Recorded Debriefs" 
+                VerticalOptions="Center" 
+                Style="{StaticResource SubHeadline}" />
+            <Button 
+                Grid.Column="1" 
+                Text="+ New Debrief" 
+                Command="{Binding CreateNewDebriefCommand}" 
+                Padding="14,8" 
+                FontSize="14" 
+                MinimumHeightRequest="38" />
+        </Grid>
+
+        <!-- Debrief List -->
+        <ScrollView Grid.Row="1" Padding="16">
+            <VerticalStackLayout Spacing="12">
+                
+                <!-- Empty State -->
+                <Label 
+                    Text="No debriefs recorded yet. Tap '+ New Debrief' to start one." 
+                    IsVisible="{Binding HasNoDebriefs}" 
+                    HorizontalTextAlignment="Center" 
+                    Margin="0,40,0,0" 
+                    TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" 
+                    FontSize="16" />
+
+                <!-- Items List -->
+                <VerticalStackLayout BindableLayout.ItemsSource="{Binding Debriefs}" Spacing="10">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="vm:DebriefHistoryItemViewModel">
+                            <Border StrokeThickness="1" StrokeShape="RoundRectangle 8" Padding="14" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <VerticalStackLayout Spacing="4">
+                                        <Label 
+                                            Text="{Binding Title}" 
+                                            FontSize="16" 
+                                            FontAttributes="Bold" />
+                                        <Label 
+                                            Text="{Binding DebriefDateFormatted}" 
+                                            FontSize="13" 
+                                            TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}" />
+
+                                        <!-- Status Badge -->
+                                        <Border 
+                                            StrokeThickness="0" 
+                                            StrokeShape="RoundRectangle 4" 
+                                            BackgroundColor="{Binding StatusBadgeColor}" 
+                                            Padding="6,2" 
+                                            HorizontalOptions="Start" 
+                                            Margin="0,4,0,0">
+                                            <Label 
+                                                Text="{Binding StatusBadgeText}" 
+                                                TextColor="White" 
+                                                FontSize="11" 
+                                                FontAttributes="Bold" />
+                                        </Border>
+                                    </VerticalStackLayout>
+
+                                    <!-- Actions -->
+                                    <HorizontalStackLayout Grid.Column="1" Spacing="8" VerticalOptions="Center">
+                                        <Button 
+                                            Text="Open" 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:DebriefHistoryViewModel}}, Path=OpenDebriefCommand}" 
+                                            CommandParameter="{Binding .}" 
+                                            Padding="12,6" 
+                                            FontSize="13" 
+                                            MinimumHeightRequest="34" />
+                                        <Button 
+                                            Text="Delete" 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:DebriefHistoryViewModel}}, Path=DeleteDebriefCommand}" 
+                                            CommandParameter="{Binding .}" 
+                                            BackgroundColor="#DC2626" 
+                                            Padding="8,6" 
+                                            FontSize="13" 
+                                            MinimumHeightRequest="34" />
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
+
