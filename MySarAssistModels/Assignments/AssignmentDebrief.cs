@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,10 +10,12 @@ namespace MySarAssistModels.Assignments
     [Serializable]
     public class AssignmentDebrief : SyncableItem, ICloneable
     {
-         private Guid _AssignmentID;
-         private DateTime _AssignmentStart;
-         private DateTime _AssignmentEnd;
-         private DateTime _DebriefTime;
+        private Guid _AssignmentID;
+        private Guid _TaskID;
+        private int _AssignmentNumber;
+        private DateTime _AssignmentStart;
+        private DateTime _AssignmentEnd;
+        private DateTime _DebriefTime;
         private string _TeamName = string.Empty;
          private string? _WhatYourTeamDid;
          private bool _TracksProvided;
@@ -35,7 +37,24 @@ namespace MySarAssistModels.Assignments
          private string? _Injuries;
          private string? _Losses;
 
+        private bool _IsComplete;
+        private bool _IsExported;
+        private DateTime? _LastExportedUTC;
+
+        public AssignmentDebrief()
+        {
+            ID = Guid.NewGuid();
+            AssignmentID = Guid.NewGuid();
+            DebriefTime = DateTime.UtcNow;
+            AssignmentStart = DateTime.UtcNow;
+            AssignmentEnd = DateTime.UtcNow;
+            LastUpdatedUTC = DateTime.UtcNow;
+            Active = true;
+        }
+
         public Guid AssignmentID { get => _AssignmentID; set => _AssignmentID = value; }
+        public Guid TaskID { get => _TaskID; set => _TaskID = value; }
+        public int AssignmentNumber { get => _AssignmentNumber; set => _AssignmentNumber = value; }
         public DateTime AssignmentStart { get => _AssignmentStart; set => _AssignmentStart = value; }
         public DateTime AssignmentEnd { get => _AssignmentEnd; set => _AssignmentEnd = value; }
         public DateTime DebriefTime { get => _DebriefTime; set => _DebriefTime = value; }
@@ -61,7 +80,10 @@ namespace MySarAssistModels.Assignments
         public string? Injuries { get => _Injuries; set => _Injuries = value; }
         public string? Losses { get => _Losses; set => _Losses = value; }
         public bool HasInjuriesOrLosses { get => !string.IsNullOrEmpty(Injuries) || !string.IsNullOrEmpty(Losses); }
-      
+
+        public bool IsComplete { get => _IsComplete; set => _IsComplete = value; }
+        public bool IsExported { get => _IsExported; set => _IsExported = value; }
+        public DateTime? LastExportedUTC { get => _LastExportedUTC; set => _LastExportedUTC = value; }
 
         public AssignmentDebrief? Clone()
         {

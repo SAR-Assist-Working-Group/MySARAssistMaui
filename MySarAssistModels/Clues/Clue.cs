@@ -1,4 +1,4 @@
-﻿using SQLite;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +56,7 @@ namespace MySarAssistModels.Clues
 
 
 
-        [PrimaryKey] public Guid ClueID { get => ID; set => ID = value; }
+        public Guid ClueID { get => ID; set => ID = value; }
         public int? ClueValueId { get => _ClueValueId; set => _ClueValueId = value; }
 
         public string? ClueValue

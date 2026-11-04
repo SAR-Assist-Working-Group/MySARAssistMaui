@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MySARAssist.ViewModels.DebriefViewModels"
+             xmlns:converters="clr-namespace:MySARAssist.Converters"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             x:Class="MySARAssist.Views.DebriefViews.TeamDebriefPage"
+             x:DataType="vm:TeamDebriefViewModel"
+             Title="Team Debrief">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <!-- Main Scrollable Form -->
+        <ScrollView Padding="16">
+            <VerticalStackLayout Spacing="16">
+
+                <!-- Header Actions & Save Status -->
+                <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,4">
+                    <Label 
+                        Text="{Binding LastSaveStatus}" 
+                        VerticalOptions="Center" 
+                        FontSize="13" 
+                        TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}" />
+                    <Button 
+                        Grid.Column="1" 
+                        Text="Debrief History" 
+                        Clicked="OnHistoryClicked" 
+                        Padding="12,6" 
+                        MinimumHeightRequest="36" 
+                        FontSize="13" />
+                </Grid>
+
+                <!-- 1. Assignment Context Card -->
+                <Border StrokeThickness="1" StrokeShape="RoundRectangle 8" Padding="16" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Assignment Details" Style="{StaticResource RADeMSCategoryTitle}" VerticalOptions="Center" />
+                            <Button 
+                                Grid.Column="1" 
+                                Text="Scan Sheet QR" 
+                                Clicked="OnScanQrClicked" 
+                                Padding="12,6" 
+                                MinimumHeightRequest="36" 
+                                FontSize="13" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="100,*" ColumnSpacing="10">
+                            <VerticalStackLayout Grid.Column="0">
+                                <Label Text="Asg #" Style="{StaticResource FormFieldTitle}" />
+                                <Entry Text="{Binding AssignmentNumber}" Keyboard="Numeric" Placeholder="e.g. 3" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1">
+                                <Label Text="Team Name / Callsign" Style="{StaticResource FormFieldTitle}" />
+                                <Entry Text="{Binding TeamName}" Placeholder="e.g. Team 3 or Echo 1" />
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <Label Text="Assignment Start Time" Style="{StaticResource FormFieldTitle}" />
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                            <DatePicker Grid.Column="0" Date="{Binding AssignmentStartDate}" />
+                            <TimePicker Grid.Column="1" Time="{Binding AssignmentStartTime}" />
+                        </Grid>
+
+                        <Label Text="Assignment End Time" Style="{StaticResource FormFieldTitle}" />
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                            <DatePicker Grid.Column="0" Date="{Binding AssignmentEndDate}" />
+                            <TimePicker Grid.Column="1" Time="{Binding AssignmentEndTime}" />
+                        </Grid>
+
+                        <Label Text="Debrief Time" Style="{StaticResource FormFieldTitle}" />
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                            <DatePicker Grid.Column="0" Date="{Binding DebriefDate}" />
+                            <TimePicker Grid.Column="1" Time="{Binding DebriefTime}" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- 2. Operational Narrative Card -->
+                <Border StrokeThickness="1" StrokeShape="RoundRectangle 8" Padding="16" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Operational Narrative" Style="{StaticResource RADeMSCategoryTitle}" />
+
+                        <Label Text="What Your Team Did" Style="{StaticResource FormFieldTitle}" />
+                        <Editor 
+                            Text="{Binding WhatYourTeamDid}" 
+                            Placeholder="Describe actions taken, routes traveled, area covered..." 
+                            AutoSize="TextChanges" 
+                            MinimumHeightRequest="90" />
+
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" Margin="0,4">
+                            <CheckBox IsChecked="{Binding Deviation}" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="Deviated from original assignment plan" VerticalOptions="Center" />
+                        </Grid>
+
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" Margin="0,4">
+                            <CheckBox IsChecked="{Binding TracksProvided}" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="GPS tracks / breadcrumbs provided to ICP" VerticalOptions="Center" />
+                        </Grid>
+
+                        <Label Text="Gaps in Coverage" Style="{StaticResource FormFieldTitle}" />
+                        <Editor 
+                            Text="{Binding Gaps}" 
+                            Placeholder="Any unsearched bluffs, thickets, waterways, steep gullies..." 
+                            AutoSize="TextChanges" 
+                            MinimumHeightRequest="70" />
+
+                        <Label Text="Hazards Encountered" Style="{StaticResource FormFieldTitle}" />
+                        <Editor 
+                            Text="{Binding Hazards}" 
+                            Placeholder="Wasps, loose rock, steep drop-offs, wildlife, river crossings..." 
+                            AutoSize="TextChanges" 
+                            MinimumHeightRequest="70" />
+
+                        <Label Text="Weather Conditions" Style="{StaticResource FormFieldTitle}" />
+                        <Entry Text="{Binding Weather}" Placeholder="e.g. 14°C, overcast, showers starting at 15:00" />
+
+                        <Label Text="General Comments" Style="{StaticResource FormFieldTitle}" />
+                        <Editor 
+                            Text="{Binding Comments}" 
+                            Placeholder="Searcher feedback, equipment performance, suggestions..." 
+                            AutoSize="TextChanges" 
+                            MinimumHeightRequest="70" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- 3. Search Metrics Card -->
+                <Border StrokeThickness="1" StrokeShape="RoundRectangle 8" Padding="16" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Search Metrics" Style="{StaticResource RADeMSCategoryTitle}" />
+
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="10">
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                                <Label Text="Spacing (m)" Style="{StaticResource FormFieldTitle}" />
+                                <Entry Text="{Binding DebriefSpacing}" Keyboard="Numeric" Placeholder="e.g. 5" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                                <Label Text="Speed (km/h)" Style="{StaticResource FormFieldTitle}" />
+                                <Entry Text="{Binding DebriefTravelSpeedPerHour}" Keyboard="Numeric" Placeholder="e.g. 1.2" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="0">
+                                <Label Text="Range of Det. (m)" Style="{StaticResource FormFieldTitle}" />
+                                <Entry Text="{Binding DebriefRangeOfDetection}" Keyboard="Numeric" Placeholder="e.g. 10" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                                <Label Text="Estimated POD (%)" Style="{StaticResource FormFieldTitle}" />
+                                <Entry Text="{Binding DebriefPOD}" Keyboard="Numeric" Placeholder="e.g. 70" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- 4. Clues & Finds Card -->
+                <Border StrokeThickness="1" StrokeShape="RoundRectangle 8" Padding="16" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
+                    <VerticalStackLayout Spacing="12">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Clues &amp; Field Finds" Style="{StaticResource RADeMSCategoryTitle}" VerticalOptions="Center" />
+                            <Button 
+                                Grid.Column="1" 
+                                Text="+ Add Clue" 
+                                Command="{Binding AddClueCommand}" 
+                                Padding="12,6" 
+                                MinimumHeightRequest="36" 
+                                FontSize="13" />
+                        </Grid>
+
+                        <Label 
+                            Text="No clues logged for this assignment." 
+                            IsVisible="{Binding HasNoClues}" 
+                            TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}" 
+                            FontAttributes="Italic" />
+
+                        <!-- Clues List -->
+                        <VerticalStackLayout BindableLayout.ItemsSource="{Binding Clues}" Spacing="14">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="vm:ClueItemViewModel">
+                                    <Border StrokeThickness="1" StrokeShape="RoundRectangle 6" Padding="12" BackgroundColor="{AppThemeBinding Light={StaticResource OffWhite}, Dark={StaticResource Primary}}">
+                                        <VerticalStackLayout Spacing="8">
+                                            <Grid ColumnDefinitions="*,Auto">
+                                                <Label 
+                                                    Text="{Binding ClueNumber, StringFormat='Clue #{0}'}" 
+                                                    FontAttributes="Bold" 
+                                                    FontSize="16" 
+                                                    VerticalOptions="Center" />
+                                                <Button 
+                                                    Grid.Column="1" 
+                                                    Text="Delete" 
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:TeamDebriefViewModel}}, Path=DeleteClueCommand}" 
+                                                    CommandParameter="{Binding .}" 
+                                                    BackgroundColor="#DC2626" 
+                                                    Padding="8,4" 
+                                                    MinimumHeightRequest="30" 
+                                                    FontSize="12" />
+                                            </Grid>
+
+                                            <!-- Time Found -->
+                                            <Label Text="Time Found" Style="{StaticResource FormFieldTitle}" />
+                                            <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                                                <DatePicker Grid.Column="0" Date="{Binding DateFound}" />
+                                                <TimePicker Grid.Column="1" Time="{Binding TimeFound}" />
+                                            </Grid>
+
+                                            <!-- Description -->
+                                            <Label Text="Clue Description" Style="{StaticResource FormFieldTitle}" />
+                                            <Editor 
+                                                Text="{Binding Description}" 
+                                                Placeholder="Description of clue / find..." 
+                                                AutoSize="TextChanges" 
+                                                MinimumHeightRequest="60" />
+
+                                            <!-- Location & GPS -->
+                                            <Grid ColumnDefinitions="*,Auto" Margin="0,4,0,0">
+                                                <VerticalStackLayout>
+                                                    <Label Text="Location / Coordinates" Style="{StaticResource FormFieldTitle}" />
+                                                    <Label Text="{Binding FormattedCoordinates}" FontSize="13" FontAttributes="Bold" />
+                                                </VerticalStackLayout>
+                                                <Button 
+                                                    Grid.Column="1" 
+                                                    Text="Grab GPS" 
+                                                    Command="{Binding CaptureGpsCommand}" 
+                                                    IsEnabled="{Binding CanCaptureGps}" 
+                                                    Padding="10,6" 
+                                                    MinimumHeightRequest="34" 
+                                                    FontSize="12" />
+                                            </Grid>
+
+                                            <!-- Photos -->
+                                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" Margin="0,4,0,0">
+                                                <Button 
+                                                    Grid.Column="0" 
+                                                    Text="Take Photo" 
+                                                    Command="{Binding CapturePhotoCommand}" 
+                                                    Padding="10,6" 
+                                                    MinimumHeightRequest="34" 
+                                                    FontSize="12" />
+                                                <Button 
+                                                    Grid.Column="1" 
+                                                    Text="Pick from Gallery" 
+                                                    Command="{Binding PickPhotoCommand}" 
+                                                    Padding="10,6" 
+                                                    MinimumHeightRequest="34" 
+                                                    FontSize="12" />
+                                            </Grid>
+
+                                            <!-- Photo Preview -->
+                                            <Grid IsVisible="{Binding HasPhoto}" ColumnDefinitions="*,Auto" Margin="0,6,0,0">
+                                                <Image 
+                                                    Source="{Binding PhotoSource}" 
+                                                    HeightRequest="120" 
+                                                    Aspect="AspectFit" 
+                                                    HorizontalOptions="Start" />
+                                                <Button 
+                                                    Grid.Column="1" 
+                                                    Text="Remove Photo" 
+                                                    Command="{Binding RemovePhotoCommand}" 
+                                                    BackgroundColor="#DC2626" 
+                                                    Padding="8,4" 
+                                                    MinimumHeightRequest="30" 
+                                                    FontSize="12" 
+                                                    VerticalOptions="Center" />
+                                            </Grid>
+                                        </VerticalStackLayout>
+                                    </Border>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- 5. Safety & Losses Card -->
+                <Border StrokeThickness="1" StrokeShape="RoundRectangle 8" Padding="16" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Safety &amp; Losses" Style="{StaticResource RADeMSCategoryTitle}" />
+
+                        <Label Text="Searcher Injuries / First Aid" Style="{StaticResource FormFieldTitle}" />
+                        <Editor 
+                            Text="{Binding Injuries}" 
+                            Placeholder="Any injuries, blisters, sprains, exhaustion..." 
+                            AutoSize="TextChanges" 
+                            MinimumHeightRequest="60" />
+
+                        <Label Text="Damaged or Lost Equipment" Style="{StaticResource FormFieldTitle}" />
+                        <Editor 
+                            Text="{Binding Losses}" 
+                            Placeholder="Lost radio antenna, broken snowshoe, damaged pack..." 
+                            AutoSize="TextChanges" 
+                            MinimumHeightRequest="60" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- 6. Finalization & Export Actions -->
+                <VerticalStackLayout Spacing="12" Margin="0,8,0,24">
+                    <Button 
+                        Text="{Binding DoneButtonText}" 
+                        Command="{Binding ToggleDoneCommand}" 
+                        Style="{StaticResource StandardButton}" 
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Primary}}" />
+
+                    <Button 
+                        Text="Export Debrief Package (.mysca / QR)" 
+                        Command="{Binding ExportOptionsCommand}" 
+                        Style="{StaticResource StandardButton}" 
+                        FontAttributes="Bold" />
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- QR Code Modal Overlay -->
+        <Grid 
+            IsVisible="{Binding IsQrModalVisible}" 
+            BackgroundColor="#CC000000" 
+            HorizontalOptions="Fill" 
+            VerticalOptions="Fill" 
+            Padding="24">
+            
+            <Border 
+                StrokeShape="RoundRectangle 12" 
+                BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                Padding="20" 
+                WidthRequest="340">
+                <VerticalStackLayout Spacing="14" HorizontalOptions="Center">
+                    <Label 
+                        Text="{Binding QrCodeTitle}" 
+                        Style="{StaticResource RADeMSCategoryTitle}" 
+                        HorizontalTextAlignment="Center" />
+
+                    <zxing:BarcodeGeneratorView 
+                        ForegroundColor="Black" 
+                        Value="{Binding QrCodeValue}" 
+                        Format="QrCode" 
+                        HeightRequest="260" 
+                        WidthRequest="260" 
+                        HorizontalOptions="Center" />
+
+                    <Label 
+                        Text="Scan this code from the Debrief screen in SAR Command Assist (SCA)." 
+                        FontSize="12" 
+                        HorizontalTextAlignment="Center" 
+                        TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray300}}" />
+
+                    <Button 
+                        Text="Close" 
+                        Command="{Binding CloseQrModalCommand}" 
+                        Style="{StaticResource BackButton}" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </Grid>
+</ContentPage>

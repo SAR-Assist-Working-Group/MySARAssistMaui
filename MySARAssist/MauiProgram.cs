@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using MySARAssist.Services;
 using MySARAssist.ViewModels.CheckInOut;
 using CommunityToolkit.Maui;
@@ -8,6 +8,8 @@ using MySARAssist.Interfaces;
 using MySARAssist.Views.Calculators;
 using MySARAssist.Views;
 using MySARAssist.Views.CheckInOut;
+using MySARAssist.Views.DebriefViews;
+using MySARAssist.ViewModels.DebriefViewModels;
 using MySARAssist.Views.RADeMS;
 using MySARAssist.Views.Utilities;
 using MySARAssist.ViewModels.UtilitiesViewModels;
@@ -48,13 +50,13 @@ namespace MySARAssist
 
 
             builder.Services.AddSingleton<PersonnelService>(s => ActivatorUtilities.CreateInstance<PersonnelService>(s));
+            builder.Services.AddSingleton<DebriefService>();
 
             builder.Logging.AddInMemoryLogger(options =>
             {
                 options.MaxLines = 1024;
                 options.MinLevel = Microsoft.Extensions.Logging.LogLevel.Debug;
                 options.MaxLevel = Microsoft.Extensions.Logging.LogLevel.Critical;
-
             });
             builder.Logging.AddStreamingFileLogger(options =>
             {
@@ -62,9 +64,7 @@ namespace MySARAssist
                 options.FolderPath = Path.Combine(
                     FileSystem.CacheDirectory,
                     "MetroLogs");
-
             });
-
 
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<AboutView>();
@@ -93,6 +93,13 @@ namespace MySARAssist
             builder.Services.AddTransient<RADeMSDetailsPage>();
             builder.Services.AddTransient<RADeMSCardPage>();
 
+            // Debrief
+            builder.Services.AddTransient<TeamDebriefPage>();
+            builder.Services.AddTransient<TeamDebriefViewModel>();
+            builder.Services.AddTransient<DebriefHistoryPage>();
+            builder.Services.AddTransient<DebriefHistoryViewModel>();
+            builder.Services.AddTransient<ScanAssignmentSheetPage>();
+
             builder.Services.AddTransient<UtilitiesListPage>();
             builder.Services.AddTransient<UtilitiesListViewModel>();
             builder.Services.AddTransient<AltimeterPage>();
@@ -101,19 +108,11 @@ namespace MySARAssist
             EntryHandler.AddDone();
             builder.UseBarcodeReader();
 
-
-
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
 
-
             return builder.Build();
         }
-
-       
     }
-
-
-
 }
